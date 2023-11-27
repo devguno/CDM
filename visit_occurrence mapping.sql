@@ -19,7 +19,7 @@ WHERE m.person_id = p.person_id
 SELECT *
 FROM public.cdm_measurement_pft_new
 WHERE visit_occurrence_id is null;
-*/
+*/ 
 
 -- date 기준   visit_occurrence_id 업데이트 완료, 153400개 매핑(약 94%)
 UPDATE public.cdm_measurement_pft_new AS m
