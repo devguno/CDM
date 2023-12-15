@@ -4,7 +4,7 @@ import pyautogui
 import time
 import keyboard
 
-data_counter = 1609  # 전역 변수로 데이터 카운터를 정의
+data_counter = 1  # 전역 변수로 데이터 카운터를 정의
 
 def macro_1():
     global data_counter  # 전역 변수 사용 선언
