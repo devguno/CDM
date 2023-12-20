@@ -3,12 +3,6 @@ import csv
 import xml.etree.ElementTree as ET
 from tqdm import tqdm
 
-
-# Directory containing the XML files
-directory = 'Z:/child_tmt/Child TMT Device #1/2018.7-2019.2'
-#directory = r'C:\Users\SNUH\Desktop\test'
-
-# Function to parse an XML file and extract the required data
 def parse_xml(file_path):
     try:
         tree = ET.parse(file_path)
@@ -24,9 +18,22 @@ def parse_xml(file_path):
         patient_info = root.find('PatientInfo')
         pid = patient_info.find('PID').text
         family_name = patient_info.find('Name/FamilyName').text
-        given_name = patient_info.find('Name/GivenName').text
+        
+        # GivenName이 없는 경우를 처리
+        given_name_element = patient_info.find('Name/GivenName')
+        given_name = given_name_element.text if given_name_element is not None else ""
+        
+        # Extracting BirthDateTime
+        birth_date_time = root.find('.//BirthDateTime')
+        birth_year = birth_date_time.find('Year').text
+        birth_month = birth_date_time.find('Month').text.zfill(2)
+        birth_day = birth_date_time.find('Day').text.zfill(2)
+        birthdate_str = f"{birth_year}{birth_month}{birth_day}"
 
-        return file_path, pid, family_name, given_name, date_str, datetime_str
+        # Extracting Gender
+        gender = root.find('.//Gender').text
+
+        return file_path, pid, family_name, given_name, birthdate_str, gender, date_str, datetime_str
     except ET.ParseError as e:
         print(f"XML Parse Error in file: {file_path}")
     except OSError as e:
@@ -35,18 +42,35 @@ def parse_xml(file_path):
         print(f"Unexpected error in file: {file_path}, Error: {e}")
     return None
 
-# CSV file to store the extracted data
-csv_file_path = 'C:/Users/SNUH/Desktop/tmt/extracted_data.csv'
+# 'Z:\child_tmt\Child TMT Device #1' 폴더
+root_directory = 'Z:\gangnam_tmt'
+# 결과를 저장할 기본 경로
+base_output_directory = 'C:/Users/SNUH/Desktop/tmt/'
 
-# Extracting data from all XML files in the directory and writing to the CSV file
-with open(csv_file_path, mode='w', newline='', encoding='utf-8') as file:
-    writer = csv.writer(file)
-    writer.writerow(['FilePath', 'PID', 'FamilyName', 'GivenName', 'Date', 'DateTime'])
+# root_directory의 마지막 부분을 폴더 이름으로 사용
+output_subfolder_name = os.path.basename(root_directory)
+output_directory = os.path.join(base_output_directory, output_subfolder_name)
 
-    # Wrapping the file list with tqdm for progress bar
-    for filename in tqdm(os.listdir(directory), desc="Processing files"):
-        if filename.endswith('.xml'):
-            file_path = os.path.join(directory, filename)
-            data = parse_xml(file_path)
-            if data:
+# 출력 디렉토리가 존재하지 않으면 생성
+if not os.path.exists(output_directory):
+    os.makedirs(output_directory)
+
+for subdir, _, files in tqdm(os.walk(root_directory), desc="Processing folders"):
+    if subdir == root_directory:
+        continue
+
+    csv_file_path = os.path.join(output_directory, os.path.basename(subdir) + '_data.csv')
+    
+    # 각 하위 폴더의 XML 파일을 순회하면서 처리하고 CSV 파일에 쓰기
+    for filename in tqdm([f for f in files if f.lower().endswith('.xml')], desc=f"Processing XML files in {os.path.basename(subdir)}"):
+        file_path = os.path.join(subdir, filename)
+        data = parse_xml(file_path)
+
+        # 각 파일 처리 후 CSV 파일에 결과 추가
+        if data:
+            with open(csv_file_path, mode='a', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file)
+                if os.path.getsize(csv_file_path) == 0:
+                    # 파일이 비어있다면 헤더 작성
+                    writer.writerow(['FilePath', 'PID', 'FamilyName', 'GivenName', 'BirthDate', 'Gender', 'Date', 'DateTime'])
                 writer.writerow(data)
