@@ -43,9 +43,9 @@ def parse_xml(file_path):
     return None
 
 # 'Z:\child_tmt\Child TMT Device #1' 폴더
-root_directory = 'Z:\gangnam_tmt'
+root_directory = 'Z:\main_tmt\Main TMT Device #2'
 # 결과를 저장할 기본 경로
-base_output_directory = 'C:/Users/SNUH/Desktop/tmt/'
+base_output_directory = 'C:/Users/SNUH/Desktop/tmt/main_new/'
 
 # root_directory의 마지막 부분을 폴더 이름으로 사용
 output_subfolder_name = os.path.basename(root_directory)
