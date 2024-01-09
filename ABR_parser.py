@@ -22,7 +22,7 @@ def parse_xml_and_save_to_csv_v5(root_directory, output_directory):
                         for client in xml_root.findall('.//client[personnumber]'):
                             createdate = client.find('.//createdate').text if client.find('.//createdate') is not None else ''
                             personnumber = client.find('.//personnumber').text if client.find('.//personnumber') is not None else ''
-                            firstname = client.find('.//firstname').text if client.find('.//firstname') is not None else ''
+                            firstname = client.find('.//firstname').text.strip() if client.find('.//firstname') is not None else ''
                             lastname = client.find('.//lastname').text if client.find('.//lastname') is not None else ''
 
                             date = createdate.split(' ')[0].replace('/', '-') if createdate else ''
@@ -44,8 +44,8 @@ def parse_xml_and_save_to_csv_v5(root_directory, output_directory):
 
 
 # 파일 경로
-root_directory = r'C:\Users\iamgu\Desktop\abr\test'
-output_directory = r'C:\Users\iamgu\Desktop\abr\result'
+root_directory = r'C:\Users\SNUH\Desktop\abr\abr_xml\어린이병원3F'
+output_directory = r'C:\Users\SNUH\Desktop\abr\result'
 
 # 함수 호출 및 결과 파일 경로 출력
 parsed_file_path = parse_xml_and_save_to_csv_v5(root_directory, output_directory)
