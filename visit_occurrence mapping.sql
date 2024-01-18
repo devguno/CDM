@@ -1,43 +1,29 @@
---1단계에서 date로 매핑, 10000개일떄 9442개 매핑완료    
--- null 인거는 +기준 이틀? 
---Test code  
-UPDATE public.cdm_measurement_pft_new AS m
-SET visit_occurrence_id = p.visit_occurrence_id
-FROM cdm.procedure_occurrence AS p
-WHERE m.person_id = p.person_id
-   AND m.measurement_date = p.procedure_date
-   AND m.measurement_date IS NOT NULL
-   AND p.procedure_date IS NOT NULL
-   AND m.measurement_datetime IN (
-       SELECT measurement_datetime
-       FROM public.cdm_measurement_pft_new
-       ORDER BY measurement_datetime
-       LIMIT 10000
-   );    
+-- bio_signal_emg 부분만 변경해서 사용
+-- ECG 측정날짜가 visit_occurrence 테이블의 visit_start_date(방문시작일)과 visit_end_date(방문종료일) 사이에 있는 경우 visit_occurrence_id 매칭
+UPDATE public.bio_signal_emg2
+SET visit_occurrence_id = v.visit_occurrence_id
+FROM (
+    select distinct person_id, visit_start_date, visit_end_date, visit_occurrence_id
+    from cdm.visit_occurrence vo
+    order by person_id, visit_start_date, visit_end_date) v
+where public.bio_signal_emg2.visit_occurrence_id IS NULL 
+  and public.bio_signal_emg2.person_id = v.person_id
+    and public.bio_signal_emg2.bio_signal_date BETWEEN v.visit_start_date AND v.visit_end_date;
+   
+-- ECG 측정날짜가 visit_occurrence 테이블의 visit_start_date(방문시작일) 3일 전과 visit_end_date(방문종료일) 3일 후 사이에 있는 경우 visit_occurrence_id 매칭
+UPDATE public.bio_signal_emg2
+SET visit_occurrence_id = v.visit_occurrence_id
+FROM (
+    select distinct person_id, visit_start_date, visit_end_date, visit_occurrence_id
+    from cdm.visit_occurrence vo
+    order by person_id, visit_start_date, visit_end_date) v
+where public.bio_signal_emg2.visit_occurrence_id IS NULL 
+  and public.bio_signal_emg2.person_id = v.person_id
+    and public.bio_signal_emg2.bio_signal_date BETWEEN (v.visit_start_date - INTERVAL '3 day') AND (v.visit_end_date + INTERVAL '3 day')
 
-/*
-SELECT *
-FROM public.cdm_measurement_pft_new
-WHERE visit_occurrence_id is null;
-*/ 
-
--- date 기준   visit_occurrence_id 업데이트 완료, 153400개 매핑(약 94%)
-UPDATE public.cdm_measurement_pft_new AS m
-SET visit_occurrence_id = p.visit_occurrence_id
-FROM cdm.procedure_occurrence AS p
-WHERE m.person_id = p.person_id
-   AND m.measurement_date = p.procedure_date
-   AND m.measurement_date IS NOT NULL
-   AND p.procedure_date IS NOT NULL;
-  
-  
-UPDATE public.cdm_measurement_pft_new AS m
-SET visit_occurrence_id = p.visit_occurrence_id
-FROM cdm.procedure_occurrence AS p
-WHERE m.person_id = p.person_id
-   AND m.visit_occurrence_id IS NULL
-   AND p.procedure_date IS NOT NULL
-   AND p.procedure_date <= (m.measurement_date + INTERVAL '3 days');
---18485 updated Rows, 나머지 508개 null
-
-
+SELECT
+  (SELECT COUNT(*) FROM public.bio_signal_emg2 WHERE visit_occurrence_id IS NOT NULL) AS not_null_count,
+  (SELECT COUNT(*) FROM public.bio_signal_emg2 WHERE visit_occurrence_id IS NULL) AS null_count,
+  (SELECT COUNT(*) FROM public.bio_signal_emg2) AS total_count,
+  (SELECT COUNT(*) FROM public.bio_signal_emg2 WHERE visit_occurrence_id IS NOT NULL) * 100.0 / (SELECT COUNT(*) FROM public.bio_signal_emg2) AS not_null_percentage,
+  (SELECT COUNT(*) FROM public.bio_signal_emg2 WHERE visit_occurrence_id IS NULL) * 100.0 / (SELECT COUNT(*) FROM public.bio_signal_emg2) AS null_percentage;
