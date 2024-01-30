@@ -23,10 +23,10 @@ def update_text_file_utf16(file_path, new_file_name, new_patient_id):
         file.writelines(updated_lines)
 
 # Root directory path to be processed
-root_directory_path = r'Z:\emr_origin'
+root_directory_path = r'Z:\emg_origin'
 
 # Output root directory
-output_root_directory = r'Z:\emr'
+output_root_directory = r'Z:\emg_deid'
 
 # Load the personid.csv file
 personid_df = pd.read_csv(r'C:\Users\SNUH\Desktop\personid.csv')
