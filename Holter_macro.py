@@ -83,7 +83,7 @@ for folder in folder_list:
     pyautogui.click(1700, 188)
     time.sleep(1)
     pyautogui.click(1100, 560)
-    time.sleep(200)
+    time.sleep(400)
     pyautogui.click(1107, 475)
     time.sleep(1)
     pyautogui.click(1700, 310)
@@ -200,7 +200,7 @@ for folder in folder_list:
     pyautogui.click(1600, 110)
     time.sleep(1)
     pyautogui.click(1100, 550)
-    time.sleep(1)
+    time.sleep(2)
 
     # 반복 사이에 짧은 지연 시간
     time.sleep(3)
