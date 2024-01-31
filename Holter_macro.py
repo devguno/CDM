@@ -99,8 +99,8 @@ for folder in folder_list:
     y_coord = 73  # 초기 y 축 좌표 설정
     current_file = 0  # 현재 파일 번호 초기화
 
-    while current_file < file_count:
-        for _ in tqdm(range(min(58, file_count - current_file)), desc=f"Processing files in {folder}"):
+    while current_file < file_count - 1:
+        for _ in tqdm(range(min(62, file_count - current_file)), desc=f"Processing files in {folder}"):
             # Serial 번호와 함께 Serial 변수 생성
             Serial = f"{serial_number}_"
             
@@ -164,8 +164,8 @@ for folder in folder_list:
             time.sleep(1)
             #PDF 저장
             pyautogui.click(1070, 682)
-            time.sleep(40)  
-            pyautogui.click(133, 985)
+            time.sleep(50)  
+            pyautogui.click(140, 985)
             time.sleep(1)
 
             # Serial 변수 사용 후에 Serial 번호 증가 및 현재 파일 번호 증가
@@ -176,7 +176,12 @@ for folder in folder_list:
             y_coord += 14
             print(current_file)
             
-        if current_file < file_count:  # 마지막 페이지가 아니라면 PageDown
+        if current_file < file_count - 1:  # 마지막 페이지가 아니라면 PageDown
+            time.sleep(1)  
+            pyautogui.click(140, 985)
+            time.sleep(1)
+            pyautogui.click(240, 930)
+            time.sleep(1)
             pyautogui.press('pagedown')
             time.sleep(1)  # 페이지 다운 후 잠시 대기
             y_coord = 87  # y 축 좌표 초기화
