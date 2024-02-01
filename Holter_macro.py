@@ -176,15 +176,26 @@ for folder in folder_list:
             y_coord += 14
             print(current_file)
             
-        if current_file < file_count - 1:  # 마지막 페이지가 아니라면 PageDown
-            time.sleep(1)  
+        if current_file % 62 == 0 and current_file < file_count - 1:  # 62의 배수마다 PageDown
+            # PDF 저장 및 페이지 다운 전 추가 작업
+            pyautogui.click(1070, 682)
+            time.sleep(50)  
+            pyautogui.click(140, 985)
+            time.sleep(1)
+
+            # PageDown 전 추가 작업
             pyautogui.click(140, 985)
             time.sleep(1)
             pyautogui.click(240, 930)
             time.sleep(1)
+
+            # PageDown 실행
             pyautogui.press('pagedown')
             time.sleep(1)  # 페이지 다운 후 잠시 대기
-            y_coord = 87  # y 축 좌표 초기화
+            
+            if current_file >= 124:  # 62의 2배수 이후
+                pyautogui.press('pagedown')  # 한 번 더 PageDown 실행
+                time.sleep(1)
             
     # (400, 72) 위치를 클릭
     pyautogui.click(400, 72)
