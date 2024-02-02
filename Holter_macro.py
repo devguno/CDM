@@ -83,7 +83,7 @@ for folder in folder_list:
     pyautogui.click(1700, 188)
     time.sleep(1)
     pyautogui.click(1100, 560)
-    time.sleep(400)
+    time.sleep(600)
     pyautogui.click(1107, 475)
     time.sleep(1)
     pyautogui.click(1700, 310)
