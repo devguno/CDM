@@ -12,7 +12,7 @@ directory = "Z:\\Holter\\Holter_child_hdd"
 # # 디렉토리 내의 모든 하위 폴더명을 리스트로 가져오기
 # folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 
-folder_list = ["2011-08", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06"]
+folder_list = ["2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06"]
 
 serial_number = 1  # Serial 번호 초기화
 
