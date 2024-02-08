@@ -14,7 +14,7 @@ directory = "Z:\\Holter\\Holter_child_hdd"
 
 folder_list = ["2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06"]
 
-serial_number = 1  # Serial 번호 초기화
+serial_number = 20  # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
@@ -78,7 +78,7 @@ for folder in folder_list:
     pyautogui.keyDown('shift')  # Shift 키를 누름
     pyautogui.click(180, 929)   # 클릭
     pyautogui.keyUp('shift')    # Shift 키를 놓음
-    
+    time.sleep(2)
     
     # 파일당 작업 완료 후 대기 및 다음 작업 수행
     pyautogui.click(1604, 124)
@@ -87,7 +87,7 @@ for folder in folder_list:
     time.sleep(1)
     pyautogui.click(1100, 560)
     #Archive 대기 시간
-    time.sleep(600)
+    time.sleep(900)
     pyautogui.click(1107, 475)
     time.sleep(1)
     #click close
@@ -184,7 +184,7 @@ for folder in folder_list:
         time.sleep(1)
         #PDF 저장
         pyautogui.click(1070, 682)
-        time.sleep(50)  
+        time.sleep(60)  
         pyautogui.click(140, 985)
         time.sleep(1)
 
@@ -200,6 +200,7 @@ for folder in folder_list:
         print(f"Current file: {current_file}")  # 현재 처리 중인 파일 번호 출력
 
     # 이후 작업들
+    time.sleep(3)
     pyautogui.click(400, 72)
     time.sleep(1)
     pyautogui.moveTo(1488, 68)
@@ -207,7 +208,7 @@ for folder in folder_list:
     pyautogui.keyDown('shift')
     pyautogui.click(180, 929)
     pyautogui.keyUp('shift')
-
+    time.sleep(1)
     pyautogui.click(1600, 127)
     time.sleep(1)
     pyautogui.click(1600, 110)
