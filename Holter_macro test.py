@@ -19,10 +19,11 @@ serial_number = 1  # Serial 번호 초기화
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
     file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])
+    
     y_coord = 73  # 초기 y 축 좌표 설정
-    y_coord2 = 89  # 두 번째 페이지의 초기 y 축 좌표 설정
+    y_coord2 = 89  # 초기 y 축 좌표 설정
     current_file = 0  # 현재 파일 번호 초기화
-
+    
     print(folder_path + " file count: " + str(file_count))
     
     time.sleep(5)
@@ -38,9 +39,9 @@ for folder in folder_list:
     time.sleep(1)
     # 4. 1394,387 pixels의 좌표를 클릭하고 1232,387 pixels 의 좌표까지 드래그
     pyautogui.moveTo(1394, 387)  # 시작 위치로 이동
-    pyautogui.mouseDown()        # 마우스 버튼을 누른 상태로 유지
+    pyautogui.mouseDown()        
     pyautogui.moveTo(1232, 387, duration=1)  # 드래그 위치로 이동
-    pyautogui.mouseUp()          # 마우스 버튼을 놓아 드래그 완료
+    pyautogui.mouseUp()          
     
     # 5. folder_list에 있는 첫번째 값을 붙여 넣기
     pyautogui.write(folder)
@@ -87,7 +88,7 @@ for folder in folder_list:
     time.sleep(1)
     pyautogui.click(1100, 560)
     #Archive 대기 시간
-    time.sleep(600)
+    time.sleep(700)
     pyautogui.click(1107, 475)
     time.sleep(1)
     #click close
@@ -104,23 +105,23 @@ for folder in folder_list:
     time.sleep(2)       
 
     while current_file < file_count:
-        if current_file >= 58:  # 58개 파일을 초과한 후부터 매번 실행
+        if current_file >= 60:  # 62개 파일을 초과한 후부터 매번 실행
             pyautogui.click(260, 934)  # 스크린 활성화 클릭
             time.sleep(1)
             pyautogui.press('pagedown')
             time.sleep(1)
-        if current_file >= 116:  # 116번째 파일부터 pagedown을 추가로 실행
+        if current_file >= 120:  # 145번째 파일부터 pagedown을 추가로 실행
             pyautogui.press('pagedown')
             time.sleep(1)
-        if current_file >= 174:  # 174번째 파일부터 pagedown을 추가로 실행
+        if current_file >= 180:  # 206번째 파일부터 pagedown을 추가로 실행
             pyautogui.press('pagedown')
             time.sleep(1)
-        if current_file == 116 or current_file == 174:  # 116번째 및 207번째 파일에서 y 좌표 초기화
+        if current_file == 120 or current_file == 180:  # 145번째 및 207번째 파일에서 y 좌표 초기화
             y_coord2 = 89
 
         Serial = f"{serial_number}_"
 
-        if current_file < 58:
+        if current_file < 60:
             pyautogui.click(240, y_coord)  # 처음 62개 파일 처리
         else:
             pyautogui.click(240, y_coord2)  # 62개 이후 파일 처리
@@ -128,71 +129,13 @@ for folder in folder_list:
         time.sleep(1)
         pyautogui.click(217, 985)  # 특정 작업 수행
         time.sleep(1)
-                
-        # Serial 뒤에 붙일 값 복사
-        pyautogui.click(1200, 90)
-        pyautogui.dragTo(1040, 90, duration=1)
-        pyautogui.hotkey('ctrl', 'c')
-        additional_value = pyperclip.paste()
-        Serial += additional_value
-
-        pyautogui.click(26, 36)
-        time.sleep(1) 
-        #Research Utilities
-        pyautogui.click(86, 105)
-        time.sleep(1)
-        #OK
-        pyautogui.click(800, 547)
-        time.sleep(1) 
-        #change
-        pyautogui.click(1100, 473)
-        time.sleep(1) 
-        pyautogui.write(Serial)
-        time.sleep(1)
-        pyautogui.click(1580, 620)
-        time.sleep(1) 
-        #save
-        pyautogui.click(1070, 680)
-        time.sleep(1)
-        #change
-        pyautogui.click(1100, 473)
-        time.sleep(1) 
-        pyautogui.write(Serial)
-        time.sleep(1)
-        pyautogui.click(1580, 620)
-        time.sleep(1) 
-        #save
-        pyautogui.click(1070, 680)
-        time.sleep(5)
-        pyautogui.click(1118, 472) 
-        time.sleep(1)
-        pyautogui.click(143, 987) 
-        time.sleep(1)
-        
-        # 폴더 처리 전 추가 로직
-        pyautogui.click(750, 980)
-        time.sleep(1)
-        pyautogui.click(1790, 93)
-        time.sleep(1)
-        pyautogui.click(358, 358)
-        time.sleep(1)
-        
-        # Serial 값을 붙여넣기
-        pyautogui.write(Serial)
-        time.sleep(1)
-        pyautogui.click(1393, 359)
-        time.sleep(1)
-        #PDF 저장
-        pyautogui.click(1070, 682)
-        time.sleep(50)  
-        pyautogui.click(140, 985)
+        pyautogui.click(140, 985)  # 다른 작업 수행
         time.sleep(1)
 
-        # Serial 변수 사용 후에 Serial 번호 증가 및 현재 파일 번호 증가
         serial_number += 1
         current_file += 1
 
-        if current_file <= 58:
+        if current_file <= 60:
             y_coord += 15  # 다음 파일의 y 좌표로 업데이트
         else:
             y_coord2 += 15  # 다음 파일의 y 축 좌표 업데이트
@@ -213,4 +156,6 @@ for folder in folder_list:
     pyautogui.click(1600, 110)
     time.sleep(1)
     pyautogui.click(1100, 550)
-    time.sleep(4)
+    time.sleep(2)
+
+    time.sleep(3)
