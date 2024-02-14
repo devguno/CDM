@@ -62,8 +62,8 @@ def process_pdf_files(pdf_dir, xml_dir):
             (r"(\d+) Minimum at ([\d:]+ \d+-\w+)", 'MinimumRate', 'Timestamp'),
             (r"(\d+) Average", 'AverageRate', None),
             (r"(\d+) Maximum at ([\d:]+ \d+-\w+)", 'MaximumRate', 'Timestamp'),
-            (r"(\d+) Beats in tachycardia \(>[0-9]+ bpm\), (\d+)% total", 'TachycardiaBeats', 'TachycardiaPercentage'),
-            (r"(\d+) Beats in bradycardia \(<60 bpm\), (\d+)% total", 'BradycardiaBeats', 'BradycardiaPercentage'),
+            (r"(\d+) Beats in tachycardia \(>=?100 bpm\), (\d+)% total", 'TachycardiaBeats', 'TachycardiaPercentage'),
+            (r"(\d+) Beats in bradycardia \(<=?60 bpm\), (\d+)% total", 'BradycardiaBeats', 'BradycardiaPercentage'),
         ]
 
         for pattern, main_tag, sub_tag in patterns_hr:
