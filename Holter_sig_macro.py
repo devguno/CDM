@@ -87,7 +87,7 @@ for folder in folder_list:
     time.sleep(2)
     pyautogui.click(1100, 560)
     #Archive 대기 시간
-    time.sleep(700)
+    time.sleep(600)
     pyautogui.click(1107, 475)
     time.sleep(2)
     #click close
@@ -169,24 +169,6 @@ for folder in folder_list:
         pyautogui.click(143, 987) 
         time.sleep(2)
         
-        # 폴더 처리 전 추가 로직
-        pyautogui.click(750, 980)
-        time.sleep(2)
-        pyautogui.click(1790, 93)
-        time.sleep(2)
-        pyautogui.click(358, 358)
-        time.sleep(2)
-        
-        # Serial 값을 붙여넣기
-        pyautogui.write(Serial)
-        time.sleep(2)
-        pyautogui.click(1393, 359)
-        time.sleep(2)
-        #PDF 저장
-        pyautogui.click(1070, 682)
-        time.sleep(60)  
-        pyautogui.click(140, 985)
-        time.sleep(2)
 
         # Serial 변수 사용 후에 Serial 번호 증가 및 현재 파일 번호 증가
         serial_number += 1
