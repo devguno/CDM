@@ -12,9 +12,9 @@ directory = "Z:\\Holter\\Holter_child_hdd\\2021"
 # # 디렉토리 내의 모든 하위 폴더명을 리스트로 가져오기
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")  
-folder_list = ["2021-03","2021-04","2021-05","2021-06","2021-07","2021-08","2021-09","2021-10","2021-11","2021-12"]
+folder_list = ["2021-04","2021-05","2021-06","2021-07","2021-08","2021-09","2021-10","2021-11","2021-12"]
 
-serial_number = 2243  # Serial 번호 초기화
+serial_number = 2438  # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
@@ -25,74 +25,8 @@ for folder in folder_list:
 
     print(folder_path + " file count: " + str(file_count))
     
-    time.sleep(5)
     
-    # 1. 26,36 pixels 의 좌표를 왼쪽 클릭
-    pyautogui.click(26, 36)
-    time.sleep(2)
-    # 2. 72,78 pixels 의 좌표로 마우스 이동
-    pyautogui.moveTo(72, 78)
-    time.sleep(2)
-    # 3. 264,373 pixels 의 좌표를 왼쪽 클릭
-    pyautogui.click(264, 373)
-    time.sleep(2)
-    # 4. 1394,387 pixels의 좌표를 클릭하고 1232,387 pixels 의 좌표까지 드래그
-    pyautogui.moveTo(1394, 387)  # 시작 위치로 이동
-    pyautogui.mouseDown()        # 마우스 버튼을 누른 상태로 유지
-    pyautogui.moveTo(1275, 387, duration=1)  # 드래그 위치로 이동
-    pyautogui.mouseUp()          # 마우스 버튼을 놓아 드래그 완료
-    
-    # 5. folder_list에 있는 첫번째 값을 붙여 넣기
-    pyautogui.write(folder)
-    pyautogui.press('enter') # 필요에 따라 Enter 키를 누를 수 있습니다.
-    time.sleep(2)
-    # 6. 1172,670 pixels 의 좌표를 왼쪽 클릭
-    pyautogui.click(1172, 670)
-    time.sleep(2)
-    # 7. 1110,480 pixels 의 좌표를 왼쪽 클릭
-    pyautogui.click(1110, 480)
-    time.sleep(2)
-    # 8. 140,980 pixels 의 좌표를 왼쪽 클릭
-    pyautogui.click(140, 980)
-    time.sleep(2)
-    # Data type
-    pyautogui.click(1735, 270)
-    time.sleep(2)
-    pyautogui.click(1735, 328)
-    time.sleep(2)
-    pyautogui.click(400, 72)
-    time.sleep(2)
-    
-    # Fail-safe 활성화
-    pyautogui.FAILSAFE = True
-
-    # (400, 72) 위치를 클릭
-    pyautogui.click(400, 72)
-    time.sleep(2)  # 1초 대기
-
-    # (1488, 68)에서 (1488, 922)까지 드래그
-    pyautogui.moveTo(1488, 68)
-    pyautogui.dragTo(1488, 922, duration=1.0)  # 드래그하는 동안 1초간 지속
-
-    # Shift 키를 누른 상태에서 (180, 929) 위치를 클릭
-    pyautogui.keyDown('shift')  # Shift 키를 누름
-    pyautogui.click(180, 929)   # 클릭
-    pyautogui.keyUp('shift')    # Shift 키를 놓음
-    time.sleep(2)
-    
-    # 파일당 작업 완료 후 대기 및 다음 작업 수행
-    pyautogui.click(1604, 124)
-    time.sleep(2)
-    pyautogui.click(1700, 188)
-    time.sleep(2)
-    pyautogui.click(1100, 560)
-    #Archive 대기 시간
-    time.sleep(800)
-    pyautogui.click(1107, 475)
-    time.sleep(2)
-    #click close
-    pyautogui.click(1700, 310)
-    time.sleep(2)
+    time.sleep(2)  
     #data type select    
     pyautogui.click(1700, 270)
     time.sleep(2)   
