@@ -7,14 +7,14 @@ from tqdm import tqdm
 import math
 
 # 지정된 디렉토리 설정
-directory = "Z:\\Holter\\Holter_child_hdd\\2021"
+directory = "Z:\\Holter\\Holter_child_hdd\\2020"
 
 # # 디렉토리 내의 모든 하위 폴더명을 리스트로 가져오기
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")  
-folder_list = ["2021-12"]
+folder_list = ["2020-03"]
 
-serial_number = 3530  # Serial 번호 초기화
+serial_number = 695  # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
@@ -25,8 +25,8 @@ for folder in folder_list:
 
     print(folder_path + " file count: " + str(file_count))
     
+    time.sleep(5)
     
-    time.sleep(2)  
     #data type select    
     pyautogui.click(1700, 270)
     time.sleep(2)   
@@ -49,10 +49,7 @@ for folder in folder_list:
         if current_file >= 174:  # 174번째 파일부터 pagedown을 추가로 실행
             pyautogui.press('pagedown')
             time.sleep(2)
-        if current_file >= 232:  # 174번째 파일부터 pagedown을 추가로 실행
-            pyautogui.press('pagedown')
-            time.sleep(2)
-        if current_file == 116 or current_file == 174 or current_file == 232:  # 116번째 및 207번째 파일에서 y 좌표 초기화
+        if current_file == 116 or current_file == 174:  # 116번째 및 207번째 파일에서 y 좌표 초기화
             y_coord2 = 89
 
         Serial = f"{serial_number}_"
@@ -73,39 +70,28 @@ for folder in folder_list:
         additional_value = pyperclip.paste()
         Serial += additional_value
 
-        pyautogui.click(26, 36)
-        time.sleep(2) 
-        #Research Utilities
-        pyautogui.click(86, 105)
-        time.sleep(2)
-        #OK
-        pyautogui.click(800, 547)
-        time.sleep(2) 
-        #change
-        pyautogui.click(1100, 473)
-        time.sleep(2) 
-        pyautogui.write(Serial)
-        time.sleep(2)
-        pyautogui.click(1580, 620)
-        time.sleep(2) 
-        #save
-        pyautogui.click(1070, 680)
-        time.sleep(2)
-        #change
-        pyautogui.click(1100, 473)
-        time.sleep(2) 
-        pyautogui.write(Serial)
-        time.sleep(2)
-        pyautogui.click(1580, 620)
-        time.sleep(2) 
-        #save
-        pyautogui.click(1070, 680)
-        time.sleep(5)
-        pyautogui.click(1118, 472) 
-        time.sleep(2)
+        
         pyautogui.click(143, 987) 
         time.sleep(2)
         
+        # Report Review 클릭
+        pyautogui.click(750, 980)
+        time.sleep(5)
+        pyautogui.click(1790, 93)
+        time.sleep(2)
+        pyautogui.click(358, 358)
+        time.sleep(2)
+        
+        # Serial 값을 붙여넣기
+        pyautogui.write(Serial)
+        time.sleep(2)
+        pyautogui.click(1393, 359)
+        time.sleep(2)
+        #PDF 저장
+        pyautogui.click(1070, 682)
+        time.sleep(60)  
+        pyautogui.click(140, 985)
+        time.sleep(2)
 
         # Serial 변수 사용 후에 Serial 번호 증가 및 현재 파일 번호 증가
         serial_number += 1
