@@ -10,11 +10,11 @@ import math
 directory = "Z:\\Holter\\Holter_child_hdd\\2020"
 
 # # 디렉토리 내의 모든 하위 폴더명을 리스트로 가져오기
-folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-print(f"folder list: {folder_list}")  
-#folder_list = ["2023-06"]
+#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+#print(f"folder list: {folder_list}")  
+folder_list = ["2020-07","2020-08","2020-09","2020-10"]
 
-serial_number = 695  # Serial 번호 초기화
+serial_number = 1190  # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
@@ -87,7 +87,7 @@ for folder in folder_list:
     time.sleep(2)
     pyautogui.click(1100, 560)
     #Archive 대기 시간
-    time.sleep(700)
+    time.sleep(800)
     pyautogui.click(1107, 475)
     time.sleep(2)
     #click close
@@ -115,7 +115,10 @@ for folder in folder_list:
         if current_file >= 174:  # 174번째 파일부터 pagedown을 추가로 실행
             pyautogui.press('pagedown')
             time.sleep(2)
-        if current_file == 116 or current_file == 174:  # 116번째 및 207번째 파일에서 y 좌표 초기화
+        if current_file >= 232:  # 174번째 파일부터 pagedown을 추가로 실행
+            pyautogui.press('pagedown')
+            time.sleep(2)
+        if current_file == 116 or current_file == 174 or current_file == 232:  # 116번째 및 207번째 파일에서 y 좌표 초기화
             y_coord2 = 89
 
         Serial = f"{serial_number}_"
@@ -165,8 +168,6 @@ for folder in folder_list:
         pyautogui.click(1070, 680)
         time.sleep(5)
         pyautogui.click(1118, 472) 
-        time.sleep(2)
-        pyautogui.click(143, 987) 
         time.sleep(2)
         
         # 폴더 처리 전 추가 로직

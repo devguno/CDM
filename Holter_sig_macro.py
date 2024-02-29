@@ -169,8 +169,6 @@ for folder in folder_list:
         time.sleep(5)
         pyautogui.click(1118, 472) 
         time.sleep(2)
-        pyautogui.click(143, 987) 
-        time.sleep(2)
         
 
         # Serial 변수 사용 후에 Serial 번호 증가 및 현재 파일 번호 증가
