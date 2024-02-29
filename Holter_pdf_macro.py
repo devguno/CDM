@@ -10,11 +10,11 @@ import math
 directory = "Z:\\Holter\\Holter_child_hdd\\2020"
 
 # # 디렉토리 내의 모든 하위 폴더명을 리스트로 가져오기
-folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-print(f"folder list: {folder_list}")  
-#folder_list = ["2023-06"]
+#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+#print(f"folder list: {folder_list}")  
+folder_list = ["2020-06","2020-07","2020-08","2020-09","2020-10"]
 
-serial_number = 695  # Serial 번호 초기화
+serial_number = 1043  # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
@@ -142,7 +142,7 @@ for folder in folder_list:
         
         # 폴더 처리 전 추가 로직
         pyautogui.click(750, 980)
-        time.sleep(2)
+        time.sleep(5)
         pyautogui.click(1790, 93)
         time.sleep(2)
         pyautogui.click(358, 358)
