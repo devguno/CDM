@@ -172,7 +172,7 @@ for folder in folder_list:
         
         # 폴더 처리 전 추가 로직
         pyautogui.click(750, 980)
-        time.sleep(2)
+        time.sleep(5)
         pyautogui.click(1790, 93)
         time.sleep(2)
         pyautogui.click(358, 358)
