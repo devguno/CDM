@@ -12,13 +12,14 @@ directory = "Z:\\Holter\\Holter_child_hdd\\2020"
 # # 디렉토리 내의 모든 하위 폴더명을 리스트로 가져오기
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")  
-folder_list = ["2020-08"]
+folder_list = ["2020-09"]
 
-serial_number = 1356  # Serial 번호 초기화
+serial_number = 1517  # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
-    file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])
+    #file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])
+    file_count = 222
     y_coord = 73  # 초기 y 축 좌표 설정
     y_coord2 = 89  # 두 번째 페이지의 초기 y 축 좌표 설정
     current_file = 0  # 현재 파일 번호 초기화
@@ -58,12 +59,16 @@ for folder in folder_list:
         Serial = f"{serial_number}_"
 
         if current_file < 58:
-            pyautogui.click(240, y_coord)  # 처음 62개 파일 처리
+            time.sleep(2)
+            pyautogui.click(240, y_coord) 
+            time.sleep(2)
         else:
-            pyautogui.click(240, y_coord2)  # 62개 이후 파일 처리
+            time.sleep(2)
+            pyautogui.click(240, y_coord2) 
+            time.sleep(2)
 
         time.sleep(2)
-        pyautogui.click(217, 985)  # 특정 작업 수행
+        pyautogui.click(217, 985)  
         time.sleep(2)
                 
         # Serial 뒤에 붙일 값 복사
@@ -121,7 +126,7 @@ for folder in folder_list:
         pyautogui.click(1070, 682)
         time.sleep(60)  
         pyautogui.click(140, 985)
-        time.sleep(2)
+        time.sleep(3)
 
         # Serial 변수 사용 후에 Serial 번호 증가 및 현재 파일 번호 증가
         serial_number += 1
