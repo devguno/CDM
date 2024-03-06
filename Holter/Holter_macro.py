@@ -12,9 +12,9 @@ directory = "Z:\\Holter\\Holter_child_hdd\\2020"
 # # 디렉토리 내의 모든 하위 폴더명을 리스트로 가져오기
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")  
-folder_list = ["2020-08","2020-09","2020-10"]
+folder_list = ["2021-03","2021-04","2021-05","2021-06","2021-07","2021-08","2021-09","2021-10","2021-11","2021-12"]
 
-serial_number = 1356  # Serial 번호 초기화
+serial_number = 1740  # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
@@ -123,10 +123,21 @@ for folder in folder_list:
 
         Serial = f"{serial_number}_"
 
+        pyautogui.click(140, 988)
+        time.sleep(2)  
+    
         if current_file < 58:
-            pyautogui.click(240, y_coord)  # 처음 62개 파일 처리
+            time.sleep(2)
+            pyautogui.click(240, y_coord) 
+            time.sleep(2)
+            pyautogui.click(240, y_coord) 
+            time.sleep(2)
         else:
-            pyautogui.click(240, y_coord2)  # 62개 이후 파일 처리
+            time.sleep(2)
+            pyautogui.click(240, y_coord2) 
+            time.sleep(2)
+            pyautogui.click(240, y_coord2) 
+            time.sleep(2)
 
         time.sleep(2)
         pyautogui.click(217, 985)  # 특정 작업 수행
