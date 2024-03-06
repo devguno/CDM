@@ -7,7 +7,7 @@ from tqdm import tqdm
 import math
 
 # 지정된 디렉토리 설정
-directory = "Z:\\Holter\\Holter_child_hdd\\2020"
+directory = "Z:\\Holter\\Holter_child_hdd\\2021"
 
 # # 디렉토리 내의 모든 하위 폴더명을 리스트로 가져오기
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
