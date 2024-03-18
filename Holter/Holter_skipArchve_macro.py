@@ -7,19 +7,19 @@ from tqdm import tqdm
 import math
 
 # 지정된 디렉토리 설정
-directory = "Z:\\Holter\\Holter_child_hdd\\2020"
+directory = "Z:\\Holter\\Holter_child_hdd\\2021"
 
 # # 디렉토리 내의 모든 하위 폴더명을 리스트로 가져오기
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")  
-folder_list = ["2020-09"]
+folder_list = ["2021-09"]
 
-serial_number = 1727  # Serial 번호 초기화
+serial_number = 2392  # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
     #file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])
-    file_count = 11
+    file_count = 134
     y_coord = 73  # 초기 y 축 좌표 설정
     y_coord2 = 89  # 두 번째 페이지의 초기 y 축 좌표 설정
     current_file = 0  # 현재 파일 번호 초기화
@@ -57,9 +57,7 @@ for folder in folder_list:
             y_coord2 = 89
 
         Serial = f"{serial_number}_"
-        
-        pyautogui.click(140, 988)
-        time.sleep(2)  
+
     
         if current_file < 58:
             time.sleep(2)

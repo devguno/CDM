@@ -12,9 +12,9 @@ directory = "Z:\\Holter\\Holter_child_hdd\\2021"
 # # 디렉토리 내의 모든 하위 폴더명을 리스트로 가져오기
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")  
-folder_list = ["2021-03","2021-04","2021-05","2021-06","2021-07","2021-08","2021-09","2021-10","2021-11","2021-12"]
+folder_list = ["2021-09","2021-10","2021-11","2021-12"]
 
-serial_number = 1740  # Serial 번호 초기화
+serial_number = 2392  # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
@@ -26,7 +26,7 @@ for folder in folder_list:
     print(folder_path + " file count: " + str(file_count))
     
     time.sleep(5)
-    
+    1986_71129972
     # 1. 26,36 pixels 의 좌표를 왼쪽 클릭
     pyautogui.click(26, 36)
     time.sleep(2)
@@ -122,9 +122,6 @@ for folder in folder_list:
             y_coord2 = 89
 
         Serial = f"{serial_number}_"
-
-        pyautogui.click(140, 988)
-        time.sleep(2)  
     
         if current_file < 58:
             time.sleep(2)
