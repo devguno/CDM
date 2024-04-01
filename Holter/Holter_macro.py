@@ -7,14 +7,14 @@ from tqdm import tqdm
 import math
 
 # 지정된 디렉토리 설정
-directory = "Z:\\Holter\\Holter_child_hdd\\2021"
+directory = "Z:\\Holter\\Holter_child_hdd\\2022"
 
 # # 디렉토리 내의 모든 하위 폴더명을 리스트로 가져오기
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")  
-folder_list = ["2021-11","2021-12"]
+folder_list = ["2022-02","2022-03","2022-04","2022-05","2022-06","2022-07","2022-08","2022-09","2022-10","2022-11","2022-12"]
 
-serial_number = 2894 # Serial 번호 초기화
+serial_number = 3273 # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
@@ -178,6 +178,10 @@ for folder in folder_list:
         pyautogui.click(1118, 472) 
         time.sleep(2)
         
+        #click patient select 
+        pyautogui.click(140, 988)
+        time.sleep(2)  
+        
         # 폴더 처리 전 추가 로직
         pyautogui.click(750, 980)
         time.sleep(5)
@@ -195,7 +199,11 @@ for folder in folder_list:
         pyautogui.click(1070, 682)
         time.sleep(60)  
         pyautogui.click(140, 985)
-        time.sleep(2)
+        time.sleep(3)
+        
+        #click patient select 
+        pyautogui.click(140, 988)
+        time.sleep(2)  
 
         # Serial 변수 사용 후에 Serial 번호 증가 및 현재 파일 번호 증가
         serial_number += 1

@@ -14,12 +14,12 @@ directory = "Z:\\Holter\\Holter_child_hdd\\2022"
 #print(f"folder list: {folder_list}")  
 folder_list = ["2022-01"]
 
-serial_number = 3097  # Serial 번호 초기화
+serial_number = 3245  # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
-    file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])
-    #file_count = 50
+    #file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])
+    file_count = 50
     y_coord = 73  # 초기 y 축 좌표 설정
     y_coord2 = 89  # 두 번째 페이지의 초기 y 축 좌표 설정
     current_file = 0  # 현재 파일 번호 초기화
@@ -114,6 +114,10 @@ for folder in folder_list:
         pyautogui.click(1118, 472) 
         time.sleep(2)
         
+        #click patient select 
+        pyautogui.click(140, 988)
+        time.sleep(2)   
+            
         # 폴더 처리 전 추가 로직
         pyautogui.click(750, 980)
         time.sleep(5)
@@ -121,7 +125,6 @@ for folder in folder_list:
         time.sleep(2)
         pyautogui.click(358, 358)
         time.sleep(2)
-        
         # Serial 값을 붙여넣기
         pyautogui.write(Serial)
         time.sleep(2)
@@ -132,6 +135,10 @@ for folder in folder_list:
         time.sleep(60)  
         pyautogui.click(140, 985)
         time.sleep(3)
+        
+        #click patient select 
+        pyautogui.click(140, 988)
+        time.sleep(2)   
 
         # Serial 변수 사용 후에 Serial 번호 증가 및 현재 파일 번호 증가
         serial_number += 1
