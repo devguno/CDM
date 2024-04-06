@@ -27,7 +27,6 @@ for folder in folder_list:
     print(folder_path + " file count: " + str(file_count))
     
     time.sleep(5)
-    1986_71129972
     # 1. 26,36 pixels 의 좌표를 왼쪽 클릭
     pyautogui.click(26, 36)
     time.sleep(2)
