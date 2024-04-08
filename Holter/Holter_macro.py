@@ -7,15 +7,16 @@ from tqdm import tqdm
 import math
 
 # 지정된 디렉토리 설정
-#directory = "Z:\\Holter\\Holter_child_hdd\\2022"
-directory = "Z:\\Holter_cdrom"
+directory = "Z:\\Holter\\Holter_child_hdd\\2022"
+#directory = "Z:\\Holter_cdrom"
 
 # # 디렉토리 내의 모든 하위 폴더명을 리스트로 가져오기
-folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-print(f"folder list: {folder_list}")  
-#folder_list = ["2022-06","2022-07","2022-08","2022-09","2022-10","2022-11","2022-12"]
+#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+#print(f"folder list: {folder_list}")  
+folder_list = ["2022-06","2022-07","2022-08","2022-09","2022-10","2022-11","2022-12"]
 
-serial_number = 10000 # Serial 번호 초기화
+#serial_number = 10000 # Serial 번호 초기화
+serial_number = 3779 # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
@@ -37,11 +38,11 @@ for folder in folder_list:
     pyautogui.click(264, 373)
     time.sleep(2)
     # 4. 1394,387 pixels의 좌표를 클릭하고 1232,387 pixels 의 좌표까지 드래그
-    #pyautogui.moveTo(1394, 387)  # 시작 위치로 이동
-    pyautogui.moveTo(1260, 387)  # 시작 위치로 이동
+    pyautogui.moveTo(1394, 387)  # 시작 위치로 이동
+    #pyautogui.moveTo(1260, 387)  # 시작 위치로 이동
     pyautogui.mouseDown()        # 마우스 버튼을 누른 상태로 유지
-    #pyautogui.moveTo(1275, 387, duration=1)  # 드래그 위치로 이동
-    pyautogui.moveTo(1160, 387, duration=1)  # 드래그 위치로 이동
+    pyautogui.moveTo(1275, 387, duration=1)  # 드래그 위치로 이동
+    #pyautogui.moveTo(1160, 387, duration=1)  # 드래그 위치로 이동
     pyautogui.mouseUp()          # 마우스 버튼을 놓아 드래그 완료
     
     # 5. folder_list에 있는 첫번째 값을 붙여 넣기
@@ -96,9 +97,9 @@ for folder in folder_list:
     pyautogui.click(860,1045)
     #Archive 대기 시간
     time.sleep(400)
-    pyautogui.click(860,1045)
+    #pyautogui.click(860,1045)
     #Archive 대기 시간
-    time.sleep(400)
+    #time.sleep(400)
     pyautogui.click(1107, 475)
     time.sleep(2)
     #click close
@@ -185,8 +186,8 @@ for folder in folder_list:
         time.sleep(2) 
         #save
         pyautogui.click(1070, 680)
-        #time.sleep(5)
-        time.sleep(120)
+        #time.sleep(10)
+        time.sleep(200)
         pyautogui.click(1118, 472) 
         time.sleep(2)
         
