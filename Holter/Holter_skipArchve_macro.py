@@ -12,14 +12,14 @@ directory = "Z:\\Holter\\Holter_child_hdd\\2022"
 # # 디렉토리 내의 모든 하위 폴더명을 리스트로 가져오기
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")  
-folder_list = ["2022-05"]
+folder_list = ["2022-07"]
 
-serial_number = 3770  # Serial 번호 초기화
+serial_number = 3909  # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
-    #file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])
-    file_count = 30
+    file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])
+    #file_count = 30
     y_coord = 73  # 초기 y 축 좌표 설정
     y_coord2 = 89  # 두 번째 페이지의 초기 y 축 좌표 설정
     current_file = 0  # 현재 파일 번호 초기화
@@ -57,7 +57,6 @@ for folder in folder_list:
             y_coord2 = 89
 
         Serial = f"{serial_number}_"
-
     
         if current_file < 58:
             time.sleep(2)
@@ -73,7 +72,7 @@ for folder in folder_list:
             time.sleep(2)
 
         time.sleep(2)
-        pyautogui.click(217, 985)  
+        pyautogui.click(217, 985)  # 특정 작업 수행
         time.sleep(2)
                 
         # Serial 뒤에 붙일 값 복사
@@ -110,14 +109,15 @@ for folder in folder_list:
         time.sleep(2) 
         #save
         pyautogui.click(1070, 680)
-        time.sleep(5)
+        time.sleep(10)
+        #time.sleep(200)
         pyautogui.click(1118, 472) 
         time.sleep(2)
         
         #click patient select 
         pyautogui.click(140, 988)
-        time.sleep(2)   
-            
+        time.sleep(2)  
+        
         # 폴더 처리 전 추가 로직
         pyautogui.click(750, 980)
         time.sleep(5)
@@ -125,6 +125,7 @@ for folder in folder_list:
         time.sleep(2)
         pyautogui.click(358, 358)
         time.sleep(2)
+        
         # Serial 값을 붙여넣기
         pyautogui.write(Serial)
         time.sleep(2)
@@ -138,7 +139,16 @@ for folder in folder_list:
         
         #click patient select 
         pyautogui.click(140, 988)
-        time.sleep(2)   
+        time.sleep(2)  
+        
+        # 10번째 파일마다 특정 동작 실행
+        if current_file % 2 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
+            pyautogui.click(1900, 17)  # 지정된 좌표 클릭
+            time.sleep(5)
+            pyautogui.click(325, 1045)  # 지정된 좌표 클릭
+            time.sleep(5)
+            pyautogui.click(140, 988)  # 지정된 좌표 클릭
+            time.sleep(5)
 
         # Serial 변수 사용 후에 Serial 번호 증가 및 현재 파일 번호 증가
         serial_number += 1
