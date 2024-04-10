@@ -11,11 +11,12 @@ import math
 directory = "Z:\\Holter_cdrom"
 
 # # 디렉토리 내의 모든 하위 폴더명을 리스트로 가져오기
-folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-print(f"folder list: {folder_list}")  
-#folder_list = ["2022-06","2022-07","2022-08","2022-09","2022-10","2022-11","2022-12"]
+#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+#print(f"folder list: {folder_list}")  
+folder_list = ['DVD20081128', 'DVD20081229', 'DVD20090122', 'DVD20090309', 'DVD20090405', 'DVD20090511', 'DVD20090615', 'DVD20090714', 'DVD20090806', 'DVD20090902', 'DVD20090930', 'DVD20091103'
+, 'DVD20091204', 'DVD20091230', 'DVD20100118', 'DVD20100204', 'DVD20100225', 'DVD20100322', 'DVD20100414', 'DVD20100513', 'DVD20100616']
 
-serial_number = 10000 # Serial 번호 초기화
+serial_number = 10077 # Serial 번호 초기화
 #serial_number = 3779 # Serial 번호 초기화
 
 for folder in folder_list:
