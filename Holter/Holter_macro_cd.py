@@ -224,13 +224,19 @@ for folder in folder_list:
         time.sleep(2)  
         
         # 10번째 파일마다 특정 동작 실행
-        if current_file % 2 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
-            pyautogui.click(1900, 17)  # 지정된 좌표 클릭
-            time.sleep(5)
-            pyautogui.click(325, 1045)  # 지정된 좌표 클릭
-            time.sleep(5)
-            pyautogui.click(140, 988)  # 지정된 좌표 클릭
-            time.sleep(5)
+        if current_file % 3 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
+            pyautogui.rightClick(920, 1050)  # 오른쪽 클릭
+            time.sleep(2)
+            pyautogui.click(1060, 960)  # Task Manager 클릭
+            time.sleep(2)
+            pyautogui.click(920, 770)  # Fewer details click
+            time.sleep(2)
+            pyautogui.click(920, 275)  # SuperApp Application click
+            time.sleep(2)
+            pyautogui.click(1180, 545)  # End task click
+            time.sleep(2)
+            pyautogui.click(320, 1050)  # MARS program click
+            time.sleep(2)
 
         # Serial 변수 사용 후에 Serial 번호 증가 및 현재 파일 번호 증가
         serial_number += 1
@@ -248,7 +254,7 @@ for folder in folder_list:
     pyautogui.click(400, 72)
     time.sleep(2)
     pyautogui.moveTo(1488, 68)
-    pyautogui.dragTo(1488, 922, duration=1.0)
+    pyautogui.dragTo(1488, 922, duration=2.0)
     pyautogui.keyDown('shift')
     pyautogui.click(180, 929)
     pyautogui.keyUp('shift')
