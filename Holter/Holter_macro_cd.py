@@ -98,14 +98,14 @@ for folder in folder_list:
     time.sleep(400)
     pyautogui.click(860,1045)
     #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
     #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
     #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(1107, 475)
+    #time.sleep(400)
+    #pyautogui.click(1107, 475)
     time.sleep(2)
     #click close
     pyautogui.click(1700, 310)
