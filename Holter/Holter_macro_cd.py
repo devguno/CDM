@@ -9,8 +9,11 @@ import math
 ### Note: The MARS program should be set to use the keyboard in English. Make sure to set the keyboard layout to English before starting.
 # Wait for 4 seconds after starting the code
 time.sleep(4)
-# Click on the keyboard settings in the bottom menu bar
+# Click on the keyboard settings in the bottom menu bars
 pyautogui.click(1780, 1050)
+time.sleep(2)
+# English click
+pyautogui.click(1780, 827)
 time.sleep(2)
 # MARS program click
 pyautogui.click(320, 1050) 
@@ -98,8 +101,8 @@ for folder in folder_list:
     time.sleep(400)
     pyautogui.click(860,1045)
     #Archive 대기 시간
-    #time.sleep(400)
-    #pyautogui.click(860,1045)
+    time.sleep(400)
+    pyautogui.click(860,1045)
     #Archive 대기 시간
     #time.sleep(400)
     #pyautogui.click(860,1045)
