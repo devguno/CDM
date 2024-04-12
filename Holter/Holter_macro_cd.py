@@ -229,9 +229,7 @@ for folder in folder_list:
             time.sleep(2)
             pyautogui.click(1060, 960)  # Task Manager 클릭
             time.sleep(2)
-            pyautogui.click(920, 770)  # Fewer details click
-            time.sleep(2)
-            pyautogui.click(920, 275)  # SuperApp Application click
+            pyautogui.click(920, 306)  # SuperApp Application click
             time.sleep(2)
             pyautogui.click(1180, 545)  # End task click
             time.sleep(2)
