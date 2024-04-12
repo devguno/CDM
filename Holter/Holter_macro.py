@@ -218,8 +218,8 @@ for folder in folder_list:
         pyautogui.click(140, 988)
         time.sleep(2)  
         
-        # 10번째 파일마다 특정 동작 실행
-        if current_file % 2 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
+        # 3번째 파일마다 특정 동작 실행
+        if current_file % 3 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
             pyautogui.click(1900, 17)  # 지정된 좌표 클릭
             time.sleep(5)
             pyautogui.click(325, 1045)  # 지정된 좌표 클릭

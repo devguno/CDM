@@ -6,81 +6,85 @@ import keyboard
 from tqdm import tqdm
 import math
 
-# 지정된 디렉토리 설정
-#directory = "Z:\\Holter\\Holter_child_hdd\\2022"
-directory = "Z:\\Holter_cdrom"
+### Note: The MARS program should be set to use the keyboard in English. Make sure to set the keyboard layout to English before starting.
+# Wait for 2 seconds after starting the code
+time.sleep(2)
+# Click on the keyboard settings in the bottom menu bar
+pyautogui.click(1780, 1035)
+time.sleep(2)
+# Click on Menu-System-System setup
+pyautogui.moveTo(1780, 830)
+time.sleep(2)
+    
+# Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)
+pyautogui.FAILSAFE = True
 
-# # 디렉토리 내의 모든 하위 폴더명을 리스트로 가져오기
-#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-#print(f"folder list: {folder_list}")  
-folder_list = ['DVD20081128', 'DVD20081229', 'DVD20090122', 'DVD20090309', 'DVD20090405', 'DVD20090511', 'DVD20090615', 'DVD20090714', 'DVD20090806', 'DVD20090902', 'DVD20090930', 'DVD20091103'
-, 'DVD20091204', 'DVD20091230', 'DVD20100118', 'DVD20100204', 'DVD20100225', 'DVD20100322', 'DVD20100414', 'DVD20100513', 'DVD20100616']
+#####
+# Set the specified directory
+directory = "Z:\Holter\Holter_gangnam"
 
-serial_number = 10077 # Serial 번호 초기화
-#serial_number = 3779 # Serial 번호 초기화
+# # Get all subfolder names within the directory as a list
+folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+print(f"folder list: {folder_list}")
 
+serial_number = 5000 # Initialize the serial number
+
+# Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
     file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])
-    y_coord = 73  # 초기 y 축 좌표 설정
-    y_coord2 = 89  # 두 번째 페이지의 초기 y 축 좌표 설정
-    current_file = 0  # 현재 파일 번호 초기화
+    y_coord = 73  # Initialize the y-axis coordinate
+    y_coord2 = 89  # Initialize the y-axis coordinate for the second page
+    current_file = 0  # Initialize the current file number
 
     print(folder_path + " file count: " + str(file_count))
-    
+
+    # Wait for the first 5 seconds
     time.sleep(5)
-    # 1. 26,36 pixels 의 좌표를 왼쪽 클릭
+    # Click on Menu-System
     pyautogui.click(26, 36)
     time.sleep(2)
-    # 2. 72,78 pixels 의 좌표로 마우스 이동
+    # Click on Menu-System-System setup
     pyautogui.moveTo(72, 78)
     time.sleep(2)
-    # 3. 264,373 pixels 의 좌표를 왼쪽 클릭
+    # Click on Menu-System-System setup-General
     pyautogui.click(264, 373)
     time.sleep(2)
-    # 4. 1394,387 pixels의 좌표를 클릭하고 1232,387 pixels 의 좌표까지 드래그
-    #pyautogui.moveTo(1394, 387)  # 시작 위치로 이동
-    pyautogui.moveTo(1260, 387)  # 시작 위치로 이동
-    pyautogui.mouseDown()        # 마우스 버튼을 누른 상태로 유지
-    #pyautogui.moveTo(1275, 387, duration=1)  # 드래그 위치로 이동
-    pyautogui.moveTo(1160, 387, duration=1)  # 드래그 위치로 이동
-    pyautogui.mouseUp()          # 마우스 버튼을 놓아 드래그 완료
-    
-    # 5. folder_list에 있는 첫번째 값을 붙여 넣기
-    pyautogui.write(folder)
-    pyautogui.press('enter') # 필요에 따라 Enter 키를 누를 수 있습니다.
+    # Update Archive Path name by dragging and pasting
+    pyautogui.moveTo(1440, 400)  # Move to the starting position
+    pyautogui.mouseDown()        # Press and hold the mouse button
+    pyautogui.moveTo(1000, 400, duration=2)  # Move to the drag position
+    pyautogui.mouseUp()          # Release the mouse button
+
+    # Paste the value from folder_list
+    pyautogui.write(directory + '\\' + folder)
     time.sleep(2)
-    # 6. 1172,670 pixels 의 좌표를 왼쪽 클릭
+    # Click on save
     pyautogui.click(1172, 670)
     time.sleep(2)
-    # 7. 1110,480 pixels 의 좌표를 왼쪽 클릭
+    # Click on ok
     pyautogui.click(1110, 480)
     time.sleep(2)
-    # 8. 140,980 pixels 의 좌표를 왼쪽 클릭
+    # Click on Patient Select at the bottom
     pyautogui.click(140, 980)
     time.sleep(2)
-    # Data type
+    # Click on Data type
     pyautogui.click(1735, 270)
     time.sleep(2)
+    # Click on Data type-Archived files
     pyautogui.click(1735, 328)
     time.sleep(2)
-    pyautogui.click(400, 72)
-    time.sleep(2)
-    
-    # Fail-safe 활성화
-    pyautogui.FAILSAFE = True
 
-    # (400, 72) 위치를 클릭
+    # Patient List 에서 첫번째 클릭
     pyautogui.click(400, 72)
-    time.sleep(2)  # 1초 대기
-
-    # (1488, 68)에서 (1488, 922)까지 드래그
+    time.sleep(2) 
+    # 스크롤바 가장 위부터 아래까지 드래그(리스트 전체 선택)
     pyautogui.moveTo(1488, 68)
-    pyautogui.dragTo(1488, 922, duration=1.0)  # 드래그하는 동안 1초간 지속
+    pyautogui.dragTo(1488, 922, duration=2.0)  # 드래그 2초간 지속
 
-    # Shift 키를 누른 상태에서 (180, 929) 위치를 클릭
+    # Shift 키를 누른 상태에서 리스트 가장 마지막 클릭
     pyautogui.keyDown('shift')  # Shift 키를 누름
-    pyautogui.click(180, 929)   # 클릭
+    pyautogui.click(180, 929)  
     pyautogui.keyUp('shift')    # Shift 키를 놓음
     time.sleep(2)
     
