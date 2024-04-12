@@ -100,15 +100,16 @@ for folder in folder_list:
     #Archive 대기 시간
     time.sleep(400)
     pyautogui.click(860,1045)
+    time.sleep(2)
     #Archive 대기 시간
     time.sleep(400)
     pyautogui.click(860,1045)
     #Archive 대기 시간
-    #time.sleep(400)
-    #pyautogui.click(860,1045)
+    time.sleep(400)
+    pyautogui.click(860,1045)
     #Archive 대기 시간
-    #time.sleep(400)
-    #pyautogui.click(1107, 475)
+    #click close
+    pyautogui.click(1107, 475)
     time.sleep(2)
     #click close
     pyautogui.click(1700, 310)
@@ -226,18 +227,14 @@ for folder in folder_list:
         pyautogui.click(140, 988)
         time.sleep(2)  
         
-        # 10번째 파일마다 특정 동작 실행
+        # 3번째 파일마다 특정 동작 실행
         if current_file % 3 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
-            pyautogui.rightClick(920, 1050)  # 오른쪽 클릭
+            pyautogui.rightClick(273, 1050)  # MARS program right click
             time.sleep(2)
-            pyautogui.click(1060, 960)  # Task Manager 클릭
-            time.sleep(2)
-            pyautogui.click(920, 306)  # SuperApp Application click
-            time.sleep(2)
-            pyautogui.click(1180, 545)  # End task click
-            time.sleep(2)
-            pyautogui.click(320, 1050)  # MARS program click
-            time.sleep(2)
+            pyautogui.click(273, 1023)  # close window
+            time.sleep(4)
+            pyautogui.click(273, 1050)  # MARS program click
+            time.sleep(4)
 
         # Serial 변수 사용 후에 Serial 번호 증가 및 현재 파일 번호 증가
         serial_number += 1
