@@ -235,6 +235,9 @@ for folder in folder_list:
             time.sleep(4)
             pyautogui.click(273, 1050)  # MARS program click
             time.sleep(4)
+            #click patient select 
+            pyautogui.click(140, 988)
+            time.sleep(2)    
 
         # Serial 변수 사용 후에 Serial 번호 증가 및 현재 파일 번호 증가
         serial_number += 1
