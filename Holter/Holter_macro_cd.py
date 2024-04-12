@@ -7,14 +7,14 @@ from tqdm import tqdm
 import math
 
 ### Note: The MARS program should be set to use the keyboard in English. Make sure to set the keyboard layout to English before starting.
-# Wait for 2 seconds after starting the code
-time.sleep(2)
+# Wait for 4 seconds after starting the code
+time.sleep(4)
 # Click on the keyboard settings in the bottom menu bar
-pyautogui.click(1780, 1035)
+pyautogui.click(1780, 1050)
 time.sleep(2)
-# Click on Menu-System-System setup
-pyautogui.moveTo(1780, 830)
-time.sleep(2)
+# MARS program click
+pyautogui.click(320, 1050) 
+time.sleep(5)
     
 # Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)
 pyautogui.FAILSAFE = True
