@@ -16,7 +16,7 @@ time.sleep(2)
 pyautogui.click(1780, 827)
 time.sleep(2)
 # MARS program click
-pyautogui.click(320, 1050) 
+pyautogui.click(273, 1050) 
 time.sleep(5)
     
 # Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)
