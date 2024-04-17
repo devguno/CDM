@@ -29,8 +29,8 @@ directory = "Z:\Holter_cdrom"
 # # Get all subfolder names within the directory as a list
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")
-#'DVD20081111', 'DVD20081128', 'DVD20081229', 'DVD20090122','DVD20090309', 
-folder_list = ['DVD20090405', 'DVD20090511', 'DVD20090615', 'DVD20090714', 'DVD20090806', 
+#'DVD20081111', 'DVD20081128', 'DVD20081229', 'DVD20090122','DVD20090309', 'DVD20090405', 'DVD20090511', 'DVD20090615',
+folder_list = [ 'DVD20090714', 'DVD20090806', 
                'DVD20090902', 'DVD20090930', 'DVD20091103', 'DVD20091204', 'DVD20091230', 'DVD20100118', 'DVD20100204', 'DVD20100225', 'DVD20100322', 'DVD20100414', 
                'DVD20100513', 'DVD20100616', 'DVD20100710', 'DVD20100730', 'DVD20100820', 'DVD20100916', 'DVD20101009', 'DVD20101026', 'DVD20101229', 'DVD20110119', 
                'DVD20110208', 'DVD20110224', 'DVD20110417', 'DVD20110502', 'DVD20110523', 'DVD20110614', 'DVD20110701', 'DVD20110721', 'DVD20110804', 'DVD20110817', 
@@ -48,7 +48,7 @@ folder_list = ['DVD20090405', 'DVD20090511', 'DVD20090615', 'DVD20090714', 'DVD2
                'DVD20180827', 'DVD20180928', 'DVD20181106', 'DVD20181129', 'DVD20181221', 'DVD20190115', 'DVD20190130', 'DVD20190219', 'DVD20190308', 'DVD20190402', 
                'DVD20190426', 'DVD20190526', 'DVD20190618', 'DVD20190711', 'DVD20190802', 'DVD20190820', 'DVD20190910', 'DVD20191014', 'DVD20191112', 'DVD20191204']
 
-serial_number = 10409 # Initialize the serial number
+serial_number = 10488 # Initialize the serial number
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -140,7 +140,7 @@ for folder in folder_list:
     time.sleep(2) 
     #click patient select 
     pyautogui.click(140, 988)
-    time.sleep(2)       
+    time.sleep(2)  
 
     while current_file < file_count:
         if current_file >= 58:  # 58개 파일을 초과한 후부터 매번 실행
@@ -244,6 +244,23 @@ for folder in folder_list:
         #click patient select 
         pyautogui.click(140, 988)
         time.sleep(2)  
+        # If it's the last file, execute the subsequent tasks
+        if current_file == file_count:
+            time.sleep(3)
+            pyautogui.click(400, 72)
+            time.sleep(2)
+            pyautogui.moveTo(1488, 68)
+            pyautogui.dragTo(1488, 922, duration=2.0)
+            pyautogui.keyDown('shift')
+            pyautogui.click(180, 929)
+            pyautogui.keyUp('shift')
+            time.sleep(2)
+            pyautogui.click(1600, 127)
+            time.sleep(2)
+            pyautogui.click(1600, 110)
+            time.sleep(2)
+            pyautogui.click(1100, 550)
+            time.sleep(4)
         
         # 3번째 파일마다 특정 동작 실행
         if current_file % 3 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
