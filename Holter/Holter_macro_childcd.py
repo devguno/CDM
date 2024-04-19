@@ -29,9 +29,9 @@ directory = "Z:\Holter_cdrom"
 # # Get all subfolder names within the directory as a list
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")
-#'DVD20081111', 'DVD20081128', 'DVD20081229', 'DVD20090122','DVD20090309', 'DVD20090405', 'DVD20090511', 'DVD20090615',
-folder_list = [ 'DVD20090714', 'DVD20090806', 
-               'DVD20090902', 'DVD20090930', 'DVD20091103', 'DVD20091204', 'DVD20091230', 'DVD20100118', 'DVD20100204', 'DVD20100225', 'DVD20100322', 'DVD20100414', 
+#'DVD20081111', 'DVD20081128', 'DVD20081229', 'DVD20090122','DVD20090309', 'DVD20090405', 'DVD20090511', 'DVD20090615', 'DVD20090714', 'DVD20090806', 
+#               'DVD20090902', 'DVD20090930', 'DVD20091103', 'DVD20091204', 'DVD20091230', 'DVD20100118', 'DVD20100204', 'DVD20100225', 'DVD20100322',
+folder_list = [ 'DVD20100414', 
                'DVD20100513', 'DVD20100616', 'DVD20100710', 'DVD20100730', 'DVD20100820', 'DVD20100916', 'DVD20101009', 'DVD20101026', 'DVD20101229', 'DVD20110119', 
                'DVD20110208', 'DVD20110224', 'DVD20110417', 'DVD20110502', 'DVD20110523', 'DVD20110614', 'DVD20110701', 'DVD20110721', 'DVD20110804', 'DVD20110817', 
                'DVD20110831', 'DVD20110928', 'DVD20111019', 'DVD20111114', 'DVD20111210', 'DVD20120103', 'DVD20120111', 'DVD20120118', 'DVD20120202', 'DVD20120216', 
@@ -48,7 +48,7 @@ folder_list = [ 'DVD20090714', 'DVD20090806',
                'DVD20180827', 'DVD20180928', 'DVD20181106', 'DVD20181129', 'DVD20181221', 'DVD20190115', 'DVD20190130', 'DVD20190219', 'DVD20190308', 'DVD20190402', 
                'DVD20190426', 'DVD20190526', 'DVD20190618', 'DVD20190711', 'DVD20190802', 'DVD20190820', 'DVD20190910', 'DVD20191014', 'DVD20191112', 'DVD20191204']
 
-serial_number = 10488 # Initialize the serial number
+serial_number = 10567 # Initialize the serial number
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -213,8 +213,7 @@ for folder in folder_list:
         time.sleep(2) 
         #save
         pyautogui.click(1070, 680)
-        time.sleep(30)
-        #time.sleep(200)
+        time.sleep(10)
         pyautogui.click(1118, 472) 
         time.sleep(2)
         
