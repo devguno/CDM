@@ -260,8 +260,8 @@ for folder in folder_list:
             pyautogui.click(1100, 550)
             time.sleep(4)
         
-        # 3번째 파일마다 특정 동작 실행
-        if current_file % 3 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
+        # 2번째 파일마다 특정 동작 실행
+        if current_file % 2 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
             pyautogui.rightClick(273, 1050)  # MARS program right click
             time.sleep(2)
             pyautogui.click(273, 1023)  # close window
