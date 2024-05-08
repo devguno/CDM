@@ -262,7 +262,7 @@ for folder in folder_list:
             time.sleep(4)
         
         # 2번째 파일마다 특정 동작 실행
-        if current_file % 3 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
+        if current_file % 2 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
             pyautogui.rightClick(273, 1050)  # MARS program right click
             time.sleep(2)
             pyautogui.click(273, 1023)  # close window
@@ -296,7 +296,101 @@ for folder in folder_list:
     time.sleep(2)
     pyautogui.click(1600, 127)
     time.sleep(2)
-    pyautogui.click(1600, 110)
+    #unlock
+    pyautogui.click(1800, 110)
+    time.sleep(2)
+    #patient select
+    pyautogui.click(140, 990)
+    time.sleep(2)
+    #first patient click
+    pyautogui.click(400, 72)
+    time.sleep(2)
+    pyautogui.moveTo(1488, 68)
+    pyautogui.dragTo(1488, 922, duration=2.0)
+    pyautogui.keyDown('shift')
+    pyautogui.click(180, 929)
+    pyautogui.keyUp('shift')
+    time.sleep(2)
+    #Tools
+    pyautogui.click(1600, 127)
+    time.sleep(2)
+    #delete
+    pyautogui.click(1600, 127)
+    time.sleep(2)
+    #patient select
+    pyautogui.click(140, 990)
+    time.sleep(2)
+    # 한번더 반복
+    time.sleep(3)
+    pyautogui.click(400, 72)
+    time.sleep(2)
+    pyautogui.moveTo(1488, 68)
+    pyautogui.dragTo(1488, 922, duration=2.0)
+    pyautogui.keyDown('shift')
+    pyautogui.click(180, 929)
+    pyautogui.keyUp('shift')
+    time.sleep(2)
+    pyautogui.click(1600, 127)
+    time.sleep(2)
+    #unlock
+    pyautogui.click(1800, 110)
+    time.sleep(2)
+    #patient select
+    pyautogui.click(140, 990)
+    time.sleep(2)
+    #first patient click
+    pyautogui.click(400, 72)
+    time.sleep(2)
+    pyautogui.moveTo(1488, 68)
+    pyautogui.dragTo(1488, 922, duration=2.0)
+    pyautogui.keyDown('shift')
+    pyautogui.click(180, 929)
+    pyautogui.keyUp('shift')
+    time.sleep(2)
+    #Tools
+    pyautogui.click(1600, 127)
+    time.sleep(2)
+    #delete
+    pyautogui.click(1600, 127)
+    time.sleep(2)
+    #patient select
+    pyautogui.click(140, 990)
+    time.sleep(2)
+    # 한번더 반복
+    time.sleep(3)
+    pyautogui.click(400, 72)
+    time.sleep(2)
+    pyautogui.moveTo(1488, 68)
+    pyautogui.dragTo(1488, 922, duration=2.0)
+    pyautogui.keyDown('shift')
+    pyautogui.click(180, 929)
+    pyautogui.keyUp('shift')
+    time.sleep(2)
+    pyautogui.click(1600, 127)
+    time.sleep(2)
+    #unlock
+    pyautogui.click(1800, 110)
+    time.sleep(2)
+    #patient select
+    pyautogui.click(140, 990)
+    time.sleep(2)
+    #first patient click
+    pyautogui.click(400, 72)
+    time.sleep(2)
+    pyautogui.moveTo(1488, 68)
+    pyautogui.dragTo(1488, 922, duration=2.0)
+    pyautogui.keyDown('shift')
+    pyautogui.click(180, 929)
+    pyautogui.keyUp('shift')
+    time.sleep(2)
+    #Tools
+    pyautogui.click(1600, 127)
+    time.sleep(2)
+    #delete
+    pyautogui.click(1600, 127)
+    time.sleep(2)
+    #patient select
+    pyautogui.click(140, 990)
     time.sleep(2)
     pyautogui.click(1100, 550)
     time.sleep(4)
