@@ -315,7 +315,9 @@ for folder in folder_list:
     pyautogui.click(1600, 127)
     time.sleep(2)
     #delete
-    pyautogui.click(1600, 127)
+    pyautogui.click(1600, 110)
+    time.sleep(2)
+    pyautogui.click(1100, 545)
     time.sleep(2)
     #patient select
     pyautogui.click(140, 990)
@@ -351,7 +353,9 @@ for folder in folder_list:
     pyautogui.click(1600, 127)
     time.sleep(2)
     #delete
-    pyautogui.click(1600, 127)
+    pyautogui.click(1600, 110)
+    time.sleep(2)
+    pyautogui.click(1100, 545)
     time.sleep(2)
     #patient select
     pyautogui.click(140, 990)
@@ -387,10 +391,10 @@ for folder in folder_list:
     pyautogui.click(1600, 127)
     time.sleep(2)
     #delete
-    pyautogui.click(1600, 127)
+    pyautogui.click(1600, 110)
+    time.sleep(2)
+    pyautogui.click(1100, 545)
     time.sleep(2)
     #patient select
     pyautogui.click(140, 990)
     time.sleep(2)
-    pyautogui.click(1100, 550)
-    time.sleep(4)
