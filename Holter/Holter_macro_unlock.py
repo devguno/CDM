@@ -237,7 +237,7 @@ for folder in folder_list:
         time.sleep(2)
         #PDF 저장
         pyautogui.click(1070, 682)
-        time.sleep(60)  
+        time.sleep(100)  
         pyautogui.click(140, 985)
         time.sleep(3)
         
