@@ -42,13 +42,13 @@ directory = "Z:\Holter_cdrom"
 #'DVD20150224', 'DVD20150308', 'DVD20150403', 'DVD20150424', 'DVD20150522', 'DVD20150629', 'DVD20150724','DVD20150812', 'DVD20150917', 'DVD20151016', 
 # 'DVD20151112', 'DVD20151215', 'DVD20160107', 'DVD20160121', 'DVD20160211', 'DVD20160225', 'DVD20160325', 'DVD20160518', 'DVD20160615','DVD20160712', 
 #'DVD20160802', 'DVD20160819', 'DVD20160909', 'DVD20161017', 'DVD20161116', 'DVD20161214', 'DVD20170103', 'DVD20170124', 'DVD20170215', 'DVD20170309', 
-#'DVD20170406', 'DVD20170504', 'DVD20170531', 'DVD20170621', 'DVD20170718', 'DVD20170808', 'DVD20170830', 'DVD20171010', 'DVD20171113', 
-folder_list = ['DVD20171208', 
-               'DVD20180102', 'DVD20180123', 'DVD20180219', 'DVD20180307', 'DVD20180403', 'DVD20180502', 'DVD20180531', 'DVD20180628', 'DVD20180719', 'DVD20180807', 
+#'DVD20170406', 'DVD20170504', 'DVD20170531', 'DVD20170621', 'DVD20170718', 'DVD20170808', 'DVD20170830', 'DVD20171010', 'DVD20171113', 'DVD20171208', 
+#'DVD20180102', 'DVD20180123', 'DVD20180219', 'DVD20180307','DVD20180403', 'DVD20180502', 'DVD20180531', 'DVD20180628', 'DVD20180719',
+folder_list = ['DVD20180807', 
                'DVD20180827', 'DVD20180928', 'DVD20181106', 'DVD20181129', 'DVD20181221', 'DVD20190115', 'DVD20190130', 'DVD20190219', 'DVD20190308', 'DVD20190402', 
                'DVD20190426', 'DVD20190526', 'DVD20190618', 'DVD20190711', 'DVD20190802', 'DVD20190820', 'DVD20190910', 'DVD20191014', 'DVD20191112', 'DVD20191204']
 
-serial_number = 23008 # Initialize the serial number
+serial_number = 23841 # Initialize the serial number
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -124,9 +124,9 @@ for folder in folder_list:
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
-    #time.sleep(400)
-    #pyautogui.click(860,1045)
-    #Archive 대기 시간
+    time.sleep(400)
+    pyautogui.click(860,1045)
+    time.sleep(2)
     #click close
     pyautogui.click(1107, 475)
     time.sleep(2)
@@ -264,7 +264,7 @@ for folder in folder_list:
         
         # 2번째 파일마다 특정 동작 실행
         if current_file % 2 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
-            pyautogui.rightClick(273, 1050)  # MARS program right click
+            pyautogui.rightClick(273, 1050)  # MARS program right click, LEFT 5
             time.sleep(2)
             pyautogui.click(273, 1023)  # close window
             time.sleep(4)

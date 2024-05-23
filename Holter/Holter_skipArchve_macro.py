@@ -13,7 +13,7 @@ directory = "Z:\Holter_cdrom"
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")  
 folder_list = ["DVD20120827"]
-serial_number = 14309  # Serial 번호 초기화
+serial_number = 23011  # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
@@ -132,7 +132,7 @@ for folder in folder_list:
         time.sleep(2)
         #PDF 저장
         pyautogui.click(1070, 682)
-        time.sleep(100)  
+        time.sleep(60)  
         pyautogui.click(140, 985)
         time.sleep(3)
         
@@ -158,8 +158,8 @@ for folder in folder_list:
             time.sleep(4)
         
         # 3번째 파일마다 특정 동작 실행
-        if current_file % 3 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
-            pyautogui.rightClick(273, 1050)  # MARS program right click
+        if current_file % 2 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
+            pyautogui.rightClick(273, 1050)  # MARS program right click, LEFT 5
             time.sleep(2)
             pyautogui.click(273, 1023)  # close window
             time.sleep(4)
