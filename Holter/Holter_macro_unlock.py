@@ -44,11 +44,11 @@ directory = "Z:\Holter_cdrom"
 #'DVD20160802', 'DVD20160819', 'DVD20160909', 'DVD20161017', 'DVD20161116', 'DVD20161214', 'DVD20170103', 'DVD20170124', 'DVD20170215', 'DVD20170309', 
 #'DVD20170406', 'DVD20170504', 'DVD20170531', 'DVD20170621', 'DVD20170718', 'DVD20170808', 'DVD20170830', 'DVD20171010', 'DVD20171113', 'DVD20171208', 
 #'DVD20180102', 'DVD20180123', 'DVD20180219', 'DVD20180307','DVD20180403', 'DVD20180502', 'DVD20180531', 'DVD20180628', 'DVD20180719','DVD20180807', 
-#'DVD20180827',
-folder_list = ['DVD20180928', 'DVD20181106', 'DVD20181129', 'DVD20181221', 'DVD20190115', 'DVD20190130', 'DVD20190219', 'DVD20190308', 'DVD20190402', 
-               'DVD20190426', 'DVD20190526', 'DVD20190618', 'DVD20190711', 'DVD20190802', 'DVD20190820', 'DVD20190910', 'DVD20191014', 'DVD20191112', 'DVD20191204']
+#'DVD20180827','DVD20180928', 'DVD20181106', 'DVD20181129', 'DVD20181221', 'DVD20190115', 'DVD20190130', 'DVD20190219', 'DVD20190308', 'DVD20190402', 
+#'DVD20190426', 'DVD20190526', 'DVD20190618', 
+folder_list = ['DVD20190711', 'DVD20190802', 'DVD20190820', 'DVD20190910', 'DVD20191014', 'DVD20191112', 'DVD20191204']
 
-serial_number = 24048 # Initialize the serial number
+serial_number = 25299 # Initialize the serial number
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -115,6 +115,14 @@ for folder in folder_list:
     pyautogui.click(1700, 188)
     time.sleep(2)
     pyautogui.click(1100, 560)
+    #Archive 대기 시간
+    time.sleep(400)
+    pyautogui.click(860,1045)
+    time.sleep(2)
+    #Archive 대기 시간
+    time.sleep(400)
+    pyautogui.click(860,1045)
+    time.sleep(2)
     #Archive 대기 시간
     time.sleep(400)
     pyautogui.click(860,1045)
@@ -237,7 +245,7 @@ for folder in folder_list:
         time.sleep(2)
         #PDF 저장
         pyautogui.click(1070, 682)
-        time.sleep(100)  
+        time.sleep(60)  
         pyautogui.click(140, 985)
         time.sleep(3)
         
