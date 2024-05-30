@@ -65,7 +65,7 @@ directory = "Z:\Holter\Holter_gangnam"
 folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 print(f"folder list: {folder_list}")
 
-serial_number = 5000 # Initialize the serial number
+serial_number = 5269 # Initialize the serial number
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
