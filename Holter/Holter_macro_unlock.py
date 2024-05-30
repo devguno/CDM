@@ -62,10 +62,12 @@ directory = "Z:\Holter\Holter_gangnam"
 #                '7. 20220701~20220708', '70.20230916~20230930', '71.20231001~20231015', '72. 20230916~20230930', '73. 20231001~20231015', '74. 20231016~20231030', 
 #                '8. 20220711~20220720', '9. 20220711~20220720']
 #'2021', '2022', '2023'
-folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-print(f"folder list: {folder_list}")
+#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+#print(f"folder list: {folder_list}")
 
-serial_number = 5269 # Initialize the serial number
+folder_list = ['2021', '2022', '2023']
+    
+serial_number = 5325 # Initialize the serial number
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
