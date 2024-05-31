@@ -65,9 +65,9 @@ directory = "Z:\Holter\Holter_gangnam"
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")
 
-folder_list = ['2021', '2022', '2023']
+folder_list = ['2022', '2023']
     
-serial_number = 5325 # Initialize the serial number
+serial_number = 5446 # Initialize the serial number
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -143,17 +143,17 @@ for folder in folder_list:
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
+    #time.sleep(2)
     #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
+    #time.sleep(2)
     #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
+    #time.sleep(2)
     #click close
     pyautogui.click(1107, 475)
     time.sleep(2)
@@ -264,7 +264,7 @@ for folder in folder_list:
         time.sleep(2)
         #PDF 저장
         pyautogui.click(1070, 682)
-        time.sleep(100)  
+        time.sleep(60)  
         pyautogui.click(140, 985)
         time.sleep(3)
         
