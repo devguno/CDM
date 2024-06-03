@@ -45,10 +45,10 @@ directory = "Z:\Holter_cdrom_MAIN"
 #                '7. 20220701~20220708', '70.20230916~20230930', '71.20231001~20231015', '72. 20230916~20230930', '73. 20231001~20231015', '74. 20231016~20231030', 
 #                '8. 20220711~20220720', '9. 20220711~20220720']
 
-
-folder_list = ['DVD2011', 'DVD2012', 'DVD2014', 'DVD2015', 'DVD2017', 'DVD2019', 'DVD2029', 'DVD2043', 'DVD2224', 'DVD2227', 'DVD2229', 'DVD2230', 'DVD2233', 'DVD2236', 'DVD2239', 'DVD2243', 'DVD2246', 'DVD2452']
+#'DVD2011', 'DVD2012', 'DVD2014', 'DVD2015', 'DVD2017', 'DVD2019', 'DVD2029', 'DVD2043', 'DVD2224', 'DVD2227', 'DVD2229', 'DVD2230', 'DVD2233',
+folder_list = ['DVD2236', 'DVD2239', 'DVD2243', 'DVD2246', 'DVD2452']
     
-serial_number = 30070 # Initialize the serial number
+serial_number = 31315 # Initialize the serial number
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
