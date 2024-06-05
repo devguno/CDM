@@ -24,7 +24,7 @@ pyautogui.FAILSAFE = True
 
 #####
 # Set the specified directory
-directory = "Z:\Holter\Holter_main_hdd"
+directory = "Z:\\Holter\\Holter_main_hdd"
 
 # # Get all subfolder names within the directory as a list
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
