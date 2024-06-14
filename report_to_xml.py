@@ -8,10 +8,12 @@ from xml.dom.minidom import parseString
 import xml.etree.ElementTree as ET
 from tqdm import tqdm
 
-def process_pdf_files(pdf_dir, xml_dir):
-    pdf_files = [f for f in os.listdir(pdf_dir) if f.endswith('.pdf')]
+def process_pdf_files(file_dir, xml_dir):
+    pdf_files = [f for f in os.listdir(file_dir) if f.endswith('.pdf')]
+    failed_files = []
+
     for filename in tqdm(pdf_files, desc="Processing PDF Files"):
-        pdf_path = os.path.join(pdf_dir, filename)
+        pdf_path = os.path.join(file_dir, filename)
         pdf_doc = fitz.open(pdf_path)
         print(f"Processing file: {filename}, Total Pages: {pdf_doc.page_count}")
 
@@ -37,10 +39,9 @@ def process_pdf_files(pdf_dir, xml_dir):
             noise_percentage = noise_percentage_match.group(1)
         else:
             noise_percentage = "0"  # 일치하는 것이 없는 경우 기본값 설정
-                
+
         # Constructing the XML
         patient_info = SubElement(root, 'PatientInfo')
-        #SubElement(patient_info, 'Name').text = patient_name
         SubElement(patient_info, 'PID').text = patient_id
         SubElement(patient_info, 'HookupDate').text = hookup_date
         SubElement(patient_info, 'HookupTime').text = hookup_time
@@ -53,15 +54,14 @@ def process_pdf_files(pdf_dir, xml_dir):
         SubElement(general, 'SupraventricularBeats').text = supraventricular_beats
         SubElement(general, 'NoisePercentage').text = noise_percentage
 
-
         # Heart Rates section
         heart_rates = SubElement(root, 'HeartRates')
         patterns_hr = [
             (r"(\d+) Minimum at ([\d:]+ \d+-\w+)", 'MinimumRate', 'Timestamp'),
             (r"(\d+) Average", 'AverageRate', None),
             (r"(\d+) Maximum at ([\d:]+ \d+-\w+)", 'MaximumRate', 'Timestamp'),
-            (r"(\d+) Beats in tachycardia \(>[0-9]+ bpm\), (\d+)% total", 'TachycardiaBeats', 'TachycardiaPercentage'),
-            (r"(\d+) Beats in bradycardia \(<60 bpm\), (\d+)% total", 'BradycardiaBeats', 'BradycardiaPercentage'),
+            (r"(\d+) Beats in tachycardia \(>=\d+ bpm\), (\d+)% total", 'TachycardiaBeats', 'TachycardiaPercentage'),
+            (r"(\d+) Beats in bradycardia \(<=\d+ bpm\), (\d+)% total", 'BradycardiaBeats', 'BradycardiaPercentage'),
         ]
 
         for pattern, main_tag, sub_tag in patterns_hr:
@@ -70,7 +70,7 @@ def process_pdf_files(pdf_dir, xml_dir):
                 if sub_tag:
                     element = SubElement(heart_rates, main_tag)
                     SubElement(element, sub_tag).text = match.group(2)
-                    element.text = match.group(1)  # Main value
+                    element.text = match.group(1)
                 else:
                     SubElement(heart_rates, main_tag).text = match.group(1)
                     
@@ -80,20 +80,13 @@ def process_pdf_files(pdf_dir, xml_dir):
             SubElement(max_rr, 'Seconds').text = max_rr_match.group(1)
             SubElement(max_rr, 'Timestamp').text = max_rr_match.group(2)
 
-                            
         # Ventriculars section extraction
         ventriculars_match = re.search(r"Ventriculars \(V, F, E, I\)\n([\s\S]+?)\nSupraventriculars \(S, J, A\)", extracted_text)
-        if ventriculars_match:
-            ventriculars_section = ventriculars_match.group(1)
-        else:
-            ventriculars_section = ""
+        ventriculars_section = ventriculars_match.group(1) if ventriculars_match else ""
 
         # Supraventriculars section extraction
         supraventriculars_match = re.search(r"Supraventriculars \(S, J, A\)\n([\s\S]+?)Interpretation", extracted_text)
-        if supraventriculars_match:
-            supraventriculars_section = supraventriculars_match.group(1)
-        else:
-            supraventriculars_section = ""
+        supraventriculars_section = supraventriculars_match.group(1) if supraventriculars_match else ""
 
         # Regex patterns for Ventriculars and Supraventriculars
         ventriculars_patterns = [
@@ -120,7 +113,7 @@ def process_pdf_files(pdf_dir, xml_dir):
             match = re.search(pattern, ventriculars_section)
             if match:
                 for tag_index, tag in enumerate(tags):
-                    if isinstance(tag, tuple):  
+                    if isinstance(tag, tuple):
                         parent_tag = ET.SubElement(ventriculars_xml, tag[0])
                         ET.SubElement(parent_tag, tag[1]).text = match.group(tag_index + 1)
                     else:
@@ -132,7 +125,7 @@ def process_pdf_files(pdf_dir, xml_dir):
             match = re.search(pattern, supraventriculars_section)
             if match:
                 for tag_index, tag in enumerate(tags):
-                    if isinstance(tag, tuple):  
+                    if isinstance(tag, tuple):
                         parent_tag = ET.SubElement(supraventriculars_xml, tag[0])
                         ET.SubElement(parent_tag, tag[1]).text = match.group(tag_index + 1)
                     else:
@@ -150,61 +143,87 @@ def process_pdf_files(pdf_dir, xml_dir):
 
         print(f"Processed {filename}, Saved XML file: {xml_file_path}")
 
-def add_record_data_to_xml(record_dir, xml_dir):
-    record_files = [f for f in os.listdir(record_dir) if f.endswith('.hea')]
+    return failed_files
+
+def add_record_data_to_xml(file_dir, xml_dir):
+    record_files = [f for f in os.listdir(file_dir) if f.endswith('.hea')]
+    failed_files = []
+
     for record_file in tqdm(record_files, desc="Adding Record Data to XML"):
-        record_path = os.path.join(record_dir, record_file[:-4])  # Remove .hea extension
-        record = wfdb.rdrecord(record_path)
-        df = pd.DataFrame(record.p_signal, columns=record.sig_name)
-        df_transposed = df.T
+        try:
+            record_path = os.path.join(file_dir, record_file[:-4])  # Remove .hea extension
+            record = wfdb.rdrecord(record_path)
+            df = pd.DataFrame(record.p_signal, columns=record.sig_name)
+            df_transposed = df.T
 
-        # Prepare XML elements
-        data_element = ET.Element('data')
-        for channel, values in enumerate(df_transposed.values, start=1):
-            signal_data = ','.join(map(str, values))
-            wave_form_data = ET.SubElement(data_element, 'WaveformData', lead=str(channel))
-            wave_form_data.text = signal_data
+            # Prepare XML elements
+            data_element = ET.Element('data')
+            for channel, values in enumerate(df_transposed.values, start=1):
+                signal_data = ','.join(map(str, values))
+                wave_form_data = ET.SubElement(data_element, 'WaveformData', lead=str(channel))
+                wave_form_data.text = signal_data
 
-        # Convert to string and add newline for formatting
-        xml_string = ET.tostring(data_element, 'utf-8')
-        pretty_xml_str = parseString(xml_string).toprettyxml(indent="  ")
+            # Convert to string and add newline for formatting
+            xml_string = ET.tostring(data_element, 'utf-8')
+            pretty_xml_str = parseString(xml_string).toprettyxml(indent="  ")
 
-        # Adjust formatting to add newline after <data> and before each <WaveformData>
-        pretty_xml_str = pretty_xml_str.replace('><WaveformData', '>\n<WaveformData')
-        pretty_xml_str = pretty_xml_str.replace('</WaveformData><', '</WaveformData>\n<')
+            # Adjust formatting to add newline after <data> and before each <WaveformData>
+            pretty_xml_str = pretty_xml_str.replace('><WaveformData', '>\n<WaveformData')
+            pretty_xml_str = pretty_xml_str.replace('</WaveformData><', '</WaveformData>\n<')
 
-        xml_filename = os.path.splitext(record_file)[0] + '.xml'
-        xml_file_path = os.path.join(xml_dir, xml_filename)
+            xml_filename = os.path.splitext(record_file)[0] + '.xml'
+            xml_file_path = os.path.join(xml_dir, xml_filename)
 
-        if os.path.exists(xml_file_path):
-            # Load existing XML and append new data
-            tree = ET.parse(xml_file_path)
-            root = tree.getroot()
+            if os.path.exists(xml_file_path):
+                # Load existing XML and append new data
+                tree = ET.parse(xml_file_path)
+                root = tree.getroot()
 
-            # Parse the newly created XML string and append it
-            new_data_element = ET.fromstring(pretty_xml_str)
-            root.append(new_data_element)
+                # Parse the newly created XML string and append it
+                new_data_element = ET.fromstring(pretty_xml_str)
+                root.append(new_data_element)
 
-            # Save back to file
-            tree.write(xml_file_path, encoding='utf-8', xml_declaration=True)
-            print(f"Added record data to {xml_file_path}")
-        else:
-            print(f"Warning: {xml_file_path} does not exist.")
+                # Save back to file
+                tree.write(xml_file_path, encoding='utf-8', xml_declaration=True)
+                print(f"Added record data to {xml_file_path}")
+            else:
+                print(f"Warning: {xml_file_path} does not exist.")
+        except Exception as e:
+            print(f"Failed to add record data for {record_file}: {e}")
+            failed_files.append(record_file)
+
+    return failed_files
+
 
 def main():
-    pdf_dir = 'Z:\\Holter\\extract\\child_cd'
-    #pdf_dir = 'C:\\Users\\SNUH\\Desktop\\export'
-    xml_dir = os.path.join(pdf_dir, 'xml')
+    base_dir = 'C:\\Users\\SNUH\\Desktop\\export' # 기본 디렉토리
+    xml_dir = 'E:\\Holter_xml'
 
     if not os.path.exists(xml_dir):
         os.makedirs(xml_dir)
 
     print("Starting to process PDF files...")
-    process_pdf_files(pdf_dir, xml_dir)
+    failed_files_pdf = process_pdf_files(base_dir, xml_dir)
+
+    if failed_files_pdf:
+        print("\nFailed to process the following PDF files:")
+        for failed_file in failed_files_pdf:
+            print(failed_file)
+    else:
+        print("\nAll PDF files processed successfully.")
+
     print("Starting to add record data to XML...")
-    add_record_data_to_xml(pdf_dir, xml_dir)
+    failed_files_record = add_record_data_to_xml(base_dir, xml_dir)
+
+    if failed_files_record:
+        print("\nFailed to add record data for the following files:")
+        for failed_file in failed_files_record:
+            print(failed_file)
+    else:
+        print("\nAll record data added successfully.")
 
     print("Completed processing all files.")
+
 
 if __name__ == "__main__":
     main()
