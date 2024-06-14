@@ -13,12 +13,12 @@ directory = "Z:\Holter\Holter_main_hdd"
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")  
 folder_list = ["1. 20220520~20220531"]
-serial_number = 34458 # Serial 번호 초기화
+serial_number = 35208 # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
     #file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])
-    file_count = 50
+    file_count = 60
     y_coord = 73  # 초기 y 축 좌표 설정
     y_coord2 = 89  # 두 번째 페이지의 초기 y 축 좌표 설정
     current_file = 0  # 현재 파일 번호 초기화
