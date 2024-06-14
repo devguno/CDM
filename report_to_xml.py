@@ -193,6 +193,7 @@ def add_record_data_to_xml(record_dir, xml_dir):
 
 def main():
     pdf_dir = 'Z:\\Holter\\extract\\child_cd'
+    #pdf_dir = 'C:\\Users\\SNUH\\Desktop\\export'
     xml_dir = os.path.join(pdf_dir, 'xml')
 
     if not os.path.exists(xml_dir):
