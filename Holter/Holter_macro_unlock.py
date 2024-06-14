@@ -44,7 +44,7 @@ folder_list = ['5. 20220602~20220630', '50. 20230416~20230430', '51. 20230416~20
                '7. 20220701~20220708', '70.20230916~20230930', '71.20231001~20231015', '72. 20230916~20230930', '73. 20231001~20231015', '74. 20231016~20231030', 
                '8. 20220711~20220720', '9. 20220711~20220720']
     
-serial_number = 34504 # Initialize the serial number
+serial_number = 35254 # Initialize the serial number
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
