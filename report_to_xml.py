@@ -28,7 +28,7 @@ def process_pdf_files(file_dir, xml_dir):
             try:
                 patient_id = re.findall(r"Patient Name:?\n(\d+)\nID:?", extracted_text)[0]
             except IndexError:
-                patient_id = "Unknown"
+                patient_id = filename.split('_')[-1].replace('.pdf', '')
 
             try:
                 hookup_date = re.findall(r"Medications:?\n(\d+-\w+-\d+)\nHookup Date:?", extracted_text)[0]
@@ -223,8 +223,8 @@ def add_record_data_to_xml(file_dir, xml_dir):
 
 
 def main():
-    # base_dir = 'Z:\\Holter\\extract\\child_cd' # 기본 디렉토리
-    base_dir = 'C:\\Users\\SNUH\\Desktop\\export' 
+    base_dir = 'Z:\\Holter\\extract\\child_cd' # 기본 디렉토리
+    #base_dir = 'C:\\Users\\SNUH\\Desktop\\export' 
     xml_dir = 'E:\\Holter_xml'
 
     if not os.path.exists(xml_dir):
