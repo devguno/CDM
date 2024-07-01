@@ -61,7 +61,7 @@ def add_record_data_to_xml(file_dir, xml_dir):
 def main():
     base_dir = 'Z:\\Holter\\extract\\child_cd' # 기본 디렉토리
     #base_dir = 'C:\\Users\\SNUH\\Desktop\\export' 
-    xml_dir = 'E:\\Holter_xml'
+    xml_dir = 'E:\\Holter_xml\\new'
 
     if not os.path.exists(xml_dir):
         os.makedirs(xml_dir)

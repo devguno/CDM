@@ -24,7 +24,7 @@ pyautogui.FAILSAFE = True
 
 #####
 # Set the specified directory
-directory = "Z:\Holter\Holter_main_hdd"
+directory = "Z:\Holter\Holter_child_hdd"
 
 # # Get all subfolder names within the directory as a list
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
@@ -41,9 +41,9 @@ directory = "Z:\Holter\Holter_main_hdd"
 #'59. 20230701~20230715', '6. 20220701~20220710', '60. 20230616~20230630', '61. 20230701~20230714', '62. 20230716~20230731', '63. 20230715~20230731', 
 #'64. 20230801~20230815', '65 20230801~20230815', '66. 2023.816~20230831', '67. 20230816~20230831', '68. 20230901~20230915', '69. 20230901~20230915', 
 #'7. 20220701~20220708', '70.20230916~20230930', '71.20231001~20231015', 
-folder_list = ['71.20231001~20231015']
+folder_list = ['2011-08', '2023-01', '2023-02', '2023-03', '2023-04', '2023-05', '2023-06']
     
-serial_number = 37163 # Initialize the serial number
+serial_number = 1 # Initialize the serial number
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
