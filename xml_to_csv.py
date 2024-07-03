@@ -28,7 +28,7 @@ for filename in tqdm(xml_files, desc="Processing XML files"):
         hookup_date = root.find('.//HookupDate').text
         hookup_time = root.find('.//HookupTime').text
         
-        # HookupDate 형식 변환 (02-Aug-2022 -> 20220802)
+        # HookupDate 형식 변환 
         hookup_date_formatted = pd.to_datetime(hookup_date, format='%d-%b-%Y').strftime('%Y%m%d')
         
         # 데이터를 리스트에 추가 (파일명 포함)
@@ -52,6 +52,9 @@ df['HookupDateTime'] = df.apply(lambda row: pd.Timestamp.combine(row['HookupDate
 # 원하는 형식으로 변환
 df['HookupDate'] = df['HookupDate'].dt.strftime('%Y-%m-%d')
 df['HookupDateTime'] = df['HookupDateTime'].dt.strftime('%Y-%m-%d %H:%M:%S.000')
+
+# (PID, HookupDate)가 동일한 데이터 제거
+df = df.drop_duplicates(subset=['PID', 'HookupDate'])
 
 # 원래 HookupTime 열은 제거
 df = df.drop(columns=['HookupTime'])
