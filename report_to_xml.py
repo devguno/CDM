@@ -167,10 +167,10 @@ def process_pdf_files(file_dirs, xml_dir):
 
 def main():
     base_dirs = [
-        'Z:\\Holter\\extract\\Holter_gangnam_extract',
-        'Z:\\Holter\\extract\\Holter_main_extract'
+        'Z:\\Holter\\extract\\child_cd',
+        'Z:\\Holter\\extract\\Holter_child_hdd'
     ]
-    xml_dir = 'Z:\\Holter\\xml\\adult'
+    xml_dir = 'Z:\\Holter\\xml\\child'
 
     if not os.path.exists(xml_dir):
         os.makedirs(xml_dir)
