@@ -1,17 +1,18 @@
 import os
 import re
 import fitz  # PyMuPDF
+import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element, SubElement, tostring
 from xml.dom.minidom import parseString
-import xml.etree.ElementTree as ET
 from tqdm import tqdm
 
-def process_pdf_files(file_dir, xml_dir):
+def process_pdf_files(file_dirs, xml_dir):
     pdf_files = []
-    for root, _, files in os.walk(file_dir):
-        for file in files:
-            if file.endswith('.pdf'):
-                pdf_files.append(os.path.join(root, file))
+    for file_dir in file_dirs:
+        for root, _, files in os.walk(file_dir):
+            for file in files:
+                if file.endswith('.pdf'):
+                    pdf_files.append(os.path.join(root, file))
     
     failed_files = []
 
@@ -47,6 +48,17 @@ def process_pdf_files(file_dir, xml_dir):
                 duration = re.findall(r"Hookup Time:?\n(\d+:\d+:\d+)\nDuration:?", extracted_text)[0]
             except IndexError:
                 duration = "Unknown"
+            
+            try:
+                age = re.findall(r"(\d+)\s*yr\s*Age:", extracted_text)[0]
+            except IndexError:
+                age = "Unknown"
+
+            try:
+                gender = re.findall(r"(Male|Female)\s*Gender:", extracted_text)[0]
+            except IndexError:
+                gender = "Unknown"
+
 
             # Parsing General section
             general_section = re.search(r"General\n(.+?)Heart Rates", extracted_text, re.DOTALL)
@@ -72,6 +84,8 @@ def process_pdf_files(file_dir, xml_dir):
             SubElement(patient_info, 'HookupDate').text = hookup_date
             SubElement(patient_info, 'HookupTime').text = hookup_time
             SubElement(patient_info, 'Duration').text = duration
+            SubElement(patient_info, 'Age').text = age
+            SubElement(patient_info, 'Gender').text = gender
 
             # General
             general = SubElement(root, 'General')
@@ -134,28 +148,28 @@ def process_pdf_files(file_dir, xml_dir):
             ]
 
             # Ventriculars section to add xml
-            ventriculars_xml = ET.SubElement(root, "Ventriculars")
+            ventriculars_xml = SubElement(root, "Ventriculars")
             for pattern, tags in ventriculars_patterns:
                 match = re.search(pattern, ventriculars_section)
                 if match:
                     for tag_index, tag in enumerate(tags):
                         if isinstance(tag, tuple):
-                            parent_tag = ET.SubElement(ventriculars_xml, tag[0])
-                            ET.SubElement(parent_tag, tag[1]).text = match.group(tag_index + 1)
+                            parent_tag = SubElement(ventriculars_xml, tag[0])
+                            SubElement(parent_tag, tag[1]).text = match.group(tag_index + 1)
                         else:
-                            ET.SubElement(ventriculars_xml, tag).text = match.group(tag_index + 1)
+                            SubElement(ventriculars_xml, tag).text = match.group(tag_index + 1)
 
             # Supraventriculars section to add xml
-            supraventriculars_xml = ET.SubElement(root, "Supraventriculars")
+            supraventriculars_xml = SubElement(root, "Supraventriculars")
             for pattern, tags in supraventriculars_patterns:
                 match = re.search(pattern, supraventriculars_section)
                 if match:
                     for tag_index, tag in enumerate(tags):
                         if isinstance(tag, tuple):
-                            parent_tag = ET.SubElement(supraventriculars_xml, tag[0])
-                            ET.SubElement(parent_tag, tag[1]).text = match.group(tag_index + 1)
+                            parent_tag = SubElement(supraventriculars_xml, tag[0])
+                            SubElement(parent_tag, tag[1]).text = match.group(tag_index + 1)
                         else:
-                            ET.SubElement(supraventriculars_xml, tag).text = match.group(tag_index + 1)
+                            SubElement(supraventriculars_xml, tag).text = match.group(tag_index + 1)
 
             xml_str = tostring(root, 'utf-8')
             parsed_str = parseString(xml_str)
@@ -176,18 +190,21 @@ def process_pdf_files(file_dir, xml_dir):
     return failed_files
 
 def main():
-    base_dir = 'Z:\\Holter\\extract'  # 기본 디렉토리
-    xml_dir = 'Z:\\Holter\\xml'
+    base_dirs = [
+        'Z:\\Holter\\extract\\Holter_gangnam_extract',
+        'Z:\\Holter\\extract\\Holter_main_extract'
+    ]  # 기본 디렉토리들
+    xml_dir = 'Z:\\Holter\\xml\\adult'
 
     if not os.path.exists(xml_dir):
         os.makedirs(xml_dir)
 
     print("Starting to process PDF files...")
-    failed_files_pdf = process_pdf_files(base_dir, xml_dir)
+    failed_files_record = process_pdf_files(base_dirs, xml_dir)
 
-    if failed_files_pdf:
-        print("\nFailed to process the following PDF files:")
-        for failed_file in failed_files_pdf:
+    if failed_files_record:
+        print("\nFailed to process the following files:")
+        for failed_file in failed_files_record:
             print(failed_file)
     else:
         print("\nAll PDF files processed successfully.")
