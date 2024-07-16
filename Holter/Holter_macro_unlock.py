@@ -24,14 +24,14 @@ pyautogui.FAILSAFE = True
 
 #####
 # Set the specified directory
-directory = "D:\\fin"
+directory = "D:\\nat\\tomars"
 
 # # Get all subfolder names within the directory as a list
-#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-#print(f"folder list: {folder_list}")
-folder_list = ['2400','2401','2402']
+folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+print(f"folder list: {folder_list}")
+#folder_list = ['2400','2401','2402']
     
-serial_number = 40284 # Initialize the serial number
+serial_number = 40542 # Initialize the serial number
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -107,13 +107,13 @@ for folder in folder_list:
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
+    #time.sleep(2)
     #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
+    #time.sleep(2)
     #Archive 대기 시간
     time.sleep(400)
     pyautogui.click(860,1045)
