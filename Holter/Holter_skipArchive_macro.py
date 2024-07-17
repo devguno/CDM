@@ -18,7 +18,7 @@ serial_number = 40770 # Serial 번호 초기화
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
     #file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])
-    file_count = 10
+    file_count = 100
     y_coord = 73  # 초기 y 축 좌표 설정
     y_coord2 = 89  # 두 번째 페이지의 초기 y 축 좌표 설정
     current_file = 0  # 현재 파일 번호 초기화
