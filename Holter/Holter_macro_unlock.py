@@ -28,11 +28,11 @@ directory = "D:\\nat\\tomars"
 
 # # Get all subfolder names within the directory as a list
 folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-#print(f"folder list: {folder_list}")
-#'2399', '2402', '2450', '2451', 
-folder_list = ['2452', '2453', '2454', '2455', '2496', '2497', '2498', '2499']
+print(f"folder list: {folder_list}")
+#'2399', '2402', '2450', '2451', '2452',2453', '2454', '2455', '2496', '2497', '2498',
+#folder_list = [ '2499']
     
-serial_number = 40770 # Initialize the serial number
+serial_number = 41535 # Initialize the serial number
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
