@@ -27,12 +27,12 @@ pyautogui.FAILSAFE = True
 directory = "D:\\nat\\tomars"
 
 # # Get all subfolder names within the directory as a list
-folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-print(f"folder list: {folder_list}")
+#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+#print(f"folder list: {folder_list}")
 #'2399', '2402', '2450', '2451', '2452',2453', '2454', '2455', '2496', '2497', '2498',
-#folder_list = [ '2499']
+folder_list = ['2490', '2491', '2492', '2493', '2494', '2495', '2499']
     
-serial_number = 41535 # Initialize the serial number
+serial_number = 41920 # Initialize the serial number
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
