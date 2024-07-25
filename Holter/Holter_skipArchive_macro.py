@@ -13,7 +13,7 @@ directory = "Z:\Holter\Holter_main_hdd"
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")  
 folder_list = ["1. 20220520~20220531"]
-serial_number = 42098 # Serial 번호 초기화
+serial_number = 42483 # Serial 번호 초기화
 
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
