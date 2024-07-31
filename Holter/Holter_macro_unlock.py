@@ -391,3 +391,4 @@ for folder in folder_list:
     #patient select
     pyautogui.click(140, 990)
     time.sleep(2)
+
