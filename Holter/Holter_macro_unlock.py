@@ -29,10 +29,11 @@ directory = "E:\\Holter"
 # # Get all subfolder names within the directory as a list
 folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 print(f"folder list: {folder_list}")
-#'2399', '2402', '2450', '2451', '2452',2453', '2454', '2455', '2496', '2497', '2498','2490','2491', '2492', '2493', '2494', 
-#folder_list = ['2495', '2499']
+#'2096', '2097', '2098', '2099', '2100', '2101', '2102', '2103', '2104', '2105', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078',
+folder_list =  ['2079', '2080', '2081', '2082','2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', 
+                '2092', '2093', '2094', '2095', '2109', '2110', '2111', '2112', '2113', '2106', '2107', '2108']
     
-serial_number = 43161 # Initialize the serial number
+serial_number = 44731 # Initialize the serial number
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
