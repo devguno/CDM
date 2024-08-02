@@ -33,7 +33,7 @@ print(f"folder list: {folder_list}")
 folder_list =  ['2080', '2081', '2082','2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', 
                 '2092', '2093', '2094', '2095', '2109', '2110', '2111', '2112', '2113', '2106', '2107', '2108']
     
-serial_number = 44731 # Initialize the serial number
+serial_number = 44807 # Initialize the serial number
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
