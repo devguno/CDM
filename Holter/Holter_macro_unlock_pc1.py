@@ -189,16 +189,17 @@ for folder in folder_list:
         #click print report
         pyautogui.click(1596, 90) 
         time.sleep(2)
-        pyautogui.click(313, 348)  
+        #click ok
+        pyautogui.click(390, 415)  
         time.sleep(2)
         
         # Serial 값을 붙여넣기
         pyautogui.write(Serial)
         time.sleep(2)
-        pyautogui.click(1219, 348) 
+        pyautogui.click(1219, 900) 
         time.sleep(2)
         #PDF 저장
-        pyautogui.click(937, 661)  
+        pyautogui.click(1090, 680)  
         time.sleep(50)  
         pyautogui.click(122, 1021) 
         time.sleep(3)
