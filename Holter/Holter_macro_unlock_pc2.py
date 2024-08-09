@@ -7,8 +7,7 @@ from tqdm import tqdm
 import math
 
 ### Note: The MARS program should be set to use the keyboard in English. Make sure to set the keyboard layout to English before starting.
-# Wait for 4 seconds after starting the code
-time.sleep(4)
+time.sleep(3)
 # Click on the keyboard settings in the bottom menu bars
 pyautogui.click(1780, 1050)
 time.sleep(2)
@@ -24,24 +23,24 @@ pyautogui.FAILSAFE = True
 
 #####
 # Set the specified directory
-directory = "E:\\Holter"
+directory = "Z:\\Holter\\nat\\Holter_child_hdd"
 
 # # Get all subfolder names within the directory as a list
-folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-print(f"folder list: {folder_list}")
+#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+#print(f"folder list: {folder_list}")
 #'2096', '2097', '2098', '2099', '2100', '2101', '2102', '2103', '2104', '2105', '2070', '2071', '2072', '2073', 
 # '2074', '2075', '2076', '2077', '2078','2079','2080', '2081', '2082','2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093',
-#folder_list =  [ '2094', '2095', '2109', '2110', '2111', '2112', '2113', '2106', '2107', '2108']
+folder_list =  [ '2023-06', '2023-07', '2023-08', '2023-09', '2023-10','2023-11','2023-12',
+                '2024-01','2024-02','2024-03','2024-04','2024-05','2024-06']
     
-serial_number = 45878 # Initialize the serial number
-
 # Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
-    file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])
+    file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])-1
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
+    iteration_count = 1
 
     print(folder_path + " file count: " + str(file_count))
 
@@ -109,9 +108,9 @@ for folder in folder_list:
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
-    #time.sleep(400)
-    #pyautogui.click(860,1045)
-    #time.sleep(2)
+    time.sleep(400)
+    pyautogui.click(860,1045)
+    time.sleep(2)
     #Archive 대기 시간
     #time.sleep(400)
     #pyautogui.click(860,1045)
@@ -154,7 +153,7 @@ for folder in folder_list:
         if current_file == 116 or current_file == 174 or current_file == 232:  # 116번째 및 207번째 파일에서 y 좌표 초기화
             y_coord2 = 89
 
-        Serial = f"{serial_number}_"
+        Serial = f"{folder}_{iteration_count}_"
     
         if current_file < 58:
             time.sleep(2)
@@ -255,8 +254,8 @@ for folder in folder_list:
             pyautogui.click(1100, 550)
             time.sleep(4)
         
-        # 2번째 파일마다 특정 동작 실행
-        if current_file % 2 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
+        # 3번째 파일마다 특정 동작 실행
+        if current_file % 3 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
             pyautogui.rightClick(273, 1050)  # MARS program right click, LEFT 5
             time.sleep(2)
             pyautogui.click(273, 1023)  # close window
@@ -268,7 +267,7 @@ for folder in folder_list:
             time.sleep(2)    
 
         # Serial 변수 사용 후에 Serial 번호 증가 및 현재 파일 번호 증가
-        serial_number += 1
+        iteration_count += 1
         current_file += 1
 
         if current_file <= 58:
