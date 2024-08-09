@@ -235,7 +235,8 @@ for folder in folder_list:
             #click patient select 
             pyautogui.click(140, 950) 
             time.sleep(2)
-
+            
+        iteration_count += 1
         current_file += 1
 
         if current_file <= 58:
