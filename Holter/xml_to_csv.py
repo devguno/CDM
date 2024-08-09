@@ -4,9 +4,9 @@ import pandas as pd
 from tqdm import tqdm
 
 # XML 파일들이 저장된 디렉토리
-xml_dir = 'E:\\xml'
+xml_dir = 'C:\\xml'
 # CSV 파일이 저장될 경로
-csv_path = 'C:\\Users\\SNUH\\Desktop\\Holter\\patient_info.csv'
+csv_path = 'C:\\xml\\patient_info.csv'
 
 # 데이터를 저장할 리스트 초기화
 data = []
