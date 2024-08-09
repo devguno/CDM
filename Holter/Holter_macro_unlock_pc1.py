@@ -34,7 +34,7 @@ print(f"folder list: {folder_list}")
 # Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
-    file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])
+    file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))]) -1
     y_coord = 71  
     y_coord2 = 86 
     current_file = 0  
@@ -224,8 +224,8 @@ for folder in folder_list:
             pyautogui.click(962, 533)  
             time.sleep(4)
             
-        # 3번째 파일마다 MARS program re-start
-        if current_file % 3 == 0 and current_file != 0: 
+        # 4번째 파일마다 MARS program re-start
+        if current_file % 4 == 0 and current_file != 0: 
             pyautogui.rightClick(222, 1020)  
             time.sleep(2)
             pyautogui.click(222, 1000) 

@@ -167,9 +167,9 @@ def process_pdf_files(file_dirs, xml_dir):
 
 def main():
     base_dirs = [
-        'D:\\extract'
+        'C:\\extract'
     ]
-    xml_dir = 'E:\\xml'
+    xml_dir = 'C:\\xml'
 
     if not os.path.exists(xml_dir):
         os.makedirs(xml_dir)
