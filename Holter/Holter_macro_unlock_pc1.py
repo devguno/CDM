@@ -201,8 +201,6 @@ for folder in folder_list:
         #PDF 저장
         pyautogui.click(1090, 680)  
         time.sleep(50)  
-        pyautogui.click(122, 1021) 
-        time.sleep(3)
         
         #click patient select 
         pyautogui.click(140, 950) 
