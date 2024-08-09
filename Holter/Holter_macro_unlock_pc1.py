@@ -240,12 +240,13 @@ for folder in folder_list:
         current_file += 1
 
         if current_file <= 58:
-            y_coord += 14  
+            y_coord += 15  
         else:
-            y_coord2 += 14 
+            y_coord2 += 15 
         
         print(f"Current file: {current_file}") 
 
+    
     time.sleep(3)
     pyautogui.click(350, 70)  
     time.sleep(2)
@@ -255,9 +256,14 @@ for folder in folder_list:
     pyautogui.click(158, 902)  
     pyautogui.keyUp('shift')
     time.sleep(2)
+    #Tools
     pyautogui.click(1403, 111) 
     time.sleep(2)
-    pyautogui.click(1575, 96) 
+    #delete
+    pyautogui.click(1403, 111) 
+    time.sleep(2)
+    #delete to all 
+    pyautogui.click(1000, 530) 
     time.sleep(2)
     #click patient select 
     pyautogui.click(140, 950) 
@@ -270,11 +276,11 @@ for folder in folder_list:
     pyautogui.click(158, 902)  
     pyautogui.keyUp('shift')
     time.sleep(2)
+    #Tools
     pyautogui.click(1403, 111) 
     time.sleep(2)
+    #unlock
     pyautogui.click(1575, 96)  
-    time.sleep(2)
-    pyautogui.click(962, 529)  
     time.sleep(2)
     #click patient select 
     pyautogui.click(140, 950) 
@@ -287,11 +293,14 @@ for folder in folder_list:
     pyautogui.click(158, 902)  
     pyautogui.keyUp('shift')
     time.sleep(2)
+    #Tools
     pyautogui.click(1403, 111) 
     time.sleep(2)
-    pyautogui.click(1575, 96)  
+    #delete
+    pyautogui.click(1403, 111) 
     time.sleep(2)
-    pyautogui.click(962, 529)  
+    #delete to all 
+    pyautogui.click(1000, 530) 
     time.sleep(2)
     #click patient select 
     pyautogui.click(140, 950) 
