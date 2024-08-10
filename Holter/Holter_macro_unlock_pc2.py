@@ -21,7 +21,6 @@ time.sleep(5)
 # Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)
 pyautogui.FAILSAFE = True
 
-#####
 # Set the specified directory
 directory = "Z:\\Holter\\nat\\Holter_child_hdd"
 # # Get all subfolder names within the directory as a list
