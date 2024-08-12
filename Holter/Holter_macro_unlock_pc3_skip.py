@@ -10,7 +10,7 @@ import math
 pyautogui.FAILSAFE = True
 
 # Set the specified directory
-directory = "D:\\Holter"
+directory = "C:\\Holter"
 folder_list =  ['2112']
     
 # Iterate over all subfolders within the directory
