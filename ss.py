@@ -216,6 +216,7 @@ for i in range(file_count):
     pyautogui.click(158, 902)
     pyautogui.keyUp('shift')
     time.sleep(2)
+    #click Delete
     pyautogui.click(1395, 215)
     time.sleep(2)
 
@@ -232,8 +233,12 @@ for i in range(file_count):
     number_extracted = extract_number_from_image(656, 436, 870, 470)
     print(f"Extracted number: {number_extracted}")
     time.sleep(2)
-    pyautogui.click(1000, 460)  # Click No
+    # Click No
+    pyautogui.click(1000, 460)  
     time.sleep(2)
+    # Perform the drag in reverse direction
+    pyautogui.moveTo(1304, 895)
+    pyautogui.dragTo(1304, 66, duration=2.0)
 
     # Calculate total pages
     total_pages = number_extracted // 56
@@ -245,6 +250,10 @@ for i in range(file_count):
         
         pyautogui.click(700, 896)
         time.sleep(2)
+        
+        if page > 1:
+            pyautogui.press('pagedown')
+            time.sleep(2)
         
         pyautogui.click(1540, 120)
         time.sleep(2)
