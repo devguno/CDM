@@ -239,6 +239,7 @@ for i in range(file_count):
     # Perform the drag in reverse direction
     pyautogui.moveTo(1304, 895)
     pyautogui.dragTo(1304, 66, duration=2.0)
+    time.sleep(3)
 
     # Calculate total pages
     total_pages = number_extracted // 56
