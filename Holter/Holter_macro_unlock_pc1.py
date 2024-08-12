@@ -99,10 +99,6 @@ for folder in folder_list:
     time.sleep(400)
     pyautogui.click(962, 554)  
     time.sleep(400)
-    pyautogui.click(962, 554)  
-    time.sleep(400)
-    pyautogui.click(962, 556)  
-    time.sleep(400)
     #click close
     pyautogui.click(970, 461)  
     time.sleep(2)
