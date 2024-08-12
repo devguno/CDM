@@ -242,6 +242,7 @@ for i in range(file_count):
 
     # Calculate total pages
     total_pages = number_extracted // 56
+    print(f"total_pages: {total_pages}")
 
     # Loop through each page
     for page in range(1, total_pages + 1):  # Start range from 1 to total_pages inclusive
