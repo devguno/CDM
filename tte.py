@@ -173,33 +173,6 @@ def save_patient_data(total_pages):
         pyautogui.dragTo(875, 388, duration=1)
         time.sleep(2)
 
-# Process folder data and prepare for saving files
-def process_folder_data():
-    directory = "C:\\Holter"
-    folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-    print(f"Folder list: {folder_list}")
-
-    for folder in folder_list:
-        folder_path = os.path.join(directory, folder)
-        file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))]) - 1
-        y_coord = 71  
-        y_coord2 = 86 
-        iteration_count = 1
-
-        # Extract folder name and prepare for file naming
-        folder_name = folder_path.split('\\')[-1]
-        for i in range(file_count):
-            file_name = f"{folder_name}_{iteration_count}"
-            # Perform operations to save the file
-            pyautogui.click(215, 955)  # Click 'Patient Information'
-            time.sleep(2)
-            pyautogui.click(1050, 87)
-            pyautogui.dragTo(910, 87, duration=1)
-            pyautogui.hotkey('ctrl', 'c')
-            # Save the file with the correct name
-            file_name_with_data = f"{file_name}_{pyperclip.paste()}"
-            # Save the file (not implemented in this snippet)
-
 # Execute all operations
 def execute_all():
     main_workflow()
