@@ -23,7 +23,7 @@ pyautogui.FAILSAFE = True
 
 #####
 # Set the specified directory
-directory = "C:\\Holter"
+directory = "C:\\holter_big"
 # # Get all subfolder names within the directory as a list
 folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 print(f"folder list: {folder_list}")
@@ -96,7 +96,7 @@ for folder in folder_list:
     time.sleep(2)
     pyautogui.click(1100, 560)
     #Archive 대기 시간
-    time.sleep(400)
+    time.sleep(300)
     pyautogui.click(860,1045)
     time.sleep(2)
     #click close
