@@ -4,7 +4,7 @@ import pyperclip
 import time
 import keyboard
 from tqdm import tqdm
-import math
+import math 
 
 ### Note: The MARS program should be set to use the keyboard in English. Make sure to set the keyboard layout to English before starting.
 time.sleep(3)
