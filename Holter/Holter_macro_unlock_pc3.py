@@ -4,7 +4,7 @@ import pyperclip
 import time
 import keyboard
 from tqdm import tqdm
-import math
+import math 
 
 ### Note: The MARS program should be set to use the keyboard in English. Make sure to set the keyboard layout to English before starting.
 time.sleep(3)
@@ -23,7 +23,7 @@ pyautogui.FAILSAFE = True
 
 #####
 # Set the specified directory
-directory = "C:\\holter_big"
+directory = "D:\\0815"
 # # Get all subfolder names within the directory as a list
 folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 print(f"folder list: {folder_list}")
