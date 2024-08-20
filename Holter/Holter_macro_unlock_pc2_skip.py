@@ -10,8 +10,8 @@ import math
 pyautogui.FAILSAFE = True
 
 # Set the specified directory
-directory = "Z:\\Holter\\nat\\Holter_child_hdd"
-folder_list =  ['202402']
+directory = "Z:\\Holter\\nat\\Holter_child_hdd\\2020"
+folder_list =  ['202007']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -20,7 +20,7 @@ for folder in folder_list:
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
-    iteration_count = 119
+    iteration_count = 166
 
     print(folder_path + " file count: " + str(file_count))
 
