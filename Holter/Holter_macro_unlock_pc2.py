@@ -19,15 +19,15 @@ pyautogui.click(273, 1050)
 time.sleep(5)
     
 # Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)
-pyautogui.FAILSAFE = True
+#pyautogui.FAILSAFE = True
 
 # Set the specified directory
-directory = "Z:\\Holter\\nat\\Holter_child_hdd\\2020"
+directory = "C:\\ing"
 # # Get all subfolder names within the directory as a list
-#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-#print(f"folder list: {folder_list}")
+folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+print(f"folder list: {folder_list}")
 #'202306', '202307', '202308', '202309', '202310','202311','202312', '202401','202402','202403','202404','202405','202406','202301', '202302', '202303', 
-folder_list =  ['202007','202008','202009','202010']
+#folder_list =  ['202007','202008','202009','202010']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -96,15 +96,7 @@ for folder in folder_list:
     time.sleep(2)
     pyautogui.click(1100, 560)
     #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
-    #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
-    #Archive 대기 시간
-    time.sleep(400)
+    time.sleep(40)
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
@@ -112,9 +104,17 @@ for folder in folder_list:
     #pyautogui.click(860,1045)
     #time.sleep(2)
     #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
+    #time.sleep(2)
+    #Archive 대기 시간
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
+    #time.sleep(2)
+    #Archive 대기 시간
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
+    #time.sleep(2)
     #click close
     pyautogui.click(1107, 475)
     time.sleep(2)
@@ -225,7 +225,7 @@ for folder in folder_list:
         time.sleep(2)
         #PDF 저장
         pyautogui.click(1070, 682)
-        time.sleep(100)  
+        time.sleep(80)  
         pyautogui.click(140, 985)
         time.sleep(3)
         
