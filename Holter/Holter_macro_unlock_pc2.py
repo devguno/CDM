@@ -22,12 +22,12 @@ time.sleep(5)
 pyautogui.FAILSAFE = True
 
 # Set the specified directory
-directory = "Z:\\Holter\\nat\\Holter_child_hdd\\2020"
+directory = "Z:\\Holter\\nat\\Holter_child_hdd\\2021"
 # # Get all subfolder names within the directory as a list
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")
 #'202306', '202307', '202308', '202309', '202310','202311','202312', '202401','202402','202403','202404','202405','202406','202301', '202302', '202303', 
-folder_list =  ['202007','202008','202009','202010']
+folder_list =  ['202105','202106','202107','202108']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
