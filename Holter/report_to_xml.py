@@ -167,7 +167,7 @@ def process_pdf_files(file_dirs, xml_dir):
 
 def main():
     base_dirs = [
-        'C:\\example'
+        r'C:\extract'
     ]
     xml_dir = 'C:\\xml'
 
