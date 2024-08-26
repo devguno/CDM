@@ -157,8 +157,6 @@ def process_pdf_files(file_dirs, xml_dir):
             xml_path = os.path.join(xml_dir, os.path.splitext(filename)[0] + '.xml')
             create_xml(patient_info, general_data, heart_rates_data, ventriculars_data, supraventriculars_data, xml_path)
 
-            print(f"Processed {filename}, Saved XML file: {xml_path}")
-
         except Exception as e:
             print(f"Failed to process {filename}: {e}")
             failed_files.append(filename)
@@ -167,9 +165,9 @@ def process_pdf_files(file_dirs, xml_dir):
 
 def main():
     base_dirs = [
-        'C:\\example'
+        'D:\\extract'
     ]
-    xml_dir = r'/home/gunoroh/sftp_share/old_sig/www/old_sig_cdmid'
+    xml_dir = 'D:\\xml'
 
     if not os.path.exists(xml_dir):
         os.makedirs(xml_dir)
