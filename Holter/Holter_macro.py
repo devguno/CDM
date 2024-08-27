@@ -4,41 +4,39 @@ import pyperclip
 import time
 import keyboard
 from tqdm import tqdm
-import math
+import math 
 
 ### Note: The MARS program should be set to use the keyboard in English. Make sure to set the keyboard layout to English before starting.
-# Wait for 4 seconds after starting the code
-time.sleep(4)
+time.sleep(3)
 # Click on the keyboard settings in the bottom menu bars
 pyautogui.click(1780, 1050)
 time.sleep(2)
 # English click
-pyautogui.click(1780, 827)
+pyautogui.click(1780, 857)
 time.sleep(2)
 # MARS program click
 pyautogui.click(273, 1050) 
 time.sleep(5)
     
-# Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)
+# Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)d
 pyautogui.FAILSAFE = True
 
-# 추출할 nat 파일들이 저장되어 있는 폴더 경로 입력
-directory = "Z:\Holter\Holter_main_hdd"
-
-# 서브폴더 이름들을 리스트에 저장
+#####
+# Set the specified directory
+directory = "C:\\holter"
+# # Get all subfolder names within the directory as a list
 folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 print(f"folder list: {folder_list}")
-#folder_list = ['3. 20220602~20220615', '30. 20221116~20221130', '8. 20220711~20220720', '9. 20220711~20220720']
+#folder_list =  [ '2023-06', '2023-07', '2023-08','2024-01','2024-02','2024-03','2024-04','2024-05','2024-06']
     
-serial_number = 1 # Initialize the serial number
-
 # Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
-    file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])
-    y_coord = 73  # 첫번째 데이터 파일 클릭 y 좌표
+    file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])-1
+    y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
+    iteration_count = 1
 
     print(folder_path + " file count: " + str(file_count))
 
@@ -76,7 +74,7 @@ for folder in folder_list:
     time.sleep(2)
     # Click on Data type-Archived files
     pyautogui.click(1735, 328)
-    time.sleep(10)
+    time.sleep(20)
 
     # Patient List 에서 첫번째 클릭
     pyautogui.click(400, 72)
@@ -98,23 +96,7 @@ for folder in folder_list:
     time.sleep(2)
     pyautogui.click(1100, 560)
     #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
-    #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
-    #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
-    #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
-    #Archive 대기 시간
-    time.sleep(400)
+    time.sleep(100)
     pyautogui.click(860,1045)
     time.sleep(2)
     #click close
@@ -151,7 +133,7 @@ for folder in folder_list:
         if current_file == 116 or current_file == 174 or current_file == 232:  # 116번째 및 207번째 파일에서 y 좌표 초기화
             y_coord2 = 89
 
-        Serial = f"{serial_number}_"
+        Serial = f"{folder}_{iteration_count}_"
     
         if current_file < 58:
             time.sleep(2)
@@ -193,7 +175,7 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1070, 680)
+        pyautogui.click(1220, 685)
         time.sleep(2)
         #change
         pyautogui.click(1100, 473)
@@ -203,7 +185,7 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1070, 680)
+        pyautogui.click(1220, 685)
         time.sleep(10)
         pyautogui.click(1118, 472) 
         time.sleep(2)
@@ -217,7 +199,7 @@ for folder in folder_list:
         time.sleep(5)
         pyautogui.click(1790, 93)
         time.sleep(2)
-        pyautogui.click(358, 358)
+        pyautogui.click(390, 410)
         time.sleep(2)
         
         # Serial 값을 붙여넣기
@@ -226,8 +208,8 @@ for folder in folder_list:
         pyautogui.click(1393, 359)
         time.sleep(2)
         #PDF 저장
-        pyautogui.click(1070, 682)
-        time.sleep(100)  
+        pyautogui.click(1220, 685)
+        time.sleep(80)  
         pyautogui.click(140, 985)
         time.sleep(3)
         
@@ -252,8 +234,8 @@ for folder in folder_list:
             pyautogui.click(1100, 550)
             time.sleep(4)
         
-        # 2번째 파일마다 특정 동작 실행
-        if current_file % 2 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
+        # 4번째 파일마다 특정 동작 실행
+        if current_file % 4 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
             pyautogui.rightClick(273, 1050)  # MARS program right click, LEFT 5
             time.sleep(2)
             pyautogui.click(273, 1023)  # close window
@@ -265,7 +247,7 @@ for folder in folder_list:
             time.sleep(2)    
 
         # Serial 변수 사용 후에 Serial 번호 증가 및 현재 파일 번호 증가
-        serial_number += 1
+        iteration_count += 1
         current_file += 1
 
         if current_file <= 58:
@@ -389,3 +371,4 @@ for folder in folder_list:
     #patient select
     pyautogui.click(140, 990)
     time.sleep(2)
+
