@@ -27,7 +27,7 @@ directory = "Z:\\Holter\\nat\\Holter_child_hdd\\2021"
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")
 #'202306', '202307', '202308', '202309', '202310','202311','202312', '202401','202402','202403','202404','202405','202406','202301', '202302', '202303', 
-folder_list =  ['202105','202106','202107','202108']
+folder_list =  ['202107','202108','202109','202110','202111','202112']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
