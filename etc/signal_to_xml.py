@@ -59,9 +59,9 @@ def add_record_data_to_xml(file_dir, xml_dir):
     return failed_files
 
 def main():
-    base_dir = 'Z:\\Holter\\extract\\child_cd' # 기본 디렉토리
+    base_dir = r'C:\test' # 기본 디렉토리
     #base_dir = 'C:\\Users\\SNUH\\Desktop\\export' 
-    xml_dir = 'E:\\Holter_xml\\new'
+    xml_dir = r'C:\test'
 
     if not os.path.exists(xml_dir):
         os.makedirs(xml_dir)

@@ -10,17 +10,17 @@ import math
 pyautogui.FAILSAFE = True
 
 # Set the specified directory
-directory = "Z:\\Holter\\nat\\Holter_child_hdd\\2021"
-folder_list =  ['202104']
+directory = "c:\\Holter"
+folder_list =  ['2073']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
-    file_count = 40
+    file_count = 15
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
-    iteration_count = 116
+    iteration_count = 62
 
     print(folder_path + " file count: " + str(file_count))
 
@@ -91,7 +91,7 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1070, 680)
+        pyautogui.click(1220, 685)
         time.sleep(2)
         #change
         pyautogui.click(1100, 473)
@@ -101,7 +101,7 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1070, 680)
+        pyautogui.click(1220, 685)
         time.sleep(10)
         pyautogui.click(1118, 472) 
         time.sleep(2)
@@ -115,7 +115,7 @@ for folder in folder_list:
         time.sleep(5)
         pyautogui.click(1790, 93)
         time.sleep(2)
-        pyautogui.click(358, 358)
+        pyautogui.click(390, 410)
         time.sleep(2)
         
         # Serial 값을 붙여넣기
@@ -124,8 +124,8 @@ for folder in folder_list:
         pyautogui.click(1393, 359)
         time.sleep(2)
         #PDF 저장
-        pyautogui.click(1070, 682)
-        time.sleep(100)  
+        pyautogui.click(1220, 685)
+        time.sleep(60)  
         pyautogui.click(140, 985)
         time.sleep(3)
         
