@@ -19,15 +19,15 @@ pyautogui.click(273, 1050)
 time.sleep(5)
     
 # Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)
-pyautogui.FAILSAFE = True
+pyautogui.FAILSAFE = False
 
 # Set the specified directory
-directory = "Z:\\Holter\\nat\\Holter_child_hdd\\2021"
+directory = "Z:\\Holter\\nat\\Holter_child_hdd\\2022"
 # # Get all subfolder names within the directory as a list
-#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-#print(f"folder list: {folder_list}")
+folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+print(f"folder list: {folder_list}")
 #'202306', '202307', '202308', '202309', '202310','202311','202312', '202401','202402','202403','202404','202405','202406','202301', '202302', '202303', 
-folder_list =  ['202107','202108','202109','202110','202111','202112']
+#folder_list =  ['202112']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
