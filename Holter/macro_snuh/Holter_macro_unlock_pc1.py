@@ -19,7 +19,7 @@ pyautogui.click(273, 1050)
 time.sleep(5)
     
 # Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)
-#pyautogui.FAILSAFE = True
+pyautogui.FAILSAFE = False
 
 # Set the specified directory
 directory = "C:\\Holter"
@@ -225,7 +225,7 @@ for folder in folder_list:
         time.sleep(2)
         #PDF 저장
         pyautogui.click(1070, 682)
-        time.sleep(80)  
+        time.sleep(100)  
         pyautogui.click(140, 985)
         time.sleep(3)
         
