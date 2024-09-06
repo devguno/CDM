@@ -165,9 +165,9 @@ def process_pdf_files(file_dirs, xml_dir):
 
 def main():
     base_dirs = [
-        'C:\\extract'    ### pdf 파일이 존재하는 경로
+        'D:\\extract_pc2'    ### pdf 파일이 존재하는 경로
     ]
-    xml_dir = 'C:\\xml'  ### xml 파일로 저장할 경로
+    xml_dir = 'C:\\xml2'  ### xml 파일로 저장할 경로
 
     if not os.path.exists(xml_dir):
         os.makedirs(xml_dir)
