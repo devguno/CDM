@@ -22,7 +22,8 @@ time.sleep(5)
 pyautogui.FAILSAFE = False
 
 # Set the specified directory
-directory = "Z:\\Holter\\nat\\Holter_child_hdd\\2022"
+#directory = "Z:\\Holter\\nat\\Holter_child_hdd\\2022"
+directory = "D:\\holter"
 # # Get all subfolder names within the directory as a list
 folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 print(f"folder list: {folder_list}")
