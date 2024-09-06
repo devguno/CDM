@@ -7,20 +7,20 @@ from tqdm import tqdm
 import math
 
 # Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)
-pyautogui.FAILSAFE = True
+pyautogui.FAILSAFE = False
 
 # Set the specified directory
 directory = "C:\\Holter"
-folder_list =  ['2090']
+folder_list =  ['2323']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
-    file_count = 73
+    file_count = 130
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
-    iteration_count = 1
+    iteration_count = 32
 
     print(folder_path + " file count: " + str(file_count))
 
