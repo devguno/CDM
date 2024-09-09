@@ -10,8 +10,8 @@ import math
 pyautogui.FAILSAFE = True
 
 # Set the specified directory
-directory = r"C:\Users\SNUH\OneDrive\SNUH BMI Lab\CDM\Holter"
-folder_list =  ['ann']
+directory = r"Z:\Holter\nat\Holter_child_hdd\202406"
+folder_list =  ['202406']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -20,7 +20,7 @@ for folder in folder_list:
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
-    iteration_count = 10
+    iteration_count = 1
 
     print(folder_path + " file count: " + str(file_count))
 
@@ -80,6 +80,9 @@ for folder in folder_list:
         #Research Utilities
         pyautogui.click(86, 105)
         time.sleep(2)
+        #Click MIT Annotation Format
+        pyautogui.click(750, 374)
+        time.sleep(2)
         #OK
         pyautogui.click(800, 547)
         time.sleep(2) 
@@ -91,7 +94,13 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1220, 685)
+        pyautogui.click(1070, 680)
+        time.sleep(2)
+        #save change
+        pyautogui.click(1020, 540)
+        time.sleep(2)
+        #Overwrite
+        pyautogui.click(1100, 520)
         time.sleep(2)
         #change
         pyautogui.click(1100, 473)
@@ -101,7 +110,7 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1220, 685)
+        pyautogui.click(1070, 680)
         time.sleep(10)
         pyautogui.click(1118, 472) 
         time.sleep(2)
@@ -109,25 +118,6 @@ for folder in folder_list:
         #click patient select 
         pyautogui.click(140, 988)
         time.sleep(2)  
-        
-        # 폴더 처리 전 추가 로직
-        pyautogui.click(750, 980)
-        time.sleep(5)
-        pyautogui.click(1790, 93)
-        time.sleep(2)
-        pyautogui.click(390, 410)
-        time.sleep(2)
-        
-        # Serial 값을 붙여넣기
-        pyautogui.write(Serial)
-        time.sleep(2)
-        pyautogui.click(1393, 359)
-        time.sleep(2)
-        #PDF 저장
-        pyautogui.click(1220, 685)
-        time.sleep(60)  
-        pyautogui.click(140, 985)
-        time.sleep(3)
         
         #click patient select 
         pyautogui.click(140, 988)

@@ -20,7 +20,7 @@ for folder in folder_list:
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
-    iteration_count = 10
+    iteration_count = 1
 
     print(folder_path + " file count: " + str(file_count))
 
@@ -93,6 +93,12 @@ for folder in folder_list:
         #save
         pyautogui.click(1220, 685)
         time.sleep(2)
+        #Overwrite
+        pyautogui.click(1000, 535)
+        time.sleep(2)
+        #Overwrite
+        pyautogui.click(1100, 520)
+        time.sleep(2)
         #change
         pyautogui.click(1100, 473)
         time.sleep(2) 
@@ -102,32 +108,13 @@ for folder in folder_list:
         time.sleep(2) 
         #save
         pyautogui.click(1220, 685)
-        time.sleep(10)
+        time.sleep(5)
         pyautogui.click(1118, 472) 
         time.sleep(2)
         
         #click patient select 
         pyautogui.click(140, 988)
         time.sleep(2)  
-        
-        # 폴더 처리 전 추가 로직
-        pyautogui.click(750, 980)
-        time.sleep(5)
-        pyautogui.click(1790, 93)
-        time.sleep(2)
-        pyautogui.click(390, 410)
-        time.sleep(2)
-        
-        # Serial 값을 붙여넣기
-        pyautogui.write(Serial)
-        time.sleep(2)
-        pyautogui.click(1393, 359)
-        time.sleep(2)
-        #PDF 저장
-        pyautogui.click(1220, 685)
-        time.sleep(60)  
-        pyautogui.click(140, 985)
-        time.sleep(3)
         
         #click patient select 
         pyautogui.click(140, 988)
