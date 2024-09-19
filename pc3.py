@@ -7,7 +7,7 @@ from tqdm import tqdm
 import math
 
 # Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)
-pyautogui.FAILSAFE = True
+pyautogui.FAILSAFE = False
 
 # Set the specified directory
 directory = r"C:\ann"
@@ -65,7 +65,7 @@ for folder in folder_list:
             time.sleep(2)
 
         time.sleep(2)
-        pyautogui.click(217, 985)  # 특정 작업 수행
+        pyautogui.click(217, 985)  # Patient Information
         time.sleep(2)
                 
         # Serial 뒤에 붙일 값 복사
@@ -80,6 +80,9 @@ for folder in folder_list:
         #Research Utilities
         pyautogui.click(86, 105)
         time.sleep(2)
+        #MIT Annotation Format
+        pyautogui.click(760, 370)
+        time.sleep(2)
         #OK
         pyautogui.click(800, 547)
         time.sleep(2) 
@@ -93,10 +96,39 @@ for folder in folder_list:
         #save
         pyautogui.click(1220, 685)
         time.sleep(2)
-        #Overwrite
-        pyautogui.click(1000, 535)
+        #change
+        pyautogui.click(1100, 473)
+        time.sleep(2) 
+        pyautogui.write(Serial)
         time.sleep(2)
-        #Overwrite
+        pyautogui.click(1580, 620)
+        time.sleep(2) 
+        #save
+        pyautogui.click(1220, 685)
+        time.sleep(10)
+        #OK
+        pyautogui.click(1118, 472) 
+        time.sleep(2)
+
+        #MIT Signal Format
+        pyautogui.click(750, 420) 
+        time.sleep(2)
+        #OK
+        pyautogui.click(800, 547)
+        time.sleep(2) 
+        #change
+        pyautogui.click(1100, 473)
+        time.sleep(2) 
+        pyautogui.write(Serial)
+        time.sleep(2)
+        pyautogui.click(1580, 620)
+        time.sleep(2) 
+        #save
+        pyautogui.click(1220, 685)
+        time.sleep(2)
+        #overwrite
+        pyautogui.click(1000, 540)
+        time.sleep(2)
         pyautogui.click(1100, 520)
         time.sleep(2)
         #change
@@ -108,13 +140,34 @@ for folder in folder_list:
         time.sleep(2) 
         #save
         pyautogui.click(1220, 685)
-        time.sleep(5)
+        time.sleep(10)
+        #OK
         pyautogui.click(1118, 472) 
         time.sleep(2)
+
         
         #click patient select 
         pyautogui.click(140, 988)
         time.sleep(2)  
+        
+        # 폴더 처리 전 추가 로직
+        pyautogui.click(750, 980)
+        time.sleep(5)
+        pyautogui.click(1790, 93)
+        time.sleep(2)
+        pyautogui.click(390, 410)
+        time.sleep(2)
+        
+        # Serial 값을 붙여넣기
+        pyautogui.write(Serial)
+        time.sleep(2)
+        pyautogui.click(1393, 359)
+        time.sleep(2)
+        #PDF 저장
+        pyautogui.click(1220, 685)
+        time.sleep(60)  
+        pyautogui.click(140, 985)
+        time.sleep(3)
         
         #click patient select 
         pyautogui.click(140, 988)
