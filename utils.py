@@ -75,7 +75,7 @@ def convert_pdf_to_dict(paths, output_path, save=True):
             def convert_to_int(value):
                 if pd.isna(value): return value
                 else: return int(value)
-            new_df = new_df.map(convert_to_int)
+            new_df = new_df.applymap(convert_to_int)
             new_df.fillna(0,inplace=True)
             new_df = new_df.astype(int)
             
@@ -118,7 +118,7 @@ def convert_pdf_to_dict(paths, output_path, save=True):
                 'Max_Rate' : new_df.loc[:, "S_Max_Rate"].tolist()
             }
             
-            with open(f"{output_path}/{file_name}_hourly_summary.json", 'w') as f:
+            with open(f"{output_path}/{file_name}.json", 'w') as f:
                 json.dump(_dict, f, indent=4)
             
             total_dict[pid] = _dict
@@ -131,6 +131,7 @@ def convert_pdf_to_dict(paths, output_path, save=True):
 
 
 if __name__ == '__main__':
-    root_dir = '/workspace/gunoroh/sftp_share/hourly_summary'
+    root_dir = '/workspace/nas1/Holter_new/Holter_raw_sig'
+    output_dir = '/workspace/gunoroh/sftp_share/hourly_summary' 
     paths = glob(f"{root_dir}/*.pdf")
-    total_dict = convert_pdf_to_dict(paths, root_dir)
+    total_dict = convert_pdf_to_dict(paths, output_dir)
