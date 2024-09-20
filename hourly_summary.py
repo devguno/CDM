@@ -138,8 +138,8 @@ def convert_pdf_to_dict(paths, output_path):
             print(file)
 
 if __name__ == '__main__':
-    root_dir = '/workspace/nas1/Holter_new/Holter_raw_sig'
-    output_dir = '/workspace/gunoroh/sftp_share/Holter_hourly_summary' 
+    root_dir = '/workspace/nas1/Holter/Holter_raw_sig'
+    output_dir = '/workspace/gunoroh/sftp_share/hourly_summary' 
     paths = glob(f"{root_dir}/*.pdf")
     
      # PDF 파일을 변환하고 새로운 경로에 저장
