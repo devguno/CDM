@@ -32,7 +32,6 @@ def convert_date_format(date_str):
     except ValueError:
         return date_str  # 변환 실패 시 원래 값을 반환
     
-    
 # PDF 파일 불러와서 필요한 데이터만 변환
 def convert_pdf_to_dict(paths, output_path):
     if not isinstance(paths, list):
@@ -41,6 +40,8 @@ def convert_pdf_to_dict(paths, output_path):
     print(f"PDF 파일 {len(paths)}개 변환 시작")
     
     error_files = []  # 에러 발생 파일들을 저장하는 리스트
+    all_data = []  # 모든 결과를 저장할 리스트
+    
     columns = [
         "Hour", "Min", "#QRS's", "Min.", 
         "Ave.", "Max.", "Pauses", "V_Iso", "V_Cplt", "V_Runs", "V_Max_Run", "V_Max_Rate", 
@@ -109,11 +110,9 @@ def convert_pdf_to_dict(paths, output_path):
                     'SVT': pd.concat([new_df.loc[:, "Hour":"Min"], new_df.loc[:, "S_Iso":"S_Max_Rate"]], axis=1),
                 }
 
-                # 필요한 정보만 저장
+                # 필요한 정보 저장
                 result = {'patient_info': patient_info, 'summary': summary}
-
-                # 파일명 추출 및 Pickle 파일로 저장 (확장자를 제거한 후 .pickle 추가)
-                save_pickle(result, f"{output_path}/{filename_without_ext}.pickle")
+                all_data.append(result)  # 리스트에 추가
                 break
         
         except Exception as e:
@@ -123,13 +122,9 @@ def convert_pdf_to_dict(paths, output_path):
             error_files.append(filename)
             continue
 
-    # 에러가 발생한 파일 갯수와 파일 목록 출력
-    print(f"\nNumber of files with errors: {len(error_files)}")
-    if len(error_files) > 0:
-        print("Files with errors:")
-        for file in error_files:
-            print(file)
-
+    # 모든 데이터를 하나의 pickle 파일로 저장
+    save_pickle(all_data, f"{output_path}/all_data.pickle")
+    
     # 에러가 발생한 파일 갯수와 파일 목록 출력
     print(f"\nNumber of files with errors: {len(error_files)}")
     if len(error_files) > 0:
@@ -138,9 +133,10 @@ def convert_pdf_to_dict(paths, output_path):
             print(file)
 
 if __name__ == '__main__':
-    root_dir = '/workspace/nas1/Holter/Holter_raw_sig'
-    output_dir = '/workspace/gunoroh/sftp_share/hourly_summary' 
+    root_dir = r'C:\extract'
+    output_dir = r'C:\extract' 
     paths = glob(f"{root_dir}/*.pdf")
     
-     # PDF 파일을 변환하고 새로운 경로에 저장
+    # PDF 파일을 변환하고 새로운 경로에 저장
     convert_pdf_to_dict(paths, output_dir)
+
