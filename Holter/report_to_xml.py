@@ -165,9 +165,9 @@ def process_pdf_files(file_dirs, xml_dir):
 
 def main():
     base_dirs = [
-        r'/home/gunoroh/sftp/Holter_raw_sig'    ### pdf 파일이 존재하는 경로
+        r'C:\extract'    ### pdf 파일이 존재하는 경로
     ]
-    xml_dir = r'/home/gunoroh/sftp/Holter_xml'  ### xml 파일로 저장할 경로
+    xml_dir = r'C:\xml'  ### xml 파일로 저장할 경로
 
     if not os.path.exists(xml_dir):
         os.makedirs(xml_dir)
