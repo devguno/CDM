@@ -2,7 +2,7 @@ import pyautogui
 import time
 
 # Coordinates for the clicks
-coord1 = (1440, 1050) 
+coord1 = (1440, 750) 
 coord2 = (1460, 1050)
 
 # Time between clicks

@@ -10,13 +10,13 @@ import math
 pyautogui.FAILSAFE = True
 
 # Set the specified directory
-directory = r"C:\Users\SNUH\OneDrive\SNUH BMI Lab\CDM\Holter"
-folder_list =  ['ann']
+directory = r"C:\ann"
+folder_list =  ['202406']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
-    file_count = 20
+    file_count = 62
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
