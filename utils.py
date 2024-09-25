@@ -171,8 +171,8 @@ if __name__ == '__main__':
     # ]
     # output_dir = '/workspace/gunoroh/sftp_share/hourly_summary' 
 
-    root_dir = 'D:\\extract'
-    output_dir = 'D:\\hourly' 
+    root_dir = 'C:\\extract'
+    output_dir = 'C:\\hourly' 
     paths = glob(f"{root_dir}/*.pdf")
 
     # paths = []

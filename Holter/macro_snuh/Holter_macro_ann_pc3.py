@@ -4,7 +4,7 @@ import pyperclip
 import time
 import keyboard
 from tqdm import tqdm
-import math
+import math 
 
 ### Note: The MARS program should be set to use the keyboard in English. Make sure to set the keyboard layout to English before starting.
 time.sleep(3)
@@ -12,22 +12,22 @@ time.sleep(3)
 pyautogui.click(1780, 1050)
 time.sleep(2)
 # English click
-pyautogui.click(1780, 827)
+pyautogui.click(1780, 857)
 time.sleep(2)
 # MARS program click
 pyautogui.click(273, 1050) 
 time.sleep(5)
     
-# Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)
+# Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)d
 pyautogui.FAILSAFE = False
 
+#####
 # Set the specified directory
-directory = "C:\\holter"
+directory = r"D:\dh holter2"
 # # Get all subfolder names within the directory as a list
 folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 print(f"folder list: {folder_list}")
-#'202306', '202307', '202308', '202309', '202310','202311','202312', '202401','202402','202403','202404','202405','202406','202301', '202302', '202303', 
-#folder_list =  ['202007','202008','202009','202010']
+#folder_list =  [ '2023-06', '2023-07', '2023-08','2024-01','2024-02','2024-03','2024-04','2024-05','2024-06']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -96,25 +96,9 @@ for folder in folder_list:
     time.sleep(2)
     pyautogui.click(1100, 560)
     #Archive 대기 시간
-    time.sleep(40)
+    time.sleep(100)
     pyautogui.click(860,1045)
     time.sleep(2)
-    #Archive 대기 시간
-    #time.sleep(400)
-    #pyautogui.click(860,1045)
-    #time.sleep(2)
-    #Archive 대기 시간
-    #time.sleep(400)
-    #pyautogui.click(860,1045)
-    #time.sleep(2)
-    #Archive 대기 시간
-    #time.sleep(400)
-    #pyautogui.click(860,1045)
-    #time.sleep(2)
-    #Archive 대기 시간
-    #time.sleep(400)
-    #pyautogui.click(860,1045)
-    #time.sleep(2)
     #click close
     pyautogui.click(1107, 475)
     time.sleep(2)
@@ -180,6 +164,9 @@ for folder in folder_list:
         #Research Utilities
         pyautogui.click(86, 105)
         time.sleep(2)
+        #MIT Annotation Format
+        pyautogui.click(760, 370)
+        time.sleep(2)
         #OK
         pyautogui.click(800, 547)
         time.sleep(2) 
@@ -191,7 +178,7 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1070, 680)
+        pyautogui.click(1220, 685)
         time.sleep(2)
         #change
         pyautogui.click(1100, 473)
@@ -201,8 +188,44 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1070, 680)
+        pyautogui.click(1220, 685)
         time.sleep(10)
+        #OK
+        pyautogui.click(1118, 472) 
+        time.sleep(2)
+
+        #MIT Signal Format
+        pyautogui.click(750, 420) 
+        time.sleep(2)
+        #OK
+        pyautogui.click(800, 547)
+        time.sleep(2) 
+        #change
+        pyautogui.click(1100, 473)
+        time.sleep(2) 
+        pyautogui.write(Serial)
+        time.sleep(2)
+        pyautogui.click(1580, 620)
+        time.sleep(2) 
+        #save
+        pyautogui.click(1220, 685)
+        time.sleep(2)
+        #overwrite
+        pyautogui.click(1000, 540)
+        time.sleep(2)
+        pyautogui.click(1100, 520)
+        time.sleep(2)
+        #change
+        pyautogui.click(1100, 473)
+        time.sleep(2) 
+        pyautogui.write(Serial)
+        time.sleep(2)
+        pyautogui.click(1580, 620)
+        time.sleep(2) 
+        #save
+        pyautogui.click(1220, 685)
+        time.sleep(10)
+        #OK
         pyautogui.click(1118, 472) 
         time.sleep(2)
         
@@ -215,7 +238,7 @@ for folder in folder_list:
         time.sleep(5)
         pyautogui.click(1790, 93)
         time.sleep(2)
-        pyautogui.click(400, 410)
+        pyautogui.click(390, 410)
         time.sleep(2)
         
         # Serial 값을 붙여넣기
@@ -224,8 +247,8 @@ for folder in folder_list:
         pyautogui.click(1393, 359)
         time.sleep(2)
         #PDF 저장
-        pyautogui.click(1070, 682)
-        time.sleep(100)  
+        pyautogui.click(1220, 685)
+        time.sleep(80)  
         pyautogui.click(140, 985)
         time.sleep(3)
         
@@ -250,8 +273,8 @@ for folder in folder_list:
             pyautogui.click(1100, 550)
             time.sleep(4)
         
-        # 3번째 파일마다 특정 동작 실행
-        if current_file % 3 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
+        # 4번째 파일마다 특정 동작 실행
+        if current_file % 4 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
             pyautogui.rightClick(273, 1050)  # MARS program right click, LEFT 5
             time.sleep(2)
             pyautogui.click(273, 1023)  # close window
