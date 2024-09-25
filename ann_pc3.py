@@ -7,7 +7,7 @@ from tqdm import tqdm
 import math
 
 # Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)
-pyautogui.FAILSAFE = True
+pyautogui.FAILSAFE = False
 
 # Set the specified directory
 directory = r"C:\ann"
