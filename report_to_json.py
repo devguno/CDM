@@ -8,8 +8,8 @@ import pandas as pd
 import numpy as np
 import tabula
 
-def extract_match(pattern, text, default="Unknown"):
-    match = re.search(pattern, text)
+def extract_match(pattern, text, default="Unknown", flags=0):
+    match = re.search(pattern, text, flags)
     return match.group(1) if match else default
 
 def extract_grouped_matches(pattern, text, groups, default="Unknown"):
@@ -158,8 +158,8 @@ def process_pdf_files(file_dirs, json_dir):
                 'HookupDate': formatted_hookup_date,
                 'HookupTime': extract_match(r"Hookup Date:?\n(\d+:\d+:\d+)\nHookup Time:?", extracted_text, "Unknown"),
                 'Duration': extract_match(r"Hookup Time:?\n(\d+:\d+:\d+)\nDuration:?", extracted_text, "Unknown"),
-                'Age': extract_match(r"(\d+)\s*yr\s*Age:", extracted_text, "Unknown"),
-                'Gender': extract_match(r"(Male|Female)\s*Gender:", extracted_text, "Unknown")
+                'Age': extract_match(r"Age:?\s*(\d+)\s*yr", extracted_text, "Unknown"),
+                'Gender': extract_match(r"Gender:?\s*(Male|Female)", extracted_text, "Unknown", re.IGNORECASE),
             }
 
             general_data = parse_general_section(extracted_text)
