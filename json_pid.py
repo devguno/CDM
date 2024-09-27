@@ -1,40 +1,56 @@
 import os
-import shutil
-import pandas as pd
+import json
+import csv
+from tqdm import tqdm
 
-# File paths
-json_folder = '/workspace/gunoroh/sftp_share/hourly_summary'
-csv_file = '/workspace/gunoroh/sftp/code/pt_no_person_id.csv'
-output_folder = '/workspace/gunoroh/sftp_share/Holter_hourly_summary'
+def load_pt_no_person_id_mapping(csv_file):
+    mapping = {}
+    with open(csv_file, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            mapping[row['pt_no']] = row['person_id']
+    return mapping
 
-# Load the CSV file containing pt_no and person_id mapping
-df = pd.read_csv(csv_file)
+def process_json_files(json_folder, csv_file, output_folder):
+    pt_no_person_id_mapping = load_pt_no_person_id_mapping(csv_file)
+    
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+    
+    json_files = [f for f in os.listdir(json_folder) if f.endswith('.json')]
+    
+    for filename in tqdm(json_files, desc="처리 중인 파일"):
+        parts = filename.split('_')
+        if len(parts) != 4:
+            print(f"경고: 파일 이름 형식이 잘못되었습니다 - {filename}")
+            continue
+        
+        foldername, index, pid, hookupdate = parts
+        
+        if pid not in pt_no_person_id_mapping:
+            print(f"경고: {pid}에 대한 person_id를 찾을 수 없습니다 - {filename}")
+            continue
+        
+        person_id = pt_no_person_id_mapping[pid]
+        
+        new_filename = f"{foldername}_{index}_{person_id}_{hookupdate}"
+        
+        input_path = os.path.join(json_folder, filename)
+        output_path = os.path.join(output_folder, new_filename)
+        
+        with open(input_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        
+        if "Holter Report" in data and "PatientInfo" in data["Holter Report"]:
+            data["Holter Report"]["PatientInfo"]["PID"] = person_id
+        
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
 
-# Create a dictionary for fast lookup
-pt_to_person_id = dict(zip(df['pt_no'].astype(str), df['person_id'].astype(str)))
-
-# Ensure output folder exists
-os.makedirs(output_folder, exist_ok=True)
-
-# Iterate over all JSON files in the json_folder
-for filename in os.listdir(json_folder):
-    if filename.endswith('.json'):
-        # Extract pt_no from the filename (after the last '_')
-        pt_no = filename.rsplit('_', 1)[-1].split('.')[0]
-
-        # Check if the pt_no exists in the dictionary
-        if pt_no in pt_to_person_id:
-            person_id = pt_to_person_id[pt_no]
-
-            # Create the new filename by replacing pt_no with person_id
-            new_filename = filename.replace(f'_{pt_no}', f'_{person_id}')
-
-            # Full paths for source and destination
-            src_path = os.path.join(json_folder, filename)
-            dest_path = os.path.join(output_folder, new_filename)
-
-            # Copy the file to the destination with the new filename
-            shutil.copy(src_path, dest_path)
-            print(f'Copied: {filename} -> {new_filename}')
-        else:
-            print(f'No match found for pt_no: {pt_no}')
+if __name__ == "__main__":
+    json_folder = r'C:\tt'
+    csv_file = r'C:\github\pt_no_person_id.csv'
+    output_folder = r'C:\ttt'
+    
+    process_json_files(json_folder, csv_file, output_folder)
+    print("모든 파일 처리가 완료되었습니다.")
