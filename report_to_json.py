@@ -88,7 +88,7 @@ def extract_hourly_summary(pdf_path):
         "S_Iso", "S_Cplt", "S_Runs", "S_Max_Run", "S_Max_Rate"
     ]
     
-    for page_num in range(1, 5):
+    for page_num in range(1, 10):
         try:
             _pdf = tabula.read_pdf(pdf_path, pages=page_num)
             if len(_pdf) > 0:
@@ -217,12 +217,12 @@ def process_pdf_files(file_dirs, json_dir):
 
 def main():
     base_dirs = [
-        #r'C:\ann'    # pdf 파일이 존재하는 경로
-        r'/workspace/nas1/Holter/Holter_raw_sig'
-        r'/workspace/nas1/Holter_new/Holter_raw_sig'
+        r'C:\ann'    # pdf 파일이 존재하는 경로
+        #r'/workspace/nas1/Holter/Holter_raw_sig'
+        #r'/workspace/nas1/Holter_new/Holter_raw_sig'
     ]
-    #json_dir = r'C:\tt'  # json 파일로 저장할 경로
-    json_dir = r'/workspace/gunoroh/sftp_share/Holter_raw_json'  
+    json_dir = r'C:\tt'  # json 파일로 저장할 경로
+    #json_dir = r'/workspace/gunoroh/sftp_share/Holter_raw_json'  
 
 
     if not os.path.exists(json_dir):
