@@ -21,11 +21,11 @@ def process_json_files(json_folder, csv_file, output_folder):
     
     for filename in tqdm(json_files, desc="처리 중인 파일"):
         parts = filename.split('_')
-        if len(parts) != 4:
+        if len(parts) != 3:
             print(f"경고: 파일 이름 형식이 잘못되었습니다 - {filename}")
             continue
         
-        foldername, index, pid, hookupdate = parts
+        foldername, pid, hookupdate = parts
         
         if pid not in pt_no_person_id_mapping:
             print(f"경고: {pid}에 대한 person_id를 찾을 수 없습니다 - {filename}")
@@ -33,7 +33,7 @@ def process_json_files(json_folder, csv_file, output_folder):
         
         person_id = pt_no_person_id_mapping[pid]
         
-        new_filename = f"{foldername}_{index}_{person_id}_{hookupdate}"
+        new_filename = f"{foldername}_{person_id}_{hookupdate}"
         
         input_path = os.path.join(json_folder, filename)
         output_path = os.path.join(output_folder, new_filename)
@@ -51,9 +51,6 @@ if __name__ == "__main__":
     json_folder = r'/workspace/sftp_share/Holter_raw_json'
     csv_file = r'/workspace/sftp/code/pt_no_person_id.csv'
     output_folder = r'/workspace/sftp_share/Holter_json'
-    # json_folder = r'C:\tt'
-    # csv_file = r'C:\github\pt_no_person_id.csv'
-    # output_folder = r'C:\ttt'
     
     process_json_files(json_folder, csv_file, output_folder)
     print("모든 파일 처리가 완료되었습니다.")
