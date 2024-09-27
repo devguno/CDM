@@ -8,8 +8,8 @@ import pandas as pd
 import numpy as np
 import tabula
 
-def extract_match(pattern, text, default="Unknown"):
-    match = re.search(pattern, text)
+def extract_match(pattern, text, default="Unknown", flags=0):
+    match = re.search(pattern, text, flags)
     return match.group(1) if match else default
 
 def extract_grouped_matches(pattern, text, groups, default="Unknown"):
@@ -154,12 +154,12 @@ def process_pdf_files(file_dirs, json_dir):
             formatted_hookup_date = parse_date(hookup_date)
 
             patient_info = {
-                'PID': extract_match(r"Patient Name:?\n(\d+)\nID:?", extracted_text, filename.split('_')[-1].replace('.pdf', '')),
+                'PID': extract_match(r"Patient Name.*?\n(.*?)\nID", extracted_text),
                 'HookupDate': formatted_hookup_date,
                 'HookupTime': extract_match(r"Hookup Date:?\n(\d+:\d+:\d+)\nHookup Time:?", extracted_text, "Unknown"),
                 'Duration': extract_match(r"Hookup Time:?\n(\d+:\d+:\d+)\nDuration:?", extracted_text, "Unknown"),
-                'Age': extract_match(r"(\d+)\s*yr\s*Age:", extracted_text, "Unknown"),
-                'Gender': extract_match(r"(Male|Female)\s*Gender:", extracted_text, "Unknown")
+                'Age': extract_match(r"ID.*?\n(\d+)\s*(?:yr)?\s*\nAge", extracted_text),
+                'Gender': extract_match(r"Age.*?\n(Male|Female)\s*\nGender", extracted_text),
             }
 
             general_data = parse_general_section(extracted_text)
