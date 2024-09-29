@@ -8,15 +8,6 @@ import math
 
 ### Note: The MARS program should be set to use the keyboard in English. Make sure to set the keyboard layout to English before starting.
 time.sleep(3)
-# Click on the keyboard settings in the bottom menu bars
-pyautogui.click(1780, 1050)
-time.sleep(2)
-# English click
-pyautogui.click(1780, 857)
-time.sleep(2)
-# MARS program click
-pyautogui.click(273, 1050) 
-time.sleep(5)
     
 # Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)d
 pyautogui.FAILSAFE = False
@@ -40,8 +31,6 @@ for folder in folder_list:
 
     print(folder_path + " file count: " + str(file_count))
 
-    # Wait for the first 5 seconds
-    time.sleep(3)
     #click patient select 
     pyautogui.click(140, 988)
     time.sleep(2)  
@@ -120,7 +109,25 @@ for folder in folder_list:
         time.sleep(2) 
         #save
         pyautogui.click(1220, 685)
-        time.sleep(10)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1100, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1060, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1100, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1060, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1070, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1090, 600)
+        time.sleep(2)
         #OK
         pyautogui.click(1118, 472) 
         time.sleep(2)
