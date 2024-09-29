@@ -23,7 +23,7 @@ pyautogui.FAILSAFE = False
 
 #####
 # Set the specified directory
-directory = r"D:\dh holter2"
+directory = r"C:\holter"
 # # Get all subfolder names within the directory as a list
 folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 print(f"folder list: {folder_list}")
@@ -41,7 +41,7 @@ for folder in folder_list:
     print(folder_path + " file count: " + str(file_count))
 
     # Wait for the first 5 seconds
-    time.sleep(5)
+    time.sleep(3)
     # Click on Menu-System
     pyautogui.click(26, 36)
     time.sleep(2)
@@ -74,7 +74,7 @@ for folder in folder_list:
     time.sleep(2)
     # Click on Data type-Archived files
     pyautogui.click(1735, 328)
-    time.sleep(20)
+    time.sleep(5)
 
     # Patient List 에서 첫번째 클릭
     pyautogui.click(400, 72)
@@ -189,7 +189,25 @@ for folder in folder_list:
         time.sleep(2) 
         #save
         pyautogui.click(1220, 685)
-        time.sleep(10)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1100, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1060, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1100, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1060, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1070, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1090, 600)
+        time.sleep(2)
         #OK
         pyautogui.click(1118, 472) 
         time.sleep(2)
