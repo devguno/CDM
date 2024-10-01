@@ -181,7 +181,7 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1220, 685)
+        pyautogui.click(1070, 680)
         time.sleep(2)
         #change
         pyautogui.click(1100, 473)
@@ -191,7 +191,7 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1220, 685)
+        pyautogui.click(1070, 680)
         time.sleep(2)
         #ok
         pyautogui.click(1100, 600)
@@ -229,7 +229,7 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1220, 685)
+        pyautogui.click(1070, 680)
         time.sleep(2)
         #overwrite
         pyautogui.click(1000, 540)
@@ -244,7 +244,7 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1220, 685)
+        pyautogui.click(1070, 680)
         time.sleep(10)
         #OK
         pyautogui.click(1118, 472) 
@@ -268,7 +268,7 @@ for folder in folder_list:
         pyautogui.click(1393, 359)
         time.sleep(2)
         #PDF 저장
-        pyautogui.click(1220, 685)
+        pyautogui.click(1070, 680)
         time.sleep(80)  
         pyautogui.click(140, 985)
         time.sleep(3)
