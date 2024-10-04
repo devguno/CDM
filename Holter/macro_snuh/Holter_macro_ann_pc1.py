@@ -4,33 +4,130 @@ import pyperclip
 import time
 import keyboard
 from tqdm import tqdm
-import math 
+import math
+
+
+# Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)
+pyautogui.FAILSAFE = False
 
 ### Note: The MARS program should be set to use the keyboard in English. Make sure to set the keyboard layout to English before starting.
 time.sleep(3)
+# Click on the keyboard settings in the bottom menu bars
+pyautogui.click(1780, 1050)
+time.sleep(2)
+# English click
+pyautogui.click(1780, 827)
+time.sleep(2)
+# MARS program click
+pyautogui.click(273, 1050) 
+time.sleep(5)
     
-# Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)d
-pyautogui.FAILSAFE = False
-
-#####
 # Set the specified directory
-directory = r"C:\holter"
+directory = "C:\\holter"
 # # Get all subfolder names within the directory as a list
-folder_list = ["2429"]
+folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 print(f"folder list: {folder_list}")
-#folder_list =  [ '2023-06', '2023-07', '2023-08','2024-01','2024-02','2024-03','2024-04','2024-05','2024-06']
+#'202306', '202307', '202308', '202309', '202310','202311','202312', '202401','202402','202403','202404','202405','202406','202301', '202302', '202303', 
+#folder_list =  ['202007','202008','202009','202010']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
-    file_count = 25
+    file_count = len([name for name in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, name))])-1
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
-    iteration_count = 130
+    iteration_count = 1
 
     print(folder_path + " file count: " + str(file_count))
 
+    # Wait for the first 5 seconds
+    time.sleep(5)
+    # Click on Menu-System
+    pyautogui.click(26, 36)
+    time.sleep(2)
+    # Click on Menu-System-System setup
+    pyautogui.moveTo(72, 78)
+    time.sleep(2)
+    # Click on Menu-System-System setup-General
+    pyautogui.click(264, 373)
+    time.sleep(2)
+    # Update Archive Path name by dragging and pasting
+    pyautogui.moveTo(1440, 400)  # Move to the starting position
+    pyautogui.mouseDown()        # Press and hold the mouse button
+    pyautogui.moveTo(1000, 400, duration=2)  # Move to the drag position
+    pyautogui.mouseUp()          # Release the mouse button
+
+    # Paste the value from folder_list
+    pyautogui.write(directory + '\\' + folder)
+    time.sleep(2)
+    # Click on save
+    pyautogui.click(1172, 670)
+    time.sleep(2)
+    # Click on ok
+    pyautogui.click(1110, 480)
+    time.sleep(2)
+    # Click on Patient Select at the bottom
+    pyautogui.click(140, 980)
+    time.sleep(2)
+    # Click on Data type
+    pyautogui.click(1735, 270)
+    time.sleep(2)
+    # Click on Data type-Archived files
+    pyautogui.click(1735, 328)
+    time.sleep(20)
+
+    # Patient List 에서 첫번째 클릭
+    pyautogui.click(400, 72)
+    time.sleep(2) 
+    # 스크롤바 가장 위부터 아래까지 드래그(리스트 전체 선택)
+    pyautogui.moveTo(1488, 68)
+    pyautogui.dragTo(1488, 922, duration=2.0)  # 드래그 2초간 지속
+
+    # Shift 키를 누른 상태에서 리스트 가장 마지막 클릭
+    pyautogui.keyDown('shift')  # Shift 키를 누름
+    pyautogui.click(180, 929)  
+    pyautogui.keyUp('shift')    # Shift 키를 놓음
+    time.sleep(2)
+    
+    # 파일당 작업 완료 후 대기 및 다음 작업 수행
+    pyautogui.click(1604, 124)
+    time.sleep(2)
+    pyautogui.click(1700, 188)
+    time.sleep(2)
+    pyautogui.click(1100, 560)
+    #Archive 대기 시간
+    time.sleep(40)
+    pyautogui.click(860,1045)
+    time.sleep(2)
+    #Archive 대기 시간
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
+    #time.sleep(2)
+    #Archive 대기 시간
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
+    #time.sleep(2)
+    #Archive 대기 시간
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
+    #time.sleep(2)
+    #Archive 대기 시간
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
+    #time.sleep(2)
+    #click close
+    pyautogui.click(1107, 475)
+    time.sleep(2)
+    #click close
+    pyautogui.click(1700, 310)
+    time.sleep(2)
+    #data type select    
+    pyautogui.click(1700, 270)
+    time.sleep(2)   
+    #data type-holter select   
+    pyautogui.click(1680, 293)
+    time.sleep(2) 
     #click patient select 
     pyautogui.click(140, 988)
     time.sleep(2)  
@@ -114,30 +211,24 @@ for folder in folder_list:
         pyautogui.click(1100, 600)
         time.sleep(2)
         #ok
-        pyautogui.click(1070, 600)
-        time.sleep(2)
-        #ok
-        pyautogui.click(1040, 600)
-        time.sleep(2)
-        #ok
-        pyautogui.click(1080, 600)
+        pyautogui.click(1060, 600)
         time.sleep(2)
         #ok
         pyautogui.click(1100, 600)
         time.sleep(2)
         #ok
+        pyautogui.click(1060, 600)
+        time.sleep(2)
+        #ok
         pyautogui.click(1070, 600)
         time.sleep(2)
         #ok
-        pyautogui.click(1040, 600)
-        time.sleep(2)
-        #ok
-        pyautogui.click(1080, 600)
+        pyautogui.click(1090, 600)
         time.sleep(2)
         #OK
         pyautogui.click(1118, 472) 
         time.sleep(2)
-
+        
         #MIT Signal Format
         pyautogui.click(750, 420) 
         time.sleep(2)
@@ -182,7 +273,7 @@ for folder in folder_list:
         time.sleep(5)
         pyautogui.click(1790, 93)
         time.sleep(2)
-        pyautogui.click(390, 410)
+        pyautogui.click(400, 410)
         time.sleep(2)
         
         # Serial 값을 붙여넣기
@@ -191,8 +282,8 @@ for folder in folder_list:
         pyautogui.click(1393, 359)
         time.sleep(2)
         #PDF 저장
-        pyautogui.click(1070, 680)
-        time.sleep(80)  
+        pyautogui.click(1070, 682)
+        time.sleep(100)  
         pyautogui.click(140, 985)
         time.sleep(3)
         
@@ -217,8 +308,8 @@ for folder in folder_list:
             pyautogui.click(1100, 550)
             time.sleep(4)
         
-        # 4번째 파일마다 특정 동작 실행
-        if current_file % 4 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
+        # 3번째 파일마다 특정 동작 실행
+        if current_file % 3 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
             pyautogui.rightClick(273, 1050)  # MARS program right click, LEFT 5
             time.sleep(2)
             pyautogui.click(273, 1023)  # close window

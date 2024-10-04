@@ -25,9 +25,12 @@ pyautogui.FAILSAFE = False
 # Set the specified directory
 directory = r"C:\holter"
 # # Get all subfolder names within the directory as a list
-folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-print(f"folder list: {folder_list}")
-#folder_list =  [ '2023-06', '2023-07', '2023-08','2024-01','2024-02','2024-03','2024-04','2024-05','2024-06']
+#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+#print(f"folder list: {folder_list}")
+#'20240301', '2225', '2226', '2227', 
+folder_list =  ['2228', '2229', '2428', '2429', '2430', '2431', '2432', '2433', '2434', '2435',
+                 '2437', '2438', '2440', '2441', '2442', '2443', '2444', '2445', '2446', '2447', '2449', '2450', '2457', '2458',
+                   '2460', '2466', '2467', '2468', '2469', '2471', '2472', '2473', '2474', '2477', '2478', 'Study']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -178,7 +181,7 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1220, 685)
+        pyautogui.click(1070, 680)
         time.sleep(2)
         #change
         pyautogui.click(1100, 473)
@@ -188,25 +191,31 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1220, 685)
+        pyautogui.click(1070, 680)
         time.sleep(2)
         #ok
         pyautogui.click(1100, 600)
-        time.sleep(2)
-        #ok
-        pyautogui.click(1060, 600)
-        time.sleep(2)
-        #ok
-        pyautogui.click(1100, 600)
-        time.sleep(2)
-        #ok
-        pyautogui.click(1060, 600)
         time.sleep(2)
         #ok
         pyautogui.click(1070, 600)
         time.sleep(2)
         #ok
-        pyautogui.click(1090, 600)
+        pyautogui.click(1040, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1080, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1100, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1070, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1040, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1080, 600)
         time.sleep(2)
         #OK
         pyautogui.click(1118, 472) 
@@ -226,7 +235,7 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1220, 685)
+        pyautogui.click(1070, 680)
         time.sleep(2)
         #overwrite
         pyautogui.click(1000, 540)
@@ -241,7 +250,7 @@ for folder in folder_list:
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
-        pyautogui.click(1220, 685)
+        pyautogui.click(1070, 680)
         time.sleep(10)
         #OK
         pyautogui.click(1118, 472) 
@@ -265,7 +274,7 @@ for folder in folder_list:
         pyautogui.click(1393, 359)
         time.sleep(2)
         #PDF 저장
-        pyautogui.click(1220, 685)
+        pyautogui.click(1070, 680)
         time.sleep(80)  
         pyautogui.click(140, 985)
         time.sleep(3)
