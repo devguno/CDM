@@ -20,7 +20,7 @@ for folder in folder_list:
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
-    iteration_count = 32
+    iteration_count = 32 
 
     print(folder_path + " file count: " + str(file_count))
 
