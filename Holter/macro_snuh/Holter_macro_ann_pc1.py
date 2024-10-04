@@ -25,10 +25,15 @@ time.sleep(5)
 # Set the specified directory
 directory = "C:\\holter"
 # # Get all subfolder names within the directory as a list
-folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-print(f"folder list: {folder_list}")
-#'202306', '202307', '202308', '202309', '202310','202311','202312', '202401','202402','202403','202404','202405','202406','202301', '202302', '202303', 
-#folder_list =  ['202007','202008','202009','202010']
+#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+#print(f"folder list: {folder_list}")
+#'2248', '2249', '2250', '22502', '2252', '2253', '2254', '2255', '2256', '2257', '2258', '2259', '2260', '2261', 
+#                '2262', '2263', '2264', '2265', '2266', '2267', 
+
+folder_list =  ['2268', '2269', '2270', '2271', '2272', '2273', '2274', '2275', 
+                '2276', '2277', '2278', '2279', '2280', '2281', '2282', '2283', '2284', '2285', '2286', '2287', '2288', '2289', 
+                '2290', '2291', '2292', '2293', '2296', '2297', '2298', '2399', '2408', '2410', '2421', '2423', '2424', '2436', 
+                '2448', '2470', '252', '253', '254', '255', '256', '257', '258', '274', '275', '277', '2994', '2995']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
