@@ -16,7 +16,7 @@ pyautogui.FAILSAFE = False
 # Set the specified directory
 directory = r"C:\holter"
 # # Get all subfolder names within the directory as a list
-folder_list = ["2227"]
+folder_list = ["2429"]
 print(f"folder list: {folder_list}")
 #folder_list =  [ '2023-06', '2023-07', '2023-08','2024-01','2024-02','2024-03','2024-04','2024-05','2024-06']
     
@@ -114,19 +114,25 @@ for folder in folder_list:
         pyautogui.click(1100, 600)
         time.sleep(2)
         #ok
-        pyautogui.click(1060, 600)
+        pyautogui.click(1070, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1040, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1080, 600)
         time.sleep(2)
         #ok
         pyautogui.click(1100, 600)
         time.sleep(2)
         #ok
-        pyautogui.click(1060, 600)
-        time.sleep(2)
-        #ok
         pyautogui.click(1070, 600)
         time.sleep(2)
         #ok
-        pyautogui.click(1090, 600)
+        pyautogui.click(1040, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1080, 600)
         time.sleep(2)
         #OK
         pyautogui.click(1118, 472) 
