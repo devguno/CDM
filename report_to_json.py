@@ -217,15 +217,15 @@ def process_pdf_files(file_dirs, json_dir):
 
 def main():
     base_dirs = [
-        #r'C:\ann'    # pdf 파일이 존재하는 경로
+        r'D:\test'    # pdf 파일이 존재하는 경로
         #r'/workspace/nas1/Holter/Holter_raw_sig'
         #r'/workspace/nas1/Holter_new/Holter_raw_sig'
         #r'/workspace/nas1/Holter_new/Holter_raw_pdf'
-        r'/workspace/gunoroh/sftp/Holter_raw_sig'
+        #r'/workspace/gunoroh/sftp/Holter_raw_sig'
     ]
-    #json_dir = r'C:\tt'  # json 파일로 저장할 경로
+    json_dir = r'D:\json'  # json 파일로 저장할 경로
     #json_dir = r'/workspace/gunoroh/sftp_share/Holter_raw_json'  
-    json_dir = r'/workspace/gunoroh/sftp_share/Holter_raw_json'
+    #json_dir = r'/workspace/gunoroh/sftp_share/Holter_raw_json'
 
     if not os.path.exists(json_dir):
         os.makedirs(json_dir)
