@@ -54,7 +54,7 @@ for folder in folder_list:
     # Click on Menu-System-System setup
     pyautogui.moveTo(72, 78)
     time.sleep(2)
-    # Click on Menu-System-System setup-General
+    # Click on Menu-System-System setup-General 
     pyautogui.click(264, 373)
     time.sleep(2)
     # Update Archive Path name by dragging and pasting
