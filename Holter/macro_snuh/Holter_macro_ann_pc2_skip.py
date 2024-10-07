@@ -110,19 +110,25 @@ for folder in folder_list:
         pyautogui.click(1100, 600)
         time.sleep(2)
         #ok
-        pyautogui.click(1060, 600)
+        pyautogui.click(1070, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1040, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1080, 600)
         time.sleep(2)
         #ok
         pyautogui.click(1100, 600)
         time.sleep(2)
         #ok
-        pyautogui.click(1060, 600)
-        time.sleep(2)
-        #ok
         pyautogui.click(1070, 600)
         time.sleep(2)
         #ok
-        pyautogui.click(1090, 600)
+        pyautogui.click(1040, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1080, 600)
         time.sleep(2)
         #OK
         pyautogui.click(1118, 472) 

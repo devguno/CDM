@@ -1,63 +1,104 @@
 import os
-import pandas as pd
+import csv
+import json
+import shutil
 from tqdm import tqdm
-import shutil  # 파일 이동을 위해 shutil 모듈 사용
 
-# 경로 설정
-csv_path = r'C:\Users\SNUH\OneDrive\SNUH BMI Lab\CDM\Holter\pid\pt_no_person_id.csv'  ## 병록번호와 cdm person_id가 매칭된 csv 파일
-file_dir = r'C:\extract_pc2'         ## sig, hea, xml 파일이 존재하는 경로
-rename_dir = r'C:\Holter_sig'           ## .sig, .hea 파일 이동 경로
-xml_dir = r'C:\Holter_xml'              ## .xml 파일 이동 경로
+csv_path = r'/workspace/sftp/code/pt_no_person_id.csv'
+raw_sig_dir = r'/workspace/sftp/Holter_raw_sig'
+sig_dir = r'/workspace/sftp_share/Holter_sig'
+raw_json_dir = r'/workspace/sftp_share/Holter_raw_json'
+json_dir = r'/workspace/sftp_share/Holter_json'
 
-# rename_dir 폴더가 없으면 생성
-if not os.path.exists(rename_dir):
-    os.makedirs(rename_dir)
+#csv_path = r'D:\OneDrive\SNUH BMI Lab\CDM\Holter\pt_no_person_id.csv'
+#raw_sig_dir = r'D:\test'
+#sig_dir = r'D:\test2'
+#raw_json_dir = r'D:\json'
+#json_dir = r'D:\json2'
 
-# xml_dir 폴더가 없으면 생성
-if not os.path.exists(xml_dir):
-    os.makedirs(xml_dir)
 
-# CSV 파일 로드 및 딕셔너리 생성
-df = pd.read_csv(csv_path)
-pt_no_to_person_id = df.set_index('pt_no')['person_id'].to_dict()
+def load_pt_no_person_id_mapping(csv_path):
+    mapping = {}
+    with open(csv_path, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            mapping[row['pt_no']] = row['person_id']
+    return mapping
 
-# 파일 리스트 가져오기 (pdf 파일 제외)
-files = [f for f in os.listdir(file_dir) if '_' in f and not f.endswith('.pdf')]
-
-moved_count = 0
-
-# 파일 이름 변경 및 이동
-for file in tqdm(files, desc="Renaming and moving files"):
-    try:
-        # 파일명에서 마지막 '_' 다음에 있는 번호를 pt_no로 추출
-        parts = file.rsplit('_', 1)
-        base_name, pt_no_with_extension = parts[0], parts[1]
-        
-        pt_no, extension = pt_no_with_extension.split('.')  # pt_no와 확장자를 분리
-        person_id = pt_no_to_person_id.get(int(pt_no))  # pt_no에 대응하는 person_id 찾기
-
-        if person_id:
-            # person_id를 사용해 새로운 파일명 생성
-            new_filename = f'{base_name}_{int(person_id)}.{extension}'  
-
-            old_file_path = os.path.join(file_dir, file)
-            
-            # 파일 확장자에 따라 이동 경로 결정
-            if extension == 'SIG' or extension == 'hea':
-                new_file_path = os.path.join(rename_dir, new_filename)
-            elif extension == 'xml':
-                new_file_path = os.path.join(xml_dir, new_filename)
+def process_sig_hea_files(raw_dir, output_dir, mapping):
+    for filename in tqdm(os.listdir(raw_dir), desc="Processing SIG/HEA files"):
+        if filename.endswith('.SIG') or filename.endswith('.hea'):
+            parts = filename.rsplit('_', 2)
+            if len(parts) == 3:
+                foldername, index, pt_no = parts
+                pt_no = pt_no.split('.')[0]
+                
+                if pt_no in mapping:
+                    person_id = mapping[pt_no]
+                    new_filename = f"{foldername}_{index}_{person_id}{os.path.splitext(filename)[1]}"
+                    
+                    src_path = os.path.join(raw_dir, filename)
+                    dst_path = os.path.join(output_dir, new_filename)
+                    
+                    shutil.copy2(src_path, dst_path)
+                    
+                    if filename.endswith('.hea'):
+                        process_hea_file(dst_path)
+                else:
+                    print(f"Skipping SIG/HEA file with no matching person_id: {filename}")
             else:
-                continue  # .sig, .hea, .xml 외의 파일은 무시
+                print(f"Skipping file with unexpected format: {filename}")
 
-            # 파일 이동
-            shutil.move(old_file_path, new_file_path)
-            moved_count += 1  
-        else:
-            # 매칭되는 person_id가 없으면 파일을 원래 폴더에 그대로 둠
-            continue
+def process_hea_file(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        lines = file.readlines()
+    
+    base_filename = os.path.splitext(os.path.basename(file_path))[0]
+    lines[0] = f"{base_filename} {' '.join(lines[0].split()[1:])}\n"
+    
+    for i in range(1, len(lines)):
+        parts = lines[i].split()
+        parts[0] = f"{base_filename}.SIG"
+        lines[i] = ' '.join(parts) + '\n'
+    
+    with open(file_path, 'w', encoding='utf-8') as file:
+        file.writelines(lines)
 
-    except ValueError:
-        print(f'Error processing file: {file}')
+def process_json_files(raw_dir, output_dir, mapping):
+    for filename in tqdm(os.listdir(raw_dir), desc="Processing JSON files"):
+        if filename.endswith('.json'):
+            parts = filename.rsplit('_', 3)
+            if len(parts) == 4:
+                foldername, index, pt_no, hookupdate = parts
+                
+                if pt_no in mapping:
+                    person_id = mapping[pt_no]
+                    new_filename = f"{foldername}_{index}_{person_id}_{hookupdate}"
+                    
+                    input_path = os.path.join(raw_dir, filename)
+                    output_path = os.path.join(output_dir, new_filename)
+                    
+                    with open(input_path, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                    
+                    if "Holter Report" in data and "PatientInfo" in data["Holter Report"]:
+                        data["Holter Report"]["PatientInfo"]["PID"] = person_id
+                    
+                    with open(output_path, 'w', encoding='utf-8') as f:
+                        json.dump(data, f, ensure_ascii=False, indent=4)
+                else:
+                    print(f"Skipping JSON file with no matching person_id: {filename}")
+            else:
+                print(f"Skipping JSON file with unexpected format: {filename}")
 
-print(f'Task completed. A total of {moved_count} files were renamed and moved.')
+def main():
+    mapping = load_pt_no_person_id_mapping(csv_path)
+    
+    os.makedirs(sig_dir, exist_ok=True)
+    os.makedirs(json_dir, exist_ok=True)
+    
+    process_sig_hea_files(raw_sig_dir, sig_dir, mapping)
+    process_json_files(raw_json_dir, json_dir, mapping)
+
+if __name__ == "__main__":
+    main()

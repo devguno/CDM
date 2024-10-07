@@ -20,7 +20,7 @@ for folder in folder_list:
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
-    iteration_count = 32
+    iteration_count = 32 
 
     print(folder_path + " file count: " + str(file_count))
 
@@ -110,19 +110,25 @@ for folder in folder_list:
         pyautogui.click(1100, 600)
         time.sleep(2)
         #ok
-        pyautogui.click(1060, 600)
+        pyautogui.click(1070, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1040, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1080, 600)
         time.sleep(2)
         #ok
         pyautogui.click(1100, 600)
         time.sleep(2)
         #ok
-        pyautogui.click(1060, 600)
-        time.sleep(2)
-        #ok
         pyautogui.click(1070, 600)
         time.sleep(2)
         #ok
-        pyautogui.click(1090, 600)
+        pyautogui.click(1040, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1080, 600)
         time.sleep(2)
         #OK
         pyautogui.click(1118, 472) 

@@ -25,10 +25,10 @@ time.sleep(5)
 #directory = "Z:\\Holter\\nat\\Holter_child_hdd\\2022"
 directory = r"D:\holter"
 # # Get all subfolder names within the directory as a list
-folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-print(f"folder list: {folder_list}")
-#'202306', '202307', '202308', '202309', '202310','202311','202312', '202401','202402','202403','202404','202405','202406','202301', '202302', '202303', 
-#folder_list =  ['202112']
+#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+#print(f"folder list: {folder_list}")
+#'2114', '2229', '2351', '2353', '2354', '2355', '2356', '2357', '2358', '2359', '2360', '2362', '2363', '2364', '2365', '2366','2367', '2368', '2369', '2370', '2371', 
+folder_list =  ['2372', '2373', '2498', '2499']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -211,19 +211,25 @@ for folder in folder_list:
         pyautogui.click(1100, 600)
         time.sleep(2)
         #ok
-        pyautogui.click(1060, 600)
+        pyautogui.click(1070, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1040, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1080, 600)
         time.sleep(2)
         #ok
         pyautogui.click(1100, 600)
         time.sleep(2)
         #ok
-        pyautogui.click(1060, 600)
-        time.sleep(2)
-        #ok
         pyautogui.click(1070, 600)
         time.sleep(2)
         #ok
-        pyautogui.click(1090, 600)
+        pyautogui.click(1040, 600)
+        time.sleep(2)
+        #ok
+        pyautogui.click(1080, 600)
         time.sleep(2)
         #OK
         pyautogui.click(1118, 472) 
