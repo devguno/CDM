@@ -10,13 +10,6 @@ sig_dir = r'/workspace/sftp_share/Holter_sig'
 raw_json_dir = r'/workspace/sftp_share/Holter_raw_json'
 json_dir = r'/workspace/sftp_share/Holter_json'
 
-#csv_path = r'D:\OneDrive\SNUH BMI Lab\CDM\Holter\pt_no_person_id.csv'
-#raw_sig_dir = r'D:\test'
-#sig_dir = r'D:\test2'
-#raw_json_dir = r'D:\json'
-#json_dir = r'D:\json2'
-
-
 def load_pt_no_person_id_mapping(csv_path):
     mapping = {}
     with open(csv_path, 'r', encoding='utf-8') as f:
@@ -43,15 +36,22 @@ def process_sig_hea_files(raw_dir, output_dir, mapping):
                     shutil.copy2(src_path, dst_path)
                     
                     if filename.endswith('.hea'):
-                        process_hea_file(dst_path)
+                        try:
+                            process_hea_file(dst_path)
+                        except UnicodeDecodeError:
+                            print(f"Error processing file: {dst_path}")
                 else:
                     print(f"Skipping SIG/HEA file with no matching person_id: {filename}")
             else:
                 print(f"Skipping file with unexpected format: {filename}")
 
 def process_hea_file(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
-        lines = file.readlines()
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+    except UnicodeDecodeError:
+        print(f"Error: Unable to decode file {file_path} using UTF-8 encoding.")
+        return
     
     base_filename = os.path.splitext(os.path.basename(file_path))[0]
     lines[0] = f"{base_filename} {' '.join(lines[0].split()[1:])}\n"
