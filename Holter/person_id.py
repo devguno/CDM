@@ -26,8 +26,8 @@ def load_pt_no_person_id_mapping(csv_path):
     return mapping
 
 def process_sig_hea_files(raw_dir, output_dir, mapping):
-    for filename in tqdm(os.listdir(raw_dir), desc="Processing SIG/HEA files"):
-        if filename.endswith('.SIG') or filename.endswith('.hea'):
+    for filename in tqdm(os.listdir(raw_dir), desc="Processing SIG/HEA/ANN files"):
+        if filename.endswith(('.SIG', '.hea', '.ANN')):
             parts = filename.rsplit('_', 2)
             if len(parts) == 3:
                 foldername, index, pt_no = parts
