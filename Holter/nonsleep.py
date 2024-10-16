@@ -8,7 +8,7 @@ coord1 = (1440, 750)
 coord2 = (1460, 1050)
 
 # Time between clicks
-delay_between_clicks = 100  # 5 minutes in seconds
+delay_between_clicks = 200  # 5 minutes in seconds
 
 # Two weeks in seconds
 two_weeks_seconds = 2 * 7 * 24 * 60 * 60
