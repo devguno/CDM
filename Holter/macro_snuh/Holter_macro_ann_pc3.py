@@ -20,10 +20,10 @@ time.sleep(5)
     
 # Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)d
 pyautogui.FAILSAFE = False
-
+ 
 #####
 # Set the specified directory
-directory = r"C:\holter"
+directory = "C:\\Holter_main_hdd"
 # # Get all subfolder names within the directory as a list
 folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 print(f"folder list: {folder_list}")
