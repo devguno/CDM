@@ -12,7 +12,7 @@ time.sleep(3)
 pyautogui.click(1780, 1050)
 time.sleep(2)
 # English click
-pyautogui.click(1780, 857)
+pyautogui.click(1780, 837)
 time.sleep(2)
 # MARS program click
 pyautogui.click(273, 1050) 
@@ -20,17 +20,14 @@ time.sleep(5)
     
 # Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)d
 pyautogui.FAILSAFE = False
-
+ 
 #####
 # Set the specified directory
-directory = r"C:\holter"
+directory = "C:\\Holter_main_hdd"
 # # Get all subfolder names within the directory as a list
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")
-#'20240301', '2225', '2226', '2227', '2228', '2229', '2428', '2429', '2430', '2431', '2432', '2433', '2434', '2435',
-#                 '2437', '2438', '2440', '2441', '2442', '2443', '2444', '2445', '2446', '2447', '2449', '2450', '2457', '2458',
-# '2460', '2466', '2467', '2468', '2469', '2471', 
-folder_list =  ['2472', '2473', '2474', '2477', '2478', 'Study']
+folder_list =  ['36', '42', '43', '44', '45', '53', '55', '57', '6', '60', '61', '7', '71', '73', '8', '9','5']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:

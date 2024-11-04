@@ -10,13 +10,13 @@ import math
 pyautogui.FAILSAFE = False
 
 # Set the specified directory
-directory = r"D:\holter"
-folder_list =  ['2498']
-    
+directory = "Z:\\Holter_cdrom_MAIN"
+folder_list =  ['DVD2452']
+
 # Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
-    file_count = 171
+    file_count = 210
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
