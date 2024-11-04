@@ -23,12 +23,21 @@ pyautogui.FAILSAFE = False
  
 #####
 # Set the specified directory
-directory = "C:\\Holter_main_hdd"
+directory = "C:\\boramae"
 # # Get all subfolder names within the directory as a list
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")
-folder_list =  ['36', '42', '43', '44', '45', '53', '55', '57', '6', '60', '61', '7', '71', '73', '8', '9','5']
-    
+folder_list = ['boramae_201901', 'boramae_2019012', 'boramae_2019013', 'boramae_201904', 'boramae_2019042', 'boramae_2019043', 'boramae_2019044'
+              ]    
+#'boramae_201907', 'boramae_2019072', 'boramae_2019073', 'boramae_2019074', 'boramae_2019075', 'boramae_2019076', 'boramae_2019077', 
+#              'boramae_202001', 'boramae_2020012', 'boramae_2020013', 'boramae_2020014', 'boramae_202004', 'boramae_2020042', 'boramae_2020043', 
+#              'boramae_2020044', 'boramae_202007', 'boramae_2020072', 'boramae_2020073', 'boramae_2020074', 'boramae_202010', 'boramae_2020102', 
+#              'boramae_2020103', 'boramae_202101', 'boramae_2021012', 'boramae_2021013', 'boramae_2021014', 'boramae_202104', 'boramae_2021042', 
+#              'boramae_2021043', 'boramae_2021044', 'boramae_202107', 'boramae_2021072', 'boramae_2021073', 'boramae_2021074', 'boramae_202110', 
+#              'boramae_2021102', 'boramae_2021103', 'boramae_2021104', 'boramae_202201', 'boramae_2022012', 'boramae_2022013', 'boramae_2022014',
+#                'boramae_202204', 'boramae_2022042', 'boramae_2022043', 'boramae_2022044', 'boramae_202207', 'boramae_2022072', 'boramae_2022073', 
+#                'boramae_2022074', 'boramae_202210', 'boramae_2022102', 'boramae_2022103', 'boramae_2022104', 'boramae_202301', 'boramae_202401'
+
 # Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
