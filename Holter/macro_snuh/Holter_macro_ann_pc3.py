@@ -25,13 +25,9 @@ pyautogui.FAILSAFE = False
 # Set the specified directory
 directory = "C:\\Holter_main_hdd"
 # # Get all subfolder names within the directory as a list
-folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-print(f"folder list: {folder_list}")
-#'1', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '2','20', '21', '22', '23', '24', '25',
-# '26', '27', '28', '29', '3', '31', '32', '34', '35', '37', '38', '39', '4', '40', '41','47', '48', '49',
-folder_list =  [ '42', '43','36', 
-'44', '45', '46',  '5', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '6', '60', '61', '62',
- '63', '64', '65', '66', '67', '68', '69', '7', '70', '71', '72', '73', '74', '8', '9']
+#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+#print(f"folder list: {folder_list}")
+folder_list =  ['36', '42', '43', '44', '45', '53', '55', '57', '6', '60', '61', '7', '71', '73', '8', '9','5']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
