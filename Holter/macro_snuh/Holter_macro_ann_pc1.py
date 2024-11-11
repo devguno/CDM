@@ -99,7 +99,7 @@ for folder in folder_list:
     time.sleep(2)
     pyautogui.click(1100, 560)
     #Archive 대기 시간
-    time.sleep(40)
+    time.sleep(240)
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
