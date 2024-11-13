@@ -16,18 +16,18 @@ pyautogui.FAILSAFE = False
 # Set the specified directory
 directory = "C:\\Holter_main_hdd"
 # # Get all subfolder names within the directory as a list
-folder_list = ["2"]
+folder_list = ["57"]
 print(f"folder list: {folder_list}")
 #folder_list =  [ '2023-06', '2023-07', '2023-08','2024-01','2024-02','2024-03','2024-04','2024-05','2024-06']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
-    file_count = 80
+    file_count = 50
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
-    iteration_count = 126
+    iteration_count = 22
 
     print(folder_path + " file count: " + str(file_count))
 
@@ -244,114 +244,4 @@ for folder in folder_list:
     time.sleep(3)
     pyautogui.click(400, 72)
     time.sleep(2)
-    pyautogui.moveTo(1488, 68)
-    pyautogui.dragTo(1488, 922, duration=2.0)
-    pyautogui.keyDown('shift')
-    pyautogui.click(180, 929)
-    pyautogui.keyUp('shift')
-    time.sleep(2)
-    pyautogui.click(1600, 127)
-    time.sleep(2)
-    #unlock
-    pyautogui.click(1800, 110)
-    time.sleep(2)
-    #patient select
-    pyautogui.click(140, 990)
-    time.sleep(2)
-    #first patient click
-    pyautogui.click(400, 72)
-    time.sleep(2)
-    pyautogui.moveTo(1488, 68)
-    pyautogui.dragTo(1488, 922, duration=2.0)
-    pyautogui.keyDown('shift')
-    pyautogui.click(180, 929)
-    pyautogui.keyUp('shift')
-    time.sleep(2)
-    #Tools
-    pyautogui.click(1600, 127)
-    time.sleep(2)
-    #delete
-    pyautogui.click(1600, 110)
-    time.sleep(2)
-    pyautogui.click(1100, 545)
-    time.sleep(2)
-    #patient select
-    pyautogui.click(140, 990)
-    time.sleep(2)
-    # 한번더 반복
-    time.sleep(3)
-    pyautogui.click(400, 72)
-    time.sleep(2)
-    pyautogui.moveTo(1488, 68)
-    pyautogui.dragTo(1488, 922, duration=2.0)
-    pyautogui.keyDown('shift')
-    pyautogui.click(180, 929)
-    pyautogui.keyUp('shift')
-    time.sleep(2)
-    pyautogui.click(1600, 127)
-    time.sleep(2)
-    #unlock
-    pyautogui.click(1800, 110)
-    time.sleep(2)
-    #patient select
-    pyautogui.click(140, 990)
-    time.sleep(2)
-    #first patient click
-    pyautogui.click(400, 72)
-    time.sleep(2)
-    pyautogui.moveTo(1488, 68)
-    pyautogui.dragTo(1488, 922, duration=2.0)
-    pyautogui.keyDown('shift')
-    pyautogui.click(180, 929)
-    pyautogui.keyUp('shift')
-    time.sleep(2)
-    #Tools
-    pyautogui.click(1600, 127)
-    time.sleep(2)
-    #delete
-    pyautogui.click(1600, 110)
-    time.sleep(2)
-    pyautogui.click(1100, 545)
-    time.sleep(2)
-    #patient select
-    pyautogui.click(140, 990)
-    time.sleep(2)
-    # 한번더 반복
-    time.sleep(3)
-    pyautogui.click(400, 72)
-    time.sleep(2)
-    pyautogui.moveTo(1488, 68)
-    pyautogui.dragTo(1488, 922, duration=2.0)
-    pyautogui.keyDown('shift')
-    pyautogui.click(180, 929)
-    pyautogui.keyUp('shift')
-    time.sleep(2)
-    pyautogui.click(1600, 127)
-    time.sleep(2)
-    #unlock
-    pyautogui.click(1800, 110)
-    time.sleep(2)
-    #patient select
-    pyautogui.click(140, 990)
-    time.sleep(2)
-    #first patient click
-    pyautogui.click(400, 72)
-    time.sleep(2)
-    pyautogui.moveTo(1488, 68)
-    pyautogui.dragTo(1488, 922, duration=2.0)
-    pyautogui.keyDown('shift')
-    pyautogui.click(180, 929)
-    pyautogui.keyUp('shift')
-    time.sleep(2)
-    #Tools
-    pyautogui.click(1600, 127)
-    time.sleep(2)
-    #delete
-    pyautogui.click(1600, 110)
-    time.sleep(2)
-    pyautogui.click(1100, 545)
-    time.sleep(2)
-    #patient select
-    pyautogui.click(140, 990)
-    time.sleep(2)
-
+    
