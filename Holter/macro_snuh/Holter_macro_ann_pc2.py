@@ -23,13 +23,12 @@ time.sleep(5)
 
 # Set the specified directory
 #directory = "Z:\\Holter\\nat\\Holter_child_hdd\\2022"
-directory = "Z:\\Holter\\nat_ing\\Holter_child_hdd\\2021"
+directory = "E:\\boramae_2015"
 # # Get all subfolder names within the directory as a list
-folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-print(f"folder list: {folder_list}")
-#'2114', '2229', '2351', '2353', '2354', '2355', '2356', '2357', '2358', '2359', '2360', '2362', '2363', '2364', '2365', '2366',
-# '2367', '2368', '2369', '2370', '2371', '2372', '2373', '2372','2498', '2020', '2021',
-#folder_list =  ['202007', '202008', '202009', '202010']
+#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+#print(f"folder list: {folder_list}")
+#'202102', '202103', '202104','202105', 
+folder_list =  ['boramae_201506', 'boramae_201507', 'boramae_201508', 'boramae_201509']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
