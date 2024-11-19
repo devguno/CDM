@@ -25,12 +25,10 @@ time.sleep(5)
 # Set the specified directory
 directory = "C:\\boramae"
 # # Get all subfolder names within the directory as a list
-folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-print(f"folder list: {folder_list}")
+#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+#print(f"folder list: {folder_list}")
 #
-#folder_list = ['1881', '1882', '1883', '1884', '1885', '1886', '1887', '1888', '1889', '1890', '1891', '1892', '1893', '1894',
-#               '1895', '1896', '1897', '1898', '1899', '1900', '1901', '1902', '2013', 'ped1', 'ped2']
-
+folder_list = ['boramae_201603', 'boramae_201604', 'boramae_201605', 'boramae_201606']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
