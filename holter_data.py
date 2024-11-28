@@ -50,10 +50,10 @@ def process_holter_report(file_path):
 def main():
     # JSON 파일들이 있는 디렉토리 경로
     #json_dir = r'C:\ttt'
-    json_dir = '/workspace/nas1/Holter_new/Holter_json'
+    json_dir = 'C:\\boramae_json'
     # 결과 저장 경로
     #output_dir = r'C:\tt'
-    output_dir = '/workspace/guno'
+    output_dir = 'C:\\finish'
 
     # output_dir이 없으면 생성
     if not os.path.exists(output_dir):
