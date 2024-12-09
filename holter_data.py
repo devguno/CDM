@@ -24,9 +24,6 @@ def flatten_json(nested_json, prefix=''):
     return flattened
 
 def process_holter_report(file_path):
-    """
-    Holter Report JSON 파일을 처리하여 평탄화된 데이터를 반환
-    """
     with open(file_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
         
@@ -35,6 +32,9 @@ def process_holter_report(file_path):
     
     # JSON 평탄화
     flattened_data = flatten_json(holter_data)
+    
+    # 파일 경로 추가
+    flattened_data['FilePath'] = file_path
     
     # HookupDate와 HookupTime 결합하여 새로운 필드 추가
     if 'PatientInfo_HookupDate' in flattened_data and 'PatientInfo_HookupTime' in flattened_data:
@@ -49,11 +49,9 @@ def process_holter_report(file_path):
 
 def main():
     # JSON 파일들이 있는 디렉토리 경로
-    #json_dir = r'C:\ttt'
-    json_dir = 'C:\\boramae_json'
+    json_dir = 'D:\\child_cdm'
     # 결과 저장 경로
-    #output_dir = r'C:\tt'
-    output_dir = 'C:\\finish'
+    output_dir = 'D:\\child_cdm'
 
     # output_dir이 없으면 생성
     if not os.path.exists(output_dir):
@@ -70,16 +68,19 @@ def main():
     first_data = process_holter_report(json_files[0])
     headers = list(first_data.keys())
     
+    # FilePath가 마지막 열이 아니라면 마지막 열로 이동
+    if 'FilePath' in headers:
+        headers.remove('FilePath')
+        headers.append('FilePath')
+    
     # CSV 파일 생성
     output_file = os.path.join(output_dir, 'holter_reports.csv')
     
     with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=headers)
         
-        # 헤더 작성
         writer.writeheader()
         
-        # tqdm으로 진행률 표시하며 모든 JSON 파일 처리
         for json_file in tqdm(json_files, desc="파일 처리 중"):
             try:
                 data = process_holter_report(json_file)

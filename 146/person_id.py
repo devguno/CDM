@@ -4,11 +4,17 @@ import json
 import shutil
 from tqdm import tqdm
 
-csv_path = r'/workspace/sftp/code/pt_no_person_id.csv'
-raw_sig_dir = r'/workspace/sftp/Holter_raw_sig'
-sig_dir = r'/workspace/sftp_share/Holter_sig'
-raw_json_dir = r'/workspace/sftp_share/Holter_raw_json'
-json_dir = r'/workspace/sftp_share/Holter_json'
+#csv_path = r'/workspace/sftp/code/pt_no_person_id.csv'
+#raw_sig_dir = r'/workspace/sftp/Holter_raw_sig'
+#sig_dir = r'/workspace/sftp_share/Holter_sig'
+#raw_json_dir = r'/workspace/sftp_share/Holter_raw_json'
+#json_dir = r'/workspace/sftp_share/Holter_json'
+
+csv_path = r'C:\Users\SNUH\Documents\github\CDM\pt_no_person_id.csv'
+raw_sig_dir = r'D:\exx'
+sig_dir = r'D:\child_cdm'
+raw_json_dir = r'D:\json'
+json_dir = r'D:\child_cdm'
 
 def load_pt_no_person_id_mapping(csv_path):
     mapping = {}
