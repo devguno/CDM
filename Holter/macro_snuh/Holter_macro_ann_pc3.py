@@ -23,7 +23,7 @@ pyautogui.FAILSAFE = False
  
 #####
 # Set the specified directory
-directory = "D:\\Holter_cdrom"
+directory = "Z:\\Holter\\nat_ing\\Holter_cdrom"
 # # Get all subfolder names within the directory as a list
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")
@@ -42,11 +42,11 @@ directory = "D:\\Holter_cdrom"
 #'DVD20081111', 'DVD20081128', 'DVD20081229', 'DVD20090122', 'DVD20090309', 'DVD20090405', 'DVD20090511', 'DVD20090615', 
 #'DVD20090714', 'DVD20090806', 'DVD20090902','DVD20090930', 'DVD20091103', 'DVD20091204', 'DVD20091230', 'DVD20100118', 
 #'DVD20100204', 'DVD20100225', 'DVD20100322', 'DVD20100414','DVD20100513', 'DVD20100616', 'DVD20100710', 'DVD20100730', 
-#                'DVD20100820', 'DVD20100916', 'DVD20101009', 
-folder_list =  ['DVD20101026', 'DVD20101229', 'DVD20110119', 'DVD20110208', 'DVD20110224',
-                'DVD20110417', 'DVD20110502', 'DVD20110523', 'DVD20110614', 'DVD20110701', 'DVD20110721', 'DVD20110804', 'DVD20110817',
-                'DVD20110831', 'DVD20110928', 'DVD20111019', 'DVD20111114', 'DVD20111210', 'DVD20120103', 'DVD20120111', 'DVD20120118', 
-                'DVD20120202', 'DVD20120216', 'DVD20120227', 'DVD20120320', 'DVD20120413', 'DVD20120509', 'DVD20120602', 'DVD20120627', 
+#'DVD20100820', 'DVD20100916', 'DVD20101009', 'DVD20101026', 'DVD20101229', 'DVD20110119', 'DVD20110208', 'DVD20110224',
+#'DVD20110417', 'DVD20110502', 'DVD20110523', 'DVD20110614', 'DVD20110701', 'DVD20110721', 'DVD20110804', 'DVD20110817',
+#'DVD20110831','DVD20110928', 'DVD20111019', 'DVD20111114', 'DVD20111210', 'DVD20120103', 'DVD20120111', 'DVD20120118', 
+#'DVD20120202', 'DVD20120216', 
+folder_list =  ['DVD20120227', 'DVD20120320', 'DVD20120413', 'DVD20120509', 'DVD20120602', 'DVD20120627', 
                 'DVD20120629', 'DVD20120723', 'DVD20120807', 'DVD20120827', 'DVD20120924', 'DVD20121017', 'DVD20121112', 'DVD20121128', 
                 'DVD20121213', 'DVD20130102', 'DVD20130115', 'DVD20130129', 'DVD20130214', 'DVD20130227', 'DVD20130321', 'DVD20130408', 
                 'DVD20130429', 'DVD20130523', 'DVD20130611', 'DVD20130628', 'DVD20130723', 'DVD20130808', 'DVD20130826', 'DVD20130923', 
@@ -108,7 +108,7 @@ for folder in folder_list:
     time.sleep(2)
     # Click on Data type-Archived files
     pyautogui.click(1735, 328)
-    time.sleep(5)
+    time.sleep(10)
 
     # Patient List 에서 첫번째 클릭
     pyautogui.click(400, 72)
@@ -136,6 +136,18 @@ for folder in folder_list:
     #Archive 대기 시간
     time.sleep(200)
     pyautogui.click(860,1033)
+    time.sleep(2)
+    #Archive 대기 시간
+    time.sleep(200)
+    pyautogui.click(860,1045)
+    time.sleep(2)
+    #Archive 대기 시간
+    time.sleep(200)
+    pyautogui.click(860,1040)
+    time.sleep(2)
+    #Archive 대기 시간
+    time.sleep(200)
+    pyautogui.click(860,1045)
     time.sleep(2)
     #click close
     #click close
