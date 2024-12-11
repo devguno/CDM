@@ -22,14 +22,22 @@ pyautogui.click(273, 1050)
 time.sleep(5)
 
 # Set the specified directory
-directory = "Z:\\Holter\\nat_ing\\Holter_child_hdd\\2022"
+directory = "Z:\\Holter\\nat_ing\\\Holter_cdrom"
 #directory = "Z:\\Holter\\nat_ing\\Holter_child_hdd\\2022"
 
 # # Get all subfolder names within the directory as a list
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")
-#'202102', '202103', '202104','202105', 
-folder_list =  ['202205','202206', '202207','202208','202209','202210','202211','202212']
+#'202102', '202103', '202104','202105', '202205','202206', '202207','202208','202209','202210','202211',
+#'DVD20160107','DVD20160121', 'DVD20160211', 'DVD20160225', 'DVD20160325', 'DVD20160518', 'DVD20160615',
+# 'DVD20160712', 'DVD20160802', 'DVD20160819','DVD20160909', 'DVD20161017', 'DVD20161116', 'DVD20161214', 
+folder_list =  [ 'DVD20170103', 'DVD20170124', 'DVD20170215', 'DVD20170309', 'DVD20170406', 'DVD20170504', 'DVD20170531', 
+                 'DVD20170621', 'DVD20170718', 'DVD20170808', 'DVD20170830', 'DVD20171010', 'DVD20171113', 'DVD20171208',
+                   'DVD20180102', 'DVD20180123', 'DVD20180219', 'DVD20180307', 'DVD20180403', 'DVD20180502', 'DVD20180531', 
+                   'DVD20180628', 'DVD20180719', 'DVD20180807', 'DVD20180827', 'DVD20180928', 'DVD20181106', 'DVD20181129', 
+                   'DVD20181221', 'DVD20190115', 'DVD20190130', 'DVD20190219', 'DVD20190308', 'DVD20190402', 'DVD20190426', 
+                   'DVD20190526', 'DVD20190618', 'DVD20190711', 'DVD20190802', 'DVD20190820', 'DVD20190910', 'DVD20191014', 
+                   'DVD20191112', 'DVD20191204']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:

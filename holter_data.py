@@ -6,17 +6,12 @@ from tqdm import tqdm
 from datetime import datetime
 
 def flatten_json(nested_json, prefix=''):
-    """
-    중첩된 JSON을 평탄화하여 단일 레벨의 딕셔너리로 변환
-    Unknown 값은 빈 문자열로 변환
-    """
     flattened = {}
     
     for key, value in nested_json.items():
         if isinstance(value, dict):
             flattened.update(flatten_json(value, f"{prefix}{key}_"))
         else:
-            # Unknown 값을 빈 문자열로 변환
             if value == "Unknown":
                 value = ""
             flattened[f"{prefix}{key}"] = value
@@ -24,62 +19,78 @@ def flatten_json(nested_json, prefix=''):
     return flattened
 
 def process_holter_report(file_path):
-    """
-    Holter Report JSON 파일을 처리하여 평탄화된 데이터를 반환
-    """
     with open(file_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
         
     # Holter Report 데이터만 추출
     holter_data = data.get('Holter Report', {})
     
-    # JSON 평탄화
     flattened_data = flatten_json(holter_data)
+    
+    # 파일 경로 추가
+    flattened_data['FilePath'] = file_path
+    
+    # 파일명에서 확장자 제거하여 추가
+    filename_without_ext = os.path.splitext(os.path.basename(file_path))[0]
+    flattened_data['FileName'] = filename_without_ext
+    
+    # QRS complexes 기준 백분율 계산
+    try:
+        qrs_complexes = float(flattened_data.get('General_QRScomplexes', 0))
+        if qrs_complexes > 0:
+            # Ventricular Beats Percentage 계산
+            vent_beats = float(flattened_data.get('General_VentricularBeats', 0))
+            flattened_data['VentricularBeatsPercentage'] = round((vent_beats / qrs_complexes) * 100, 2)
+            
+            # Supraventricular Beats Percentage 계산
+            supra_beats = float(flattened_data.get('General_SupraventricularBeats', 0))
+            flattened_data['SupraventricularBeatsPercentage'] = round((supra_beats / qrs_complexes) * 100, 2)
+        else:
+            flattened_data['VentricularBeatsPercentage'] = 0
+            flattened_data['SupraventricularBeatsPercentage'] = 0
+    except (ValueError, TypeError):
+        flattened_data['VentricularBeatsPercentage'] = ''
+        flattened_data['SupraventricularBeatsPercentage'] = ''
     
     # HookupDate와 HookupTime 결합하여 새로운 필드 추가
     if 'PatientInfo_HookupDate' in flattened_data and 'PatientInfo_HookupTime' in flattened_data:
         date = flattened_data['PatientInfo_HookupDate']
         time = flattened_data['PatientInfo_HookupTime']
-        if date and time:  # 둘 다 값이 있는 경우에만 처리
+        if date and time:  
             combined_datetime = f"{date} {time}"
-            # 새로운 필드로 추가
             flattened_data['PatientInfo_HookupDateTime'] = combined_datetime
     
     return flattened_data
 
 def main():
-    # JSON 파일들이 있는 디렉토리 경로
-    #json_dir = r'C:\ttt'
-    json_dir = 'C:\\boramae_json'
-    # 결과 저장 경로
-    #output_dir = r'C:\tt'
-    output_dir = 'C:\\finish'
+    json_dir = 'D:\\child_cdm'
+    output_dir = 'D:\\child_cdm'
 
-    # output_dir이 없으면 생성
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     
-    # 모든 JSON 파일 경로 가져오기
     json_files = glob.glob(os.path.join(json_dir, '*.json'))
     
     if not json_files:
         print("JSON 파일을 찾을 수 없습니다.")
         return
         
-    # 첫 번째 파일을 처리하여 헤더 얻기
     first_data = process_holter_report(json_files[0])
     headers = list(first_data.keys())
     
-    # CSV 파일 생성
+    # FilePath와 FileName을 마지막 컬럼으로 이동
+    for field in ['FilePath', 'FileName']:
+        if field in headers:
+            headers.remove(field)
+            headers.append(field)
+    
     output_file = os.path.join(output_dir, 'holter_reports.csv')
     
     with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=headers)
         
-        # 헤더 작성
         writer.writeheader()
         
-        # tqdm으로 진행률 표시하며 모든 JSON 파일 처리
         for json_file in tqdm(json_files, desc="파일 처리 중"):
             try:
                 data = process_holter_report(json_file)

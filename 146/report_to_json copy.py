@@ -96,6 +96,7 @@ def process_pdf_files(file_dirs, json_dir):
                     pdf_files.append(os.path.join(root, file))
     
     failed_files = []
+    skipped_files = []
 
     for pdf_path in tqdm(pdf_files, desc="Processing PDF Files"):
         try:
@@ -104,9 +105,20 @@ def process_pdf_files(file_dirs, json_dir):
             page = pdf_doc.load_page(0)
             extracted_text = page.get_text()
 
+            # 먼저 hookup_date를 추출하여 파일명 생성
             hookup_date = extract_match(r"Medications:?\n(\d+-\w+-\d+)\nHookup Date:?", extracted_text, "Unknown")
             formatted_hookup_date = parse_date(hookup_date)
+            base_name = os.path.splitext(filename)[0]
+            hookup_date_for_filename = formatted_hookup_date.replace('-', '')
+            new_filename = f"{base_name}_{hookup_date_for_filename}.json"
+            json_path = os.path.join(json_dir, new_filename)
 
+            # 파일이 이미 존재하는지 확인
+            if os.path.exists(json_path):
+                skipped_files.append(filename)
+                continue
+
+            # 기존 코드 계속 진행
             patient_info = {
                 'PID': extract_match(r"Patient Name.*?\n(.*?)\nID", extracted_text),
                 'HookupDate': formatted_hookup_date,
@@ -153,11 +165,6 @@ def process_pdf_files(file_dirs, json_dir):
 
             json_content = create_json(holter_report)
             
-            base_name = os.path.splitext(filename)[0]
-            hookup_date_for_filename = formatted_hookup_date.replace('-', '')
-            new_filename = f"{base_name}_{hookup_date_for_filename}.json"
-            
-            json_path = os.path.join(json_dir, new_filename)
             with open(json_path, "w") as json_file:
                 json_file.write(json_content)
 
@@ -165,25 +172,24 @@ def process_pdf_files(file_dirs, json_dir):
             print(f"Failed to process {filename}: {e}")
             failed_files.append(filename)
 
-    return failed_files
+    return failed_files, skipped_files
 
 def main():
     base_dirs = [
         r'D:\exx'    # pdf 파일이 존재하는 경로
-        #r'/workspace/nas1/Holter/Holter_raw_sig'
-        #r'/workspace/nas1/Holter_new/Holter_raw_sig'
-        #r'/workspace/nas1/Holter_new/Holter_raw_pdf'
-        #r'/workspace/gunoroh/sftp/Holter_raw_sig'
     ]
     json_dir = r'D:\json'  # json 파일로 저장할 경로
-    #json_dir = r'/workspace/gunoroh/sftp_share/Holter_raw_json'  
-    #json_dir = r'/workspace/gunoroh/sftp_share/Holter_raw_json'
 
     if not os.path.exists(json_dir):
         os.makedirs(json_dir)
 
     print("Starting to process PDF files...")
-    failed_files_record = process_pdf_files(base_dirs, json_dir)
+    failed_files_record, skipped_files_record = process_pdf_files(base_dirs, json_dir)
+
+    if skipped_files_record:
+        print("\nSkipped the following existing files:")
+        for skipped_file in skipped_files_record:
+            print(skipped_file)
 
     if failed_files_record:
         print("\nFailed to process the following files:")
@@ -192,7 +198,9 @@ def main():
     else:
         print("\nAll PDF files processed successfully.")
 
-    print("Completed processing all files.")
+    print(f"\nCompleted processing all files.")
+    print(f"Total skipped files: {len(skipped_files_record)}")
+    print(f"Total failed files: {len(failed_files_record)}")
 
 if __name__ == "__main__":
     main()
