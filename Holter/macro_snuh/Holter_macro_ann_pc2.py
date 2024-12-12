@@ -21,14 +21,14 @@ time.sleep(2)
 pyautogui.click(273, 1050) 
 time.sleep(5)
 
-# Set the specified directory
+# Set the specified directory 
 directory = "Z:\\Holter\\nat_ing\\\Holter_cdrom"
 #directory = "Z:\\Holter\\nat_ing\\Holter_child_hdd\\2022"
 
 # # Get all subfolder names within the directory as a list
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")
-#'202102', '202103', '202104','202105', '202205','202206', '202207','202208','202209','202210','202211',
+#'202102', '202103',  '202104','202105', '202205','202206', '202207','202208','202209','202210','202211',
 #'DVD20160107','DVD20160121', 'DVD20160211', 'DVD20160225', 'DVD20160325', 'DVD20160518', 'DVD20160615',
 # 'DVD20160712', 'DVD20160802', 'DVD20160819','DVD20160909', 'DVD20161017', 'DVD20161116', 'DVD20161214', 
 # 'DVD20170103', 'DVD20170124',
