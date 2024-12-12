@@ -45,7 +45,7 @@ def split_folders(base_path):
                 os.rmdir(folder_path)
 
 # 실행
-base_path = r"C:\boramae"
+base_path = r"D:\boramae_2015"
 split_folders(base_path)
 
 print("폴더 분할이 완료되었습니다.")
