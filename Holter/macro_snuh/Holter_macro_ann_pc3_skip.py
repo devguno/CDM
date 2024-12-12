@@ -14,20 +14,20 @@ pyautogui.FAILSAFE = False
 
 #####
 # Set the specified directory
-directory = "C:\\boramae"
+directory = "Z:\\Holter\\nat_ing\\Holter_cdrom"
 # # Get all subfolder names within the directory as a list
-folder_list = ["boramae_202101"]
+folder_list = ["DVD20120216"]
 print(f"folder list: {folder_list}")
 #folder_list =  [ '2023-06', '2023-07', '2023-08','2024-01','2024-02','2024-03','2024-04','2024-05','2024-06']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
-    file_count = 65
+    file_count = 40
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
-    iteration_count = 142
+    iteration_count = 38
 
     print(folder_path + " file count: " + str(file_count))
 
