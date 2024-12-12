@@ -23,12 +23,16 @@ pyautogui.click(273, 1050)
 time.sleep(5)
     
 # Set the specified directory
-directory = "C:\\boramae"
+directory = "D:\\boramae_2015"
 # # Get all subfolder names within the directory as a list
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")
-#
-folder_list = ['boramae_201603', 'boramae_201604', 'boramae_201605', 'boramae_201606']
+#'boramae_201616', 'boramae_201619', 'boramae_201624','boramae_201713', 'boramae_201707', 'boramae_201801', 'boramae_201804', 
+folder_list =  ['boramae_201805', 'boramae_201806', 'boramae_201808', 'boramae_201809', 'boramae_201811', 'boramae_201812', 'boramae_201813',
+                'boramae_201617', 'boramae_201618', 'boramae_201620', 'boramae_201621', 'boramae_201622','boramae_20150529', 
+                'boramae_201623', 'boramae_201709', 'boramae_201711', 'boramae_201712', 'boramae_201714', 'boramae_201807', 'boramae_201810',
+                'boramae_201703', 'boramae_201708',  'boramae_201710', 
+                'boramae_201715', 'boramae_201717', 'boramae_201716', 'boramae_201718', 'boramae_201719', 'boramae_201802', 'boramae_201803', ]
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -75,7 +79,10 @@ for folder in folder_list:
     time.sleep(2)
     # Click on Data type-Archived files
     pyautogui.click(1735, 328)
-    time.sleep(20)
+    time.sleep(2)
+    # Click on Data type-Archived files
+    pyautogui.click(1120, 520)
+    time.sleep(10)
 
     # Patient List 에서 첫번째 클릭
     pyautogui.click(400, 72)
@@ -97,17 +104,17 @@ for folder in folder_list:
     time.sleep(2)
     pyautogui.click(1100, 560)
     #Archive 대기 시간
-    time.sleep(240)
+    time.sleep(400)
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
-    #time.sleep(400)
-    #pyautogui.click(860,1045)
-    #time.sleep(2)
+    time.sleep(400)
+    pyautogui.click(860,1045)
+    time.sleep(2)
     #Archive 대기 시간
-    #time.sleep(400)
-    #pyautogui.click(860,1045)
-    #time.sleep(2)
+    time.sleep(400)
+    pyautogui.click(860,1045)
+    time.sleep(2)
     #Archive 대기 시간
     #time.sleep(400)
     #pyautogui.click(860,1045)
