@@ -27,8 +27,8 @@ directory = "D:\\boramae_2015"
 # # Get all subfolder names within the directory as a list
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")
-#'boramae_201616', 'boramae_201619', 'boramae_201624','boramae_201713', 'boramae_201707', 'boramae_201801',
-folder_list =  [ 'boramae_201804', 'boramae_201807', 'boramae_201810', 'boramae_201703', 'boramae_201708',  'boramae_201710', 
+#'boramae_201616', 'boramae_201619', 'boramae_201624','boramae_201713', 'boramae_201707', 'boramae_201801', 'boramae_201804', 
+folder_list =  ['boramae_201807', 'boramae_201810', 'boramae_201703', 'boramae_201708',  'boramae_201710', 
                 'boramae_201617', 'boramae_201618', 'boramae_201620', 'boramae_201621', 'boramae_201622','boramae_20150529', 
                 'boramae_201623', 'boramae_201709', 'boramae_201711', 'boramae_201712', 'boramae_201714', 
                 'boramae_201715', 'boramae_201717', 'boramae_201716', 'boramae_201718', 'boramae_201719', 'boramae_201802', 'boramae_201803', 
