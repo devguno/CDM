@@ -63,8 +63,8 @@ def process_holter_report(file_path):
     return flattened_data
 
 def main():
-    json_dir = 'D:\\child_cdm'
-    output_dir = 'D:\\child_cdm'
+    json_dir = '/workspace/nas1/Holter_new/Holter_json'
+    output_dir = '/workspace/sftp'
 
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
