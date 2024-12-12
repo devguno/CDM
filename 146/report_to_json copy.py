@@ -176,9 +176,9 @@ def process_pdf_files(file_dirs, json_dir):
 
 def main():
     base_dirs = [
-        r'D:\exx'    # pdf 파일이 존재하는 경로
+        r'C:\extract'    # pdf 파일이 존재하는 경로
     ]
-    json_dir = r'D:\json'  # json 파일로 저장할 경로
+    json_dir = r'C:\child_json'  # json 파일로 저장할 경로
 
     if not os.path.exists(json_dir):
         os.makedirs(json_dir)
