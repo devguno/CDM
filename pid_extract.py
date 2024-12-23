@@ -60,6 +60,6 @@ def process_pdfs_to_csv(input_dir, output_path):
         print("No data extracted from PDF files.")
 
 if __name__ == "__main__":
-    input_directory = r"D:\extract"
-    output_csv_path = r"C:\Users\SNUH\Desktop\extracted_data3.csv"
+    input_directory = r"C:\extract"
+    output_csv_path = r"C:\Users\SNUH\Desktop\extracted_data.csv"
     process_pdfs_to_csv(input_directory, output_csv_path)
