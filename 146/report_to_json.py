@@ -235,7 +235,7 @@ def process_pdf_files(file_dir, json_dir):
             with open(json_path, "w", encoding='utf-8') as json_file:
                 json_file.write(json_content)
 
-        except Exception as e:
+        except Exception as e: 
             print(f"Failed to process {filename}: {e}")
             failed_files.append(filename)
 
