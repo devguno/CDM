@@ -181,25 +181,11 @@ def process_pdf_files(file_dir, json_dir):
                         # 특수문자나 숫자만 있는 경우는 제외
                         if not re.match(r'^[\W\d]+$', potential_name):
                             patient_name = potential_name
-                            break
-                        
-            # ID 패턴도 개선
-            id_patterns = [
-                r"ID:\s*(\d+)",
-                r"Patient Name:.*?\n(\d+)\s*\nID",
-                r",\s*ID:\s*(\d+)",
-            ]
-            
-            patient_id = "Unknown"
-            for pattern in id_patterns:
-                match = re.search(pattern, extracted_text)
-                if match:
-                    patient_id = match.group(1).strip()
-                    break
+                            break              
                     
             patient_info = {
                 'PatientName': patient_name,
-                'PID': patient_id,
+                'PID': extract_match(r"(?:Patient Name:|ID:)\s*(\d+)\s*(?:ID:|Age:)", extracted_text, "Unknown"),
                 'HookupDate': formatted_hookup_date,
                 'HookupTime': extract_match(r"(?:Hookup Date:?\n|Hookup Time:?\s*)(\d+:\d+:\d+)", extracted_text, "Unknown"),
                 'Duration': extract_match(r"(?:Hookup Time:?\n|Duration:?\s*)(\d+:\d+:\d+)", extracted_text, "Unknown"),
