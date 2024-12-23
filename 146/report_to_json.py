@@ -88,7 +88,7 @@ def extract_hourly_summary(pdf_path):
         "S_Iso", "S_Cplt", "S_Runs", "S_Max_Run", "S_Max_Rate"
     ]
     
-    for page_num in range(1, 10):
+    for page_num in range(1, 4):
         try:
             _pdf = tabula.read_pdf(pdf_path, pages=page_num)
             if len(_pdf) > 0:
@@ -131,35 +131,80 @@ def create_json(holter_report, hourly_summary):
         "Holter Report": holter_report,
         "Hourly Summary": hourly_summary if hourly_summary else "Conversion failed"
     }
-    return json.dumps(combined_data, indent=4)
+    return json.dumps(combined_data, indent=4, ensure_ascii=False) 
 
-def process_pdf_files(file_dirs, json_dir):
+def process_pdf_files(file_dir, json_dir):
     pdf_files = []
-    for file_dir in file_dirs:
-        for root, _, files in os.walk(file_dir):
-            for file in files:
-                if file.endswith('.pdf'):
-                    pdf_files.append(os.path.join(root, file))
+    
+    for file in os.listdir(file_dir):
+        if file.lower().endswith('.pdf'):
+            pdf_files.append(os.path.join(file_dir, file))
     
     failed_files = []
+    skipped_files = []
 
     for pdf_path in tqdm(pdf_files, desc="Processing PDF Files"):
         try:
             filename = os.path.basename(pdf_path)
+            
             pdf_doc = fitz.open(pdf_path)
             page = pdf_doc.load_page(0)
             extracted_text = page.get_text()
-
-            hookup_date = extract_match(r"Medications:?\n(\d+-\w+-\d+)\nHookup Date:?", extracted_text, "Unknown")
+            
+            # hookup date 추출 패턴 수정
+            hookup_date = extract_match(r"(?:Medications:?\n|Hookup Date:?\s*)(\d+-\w+-\d+)", extracted_text, "Unknown")
             formatted_hookup_date = parse_date(hookup_date)
-
+            
+            base_name = os.path.splitext(filename)[0]
+            hookup_date_for_filename = formatted_hookup_date.replace('-', '')
+            new_filename = f"{base_name}_{hookup_date_for_filename}.json"
+            json_path = os.path.join(json_dir, new_filename)
+            
+            if os.path.exists(json_path):
+                skipped_files.append(filename)
+                continue
+            
+            # 환자 이름 추출을 위한 여러 패턴 시도
+            name_patterns = [
+                r"HOLTER REPORT.*?(?:Unit \w+\s+)?([^,\n]+?)(?:,\s*Patient Name:|,\s*ID:|,|\s+ID:)",
+                r"Patient Name:\s*([^,\n]+?)(?:,|\s*ID:)",
+                r"Location:.*?(?:Unit \w+)?\s*([^,\n]+?)(?:,\s*Patient Name:|,\s*ID:)",
+            ]
+            
+            patient_name = "Unknown"
+            for pattern in name_patterns:
+                match = re.search(pattern, extracted_text, re.DOTALL)
+                if match:
+                    potential_name = match.group(1).strip()
+                    # 이름 검증 (한글 또는 영문)
+                    if potential_name and potential_name != "Unknown":
+                        # 특수문자나 숫자만 있는 경우는 제외
+                        if not re.match(r'^[\W\d]+$', potential_name):
+                            patient_name = potential_name
+                            break
+                        
+            # ID 패턴도 개선
+            id_patterns = [
+                r"ID:\s*(\d+)",
+                r"Patient Name:.*?\n(\d+)\s*\nID",
+                r",\s*ID:\s*(\d+)",
+            ]
+            
+            patient_id = "Unknown"
+            for pattern in id_patterns:
+                match = re.search(pattern, extracted_text)
+                if match:
+                    patient_id = match.group(1).strip()
+                    break
+                    
             patient_info = {
-                'PID': extract_match(r"Patient Name.*?\n(.*?)\nID", extracted_text),
+                'PatientName': patient_name,
+                'PID': patient_id,
                 'HookupDate': formatted_hookup_date,
-                'HookupTime': extract_match(r"Hookup Date:?\n(\d+:\d+:\d+)\nHookup Time:?", extracted_text, "Unknown"),
-                'Duration': extract_match(r"Hookup Time:?\n(\d+:\d+:\d+)\nDuration:?", extracted_text, "Unknown"),
-                'Age': extract_match(r"ID.*?\n(\d+)\s*(?:yr)?\s*\nAge", extracted_text),
-                'Gender': extract_match(r"Age.*?\n(Male|Female)\s*\nGender", extracted_text),
+                'HookupTime': extract_match(r"(?:Hookup Date:?\n|Hookup Time:?\s*)(\d+:\d+:\d+)", extracted_text, "Unknown"),
+                'Duration': extract_match(r"(?:Hookup Time:?\n|Duration:?\s*)(\d+:\d+:\d+)", extracted_text, "Unknown"),
+                'Age': extract_match(r"(?:ID:.*?\n|Age:?\s*)(\d+)\s*(?:yr)?", extracted_text),
+                'Gender': extract_match(r"(?:Age:.*?\n|Gender:?\s*)(Male|Female)", extracted_text),
             }
 
             general_data = parse_general_section(extracted_text)
@@ -201,44 +246,43 @@ def process_pdf_files(file_dirs, json_dir):
 
             json_content = create_json(holter_report, hourly_summary)
             
-            base_name = os.path.splitext(filename)[0]
-            hookup_date_for_filename = formatted_hookup_date.replace('-', '')
-            new_filename = f"{base_name}_{hookup_date_for_filename}.json"
-            
-            json_path = os.path.join(json_dir, new_filename)
-            with open(json_path, "w") as json_file:
+            with open(json_path, "w", encoding='utf-8') as json_file:
                 json_file.write(json_content)
 
         except Exception as e:
             print(f"Failed to process {filename}: {e}")
             failed_files.append(filename)
 
-    return failed_files
+    return failed_files, skipped_files
 
 def main():
-    base_dirs = [
-        r'C:\boramae_pdf'    # pdf 파일이 존재하는 경로
-        #r'/workspace/nas1/Holter/Holter_raw_sig'
-        #r'/workspace/nas1/Holter_new/Holter_raw_sig'
-        #r'/workspace/nas1/Holter_new/Holter_raw_pdf'
-        #r'/workspace/gunoroh/sftp/Holter_raw_sig'
-    ]
-    json_dir = r'C:\boramae_json'  # json 파일로 저장할 경로
-    #json_dir = r'/workspace/gunoroh/sftp_share/Holter_raw_json'  
-    #json_dir = r'/workspace/gunoroh/sftp_share/Holter_raw_json'
+    base_dirs = r'C:\extract'   
+    json_dir = r'C:\boramae_json'  
+
+    print(f"Configured base_dirs path: {base_dirs}")
+    abs_base_dirs = os.path.abspath(base_dirs)
+    print(f"Absolute base_dirs path: {abs_base_dirs}")
+    
+    pdf_files = [f for f in os.listdir(base_dirs) if f.lower().endswith('.pdf')]
+    print(f"Number of PDF files in directory: {len(pdf_files)}")
 
     if not os.path.exists(json_dir):
         os.makedirs(json_dir)
 
     print("Starting to process PDF files...")
-    failed_files_record = process_pdf_files(base_dirs, json_dir)
+    failed_files_record, skipped_files_record = process_pdf_files(base_dirs, json_dir)
+
+    if skipped_files_record:
+        print("\nSkipped the following existing files:")
+        for skipped_file in skipped_files_record:
+            print(skipped_file)
 
     if failed_files_record:
         print("\nFailed to process the following files:")
         for failed_file in failed_files_record:
             print(failed_file)
     else:
-        print("\nAll PDF files processed successfully.")
+        print("\nAll new PDF files processed successfully.")
 
     print("Completed processing all files.")
 
