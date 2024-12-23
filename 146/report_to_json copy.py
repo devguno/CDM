@@ -81,11 +81,12 @@ def parse_section(section_text, patterns):
             section_data[tag] = matches[tag_index]
     return section_data
 
-def create_json(holter_report):
+def create_json(holter_report, hourly_summary):
     combined_data = {
         "Holter Report": holter_report,
+        "Hourly Summary": hourly_summary if hourly_summary else "Conversion failed"
     }
-    return json.dumps(combined_data, indent=4)
+    return json.dumps(combined_data, indent=4, ensure_ascii=False) 
 
 def process_pdf_files(file_dirs, json_dir):
     pdf_files = []
