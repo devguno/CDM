@@ -29,15 +29,15 @@ directory = r"E:\boramae_2020"
 # # Get all subfolder names within the directory as a list
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")
-#'boramae_202004', 
-folder_list =  ['boramae_202007', 'boramae_202010', 'boramae_202101', 'boramae_2021012', 'boramae_2021013',
- 'boramae_2021014', 'boramae_202104', 'boramae_2021042', 'boramae_2021043', 'boramae_2021044', 'boramae_202107', 'boramae_2021072',
- 'boramae_2021073', 'boramae_2021074', 'boramae_202110', 'boramae_2021102', 'boramae_2021103', 'boramae_2021104', 'boramae_202201',
+#'boramae_202004', 'boramae_202007', 'boramae_202010', 'boramae_202101', 'boramae_2021012', 'boramae_2021013',
+# 'boramae_2021014', 'boramae_202104', 'boramae_2021042', 'boramae_2021043', 'boramae_2021044', 'boramae_202107', 'boramae_2021072',
+# 'boramae_2021073', 
+folder_list =  [ 'boramae_202110', 'boramae_2021102', 'boramae_2021103', 'boramae_2021104', 'boramae_202201',
  'boramae_2022012', 'boramae_2022013', 'boramae_2022014', 'boramae_202204', 'boramae_2022042', 'boramae_2022043', 'boramae_2022044',
  'boramae_202207', 'boramae_2022072', 'boramae_2022073', 'boramae_2022074', 'boramae_202210', 'boramae_2022102', 'boramae_2022103', 
 'boramae_2022104', 'boramae_202301', 'boramae_202401']
 
-
+#'boramae_2021074',
 
 #'DVD20120202', 'DVD20120216', 'DVD20120227', 'DVD20120320', 'DVD20120413', 'DVD20120509', 'DVD20120602', 'DVD20120627', 
 #'DVD20120629', 'DVD20120723', 'DVD20120807', 'DVD20120827', 'DVD20120924', 'DVD20121017', 'DVD20121112', 'DVD20121128', 

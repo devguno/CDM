@@ -30,8 +30,8 @@ print(f"folder list: {folder_list}")
 
 #'boramae_20150529', 'boramae_201807', 'boramae_201810', 'boramae_201711', 'boramae_201712','boramae_201714',
 #'boramae_201715', 'boramae_201717', 'boramae_201716', 'boramae_201718', 'boramae_201719', 'boramae_201802',
-#                'boramae_201803', 'boramae_201805', 'boramae_201806', 
-folder_list =  ['boramae_201808', 'boramae_201809', 'boramae_201811','boramae_201812', 'boramae_201813']
+#                'boramae_201803', 'boramae_201805', 'boramae_201806', 'boramae_201808', 'boramae_201809', 'boramae_201811','boramae_201812',
+#folder_list =  [ 'boramae_201813']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:

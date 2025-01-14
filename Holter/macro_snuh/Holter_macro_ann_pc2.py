@@ -85,7 +85,10 @@ for folder in folder_list:
     time.sleep(2)
     # Click on Data type-Archived files
     pyautogui.click(1735, 328)
-    time.sleep(20)
+    time.sleep(2)
+    # Click on Data type-Archived files
+    pyautogui.click(1120, 520)
+    time.sleep(200)
 
     # Patient List 에서 첫번째 클릭
     pyautogui.click(400, 72)
