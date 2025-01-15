@@ -6,7 +6,6 @@ import keyboard
 from tqdm import tqdm
 import math
 
-
 # Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)
 pyautogui.FAILSAFE = False
 
@@ -21,17 +20,25 @@ time.sleep(2)
 # MARS program click
 pyautogui.click(273, 1050) 
 time.sleep(5)
-    
-# Set the specified directory
-directory = r"C:\boramae"
+
+# Set the specified directory 
+#directory = "Z:\\Holter\\nat_ing\\\Holter_cdrom"
+directory = "D:\\boramae_2022"
+
 # # Get all subfolder names within the directory as a list
 folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 print(f"folder list: {folder_list}")
-
-#'boramae_20150529', 'boramae_201807', 'boramae_201810', 'boramae_201711', 'boramae_201712','boramae_201714',
-#'boramae_201715', 'boramae_201717', 'boramae_201716', 'boramae_201718', 'boramae_201719', 'boramae_201802',
-#                'boramae_201803', 'boramae_201805', 'boramae_201806', 'boramae_201808', 'boramae_201809', 'boramae_201811','boramae_201812',
-#folder_list =  [ 'boramae_201813']
+#'202102', '202103',  '202104','202105', '202205','202206', '202207','202208','202209','202210','202211',
+#'DVD20160107','DVD20160121', 'DVD20160211', 'DVD20160225', 'DVD20160325', 'DVD20160518', 'DVD20160615',
+# 'DVD20160712', 'DVD20160802', 'DVD20160819','DVD20160909', 'DVD20161017', 'DVD20161116', 'DVD20161214', 
+# 'DVD20170103', 'DVD20170124','DVD20170215', 'DVD20170309', 'DVD20170406', 'DVD20170504', 'DVD20170531', 
+# 'DVD20170621', 'DVD20170718', 'DVD20170808', 'DVD20170830', 'DVD20171010', 'DVD20171113', 'DVD20171208',
+#'DVD20180102', 'DVD20180123', 'DVD20180219', 'DVD20180307', 'DVD20180403', 'DVD20180502', 'DVD20180531', 
+#'DVD20180628', 'DVD20180719', 'DVD20180807', 'DVD20180827',
+# folder_list =   ['DVD20180928', 'DVD20181106', 'DVD20181129', 
+#                    'DVD20181221', 'DVD20190115', 'DVD20190130', 'DVD20190219', 'DVD20190308', 'DVD20190402', 'DVD20190426', 
+#                    'DVD20190526', 'DVD20190618', 'DVD20190711', 'DVD20190802', 'DVD20190820', 'DVD20190910', 'DVD20191014', 
+#                    'DVD20191112', 'DVD20191204']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -52,7 +59,7 @@ for folder in folder_list:
     # Click on Menu-System-System setup
     pyautogui.moveTo(72, 78)
     time.sleep(2)
-    # Click on Menu-System-System setup-General 
+    # Click on Menu-System-System setup-General
     pyautogui.click(264, 373)
     time.sleep(2)
     # Update Archive Path name by dragging and pasting
@@ -119,9 +126,9 @@ for folder in folder_list:
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
-    #time.sleep(400)
-    #pyautogui.click(860,1045)
-    #time.sleep(2)
+    time.sleep(400)
+    pyautogui.click(860,1045)
+    time.sleep(2)
     #click close
     pyautogui.click(1107, 475)
     time.sleep(2)
@@ -285,7 +292,7 @@ for folder in folder_list:
         time.sleep(5)
         pyautogui.click(1790, 93)
         time.sleep(2)
-        pyautogui.click(400, 410)
+        pyautogui.click(358, 358)
         time.sleep(2)
         
         # Serial 값을 붙여넣기

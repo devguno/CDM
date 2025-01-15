@@ -10,9 +10,9 @@ import math
 pyautogui.FAILSAFE = False
 
 # Set the specified directory
-directory = "C:\\boramae"
-folder_list =  ['boramae_201812']
-    
+directory ="Z:\\Holter\\nat_ing\\\Holter_cdrom"
+folder_list =  ['DVD20170215']
+
 # Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
@@ -20,7 +20,7 @@ for folder in folder_list:
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
-    iteration_count = 162
+    iteration_count = 71
 
     print(folder_path + " file count: " + str(file_count))
 
@@ -168,7 +168,8 @@ for folder in folder_list:
         #OK
         pyautogui.click(1118, 472) 
         time.sleep(2)
-        
+
+
         #click patient select 
         pyautogui.click(140, 988)
         time.sleep(2)  
@@ -178,7 +179,7 @@ for folder in folder_list:
         time.sleep(5)
         pyautogui.click(1790, 93)
         time.sleep(2)
-        pyautogui.click(400, 410)
+        pyautogui.click(358, 358)
         time.sleep(2)
         
         # Serial 값을 붙여넣기

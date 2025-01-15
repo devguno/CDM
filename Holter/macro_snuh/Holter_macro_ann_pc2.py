@@ -4,10 +4,7 @@ import pyperclip
 import time
 import keyboard
 from tqdm import tqdm
-import math
-
-# Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)
-pyautogui.FAILSAFE = False
+import math 
 
 ### Note: The MARS program should be set to use the keyboard in English. Make sure to set the keyboard layout to English before starting.
 time.sleep(3)
@@ -15,31 +12,51 @@ time.sleep(3)
 pyautogui.click(1780, 1050)
 time.sleep(2)
 # English click
-pyautogui.click(1780, 827)
+pyautogui.click(1780, 837)
 time.sleep(2)
 # MARS program click
 pyautogui.click(273, 1050) 
 time.sleep(5)
-
-# Set the specified directory 
-#directory = "Z:\\Holter\\nat_ing\\\Holter_cdrom"
-directory = "D:\\boramae_2022"
+    
+# Activate fail-safe (program stops if the mouse moves to the top left corner of the screen)d
+pyautogui.FAILSAFE = False
+ 
+#####
+# Set the specified directory
+#directory = "Z:\\Holter\\nat_ing\\Holter_cdrom"
+directory = r"E:\boramae_2020"
 
 # # Get all subfolder names within the directory as a list
-folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-print(f"folder list: {folder_list}")
-#'202102', '202103',  '202104','202105', '202205','202206', '202207','202208','202209','202210','202211',
-#'DVD20160107','DVD20160121', 'DVD20160211', 'DVD20160225', 'DVD20160325', 'DVD20160518', 'DVD20160615',
-# 'DVD20160712', 'DVD20160802', 'DVD20160819','DVD20160909', 'DVD20161017', 'DVD20161116', 'DVD20161214', 
-# 'DVD20170103', 'DVD20170124','DVD20170215', 'DVD20170309', 'DVD20170406', 'DVD20170504', 'DVD20170531', 
-# 'DVD20170621', 'DVD20170718', 'DVD20170808', 'DVD20170830', 'DVD20171010', 'DVD20171113', 'DVD20171208',
-#'DVD20180102', 'DVD20180123', 'DVD20180219', 'DVD20180307', 'DVD20180403', 'DVD20180502', 'DVD20180531', 
-#'DVD20180628', 'DVD20180719', 'DVD20180807', 'DVD20180827',
-# folder_list =   ['DVD20180928', 'DVD20181106', 'DVD20181129', 
-#                    'DVD20181221', 'DVD20190115', 'DVD20190130', 'DVD20190219', 'DVD20190308', 'DVD20190402', 'DVD20190426', 
-#                    'DVD20190526', 'DVD20190618', 'DVD20190711', 'DVD20190802', 'DVD20190820', 'DVD20190910', 'DVD20191014', 
-#                    'DVD20191112', 'DVD20191204']
-    
+#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+#print(f"folder list: {folder_list}")
+#'boramae_202004', 'boramae_202007', 'boramae_202010', 'boramae_202101', 'boramae_2021012', 'boramae_2021013',
+# 'boramae_2021014', 'boramae_202104', 'boramae_2021042', 'boramae_2021043', 'boramae_2021044', 'boramae_202107', 'boramae_2021072',
+# 'boramae_2021073', 
+folder_list =  [ 'boramae_202110', 'boramae_2021102', 'boramae_2021103', 'boramae_2021104', 'boramae_202201',
+ 'boramae_2022012', 'boramae_2022013', 'boramae_2022014', 'boramae_202204', 'boramae_2022042', 'boramae_2022043', 'boramae_2022044',
+ 'boramae_202207', 'boramae_2022072', 'boramae_2022073', 'boramae_2022074', 'boramae_202210', 'boramae_2022102', 'boramae_2022103', 
+'boramae_2022104', 'boramae_202301', 'boramae_202401']
+
+#'boramae_2021074',
+
+#'DVD20120202', 'DVD20120216', 'DVD20120227', 'DVD20120320', 'DVD20120413', 'DVD20120509', 'DVD20120602', 'DVD20120627', 
+#'DVD20120629', 'DVD20120723', 'DVD20120807', 'DVD20120827', 'DVD20120924', 'DVD20121017', 'DVD20121112', 'DVD20121128', 
+#'DVD20121213', 'DVD20130102', 'DVD20130115', 'DVD20130129', 'DVD20130214', 'DVD20130227', 'DVD20130321', 'DVD20130408', 
+#'DVD20130429', 'DVD20130523', 'DVD20130611', 'DVD20130628', 'DVD20130723', 'DVD20130808', 'DVD20130826', 'DVD20130923', 
+# folder_list =  ['DVD20131024', 'DVD20131118', 'DVD20131211', 'DVD20131231', 'DVD20140116', 'DVD20140206', 'DVD20140225', 'DVD20140315', 
+#                 'DVD20140410', 'DVD20140509', 'DVD20140610', 'DVD20140715', 'DVD20140801', 'DVD20140827', 'DVD20140911', 'DVD20141106', 
+#                 'DVD20141211', 'DVD20141224', 'DVD20150120', 'DVD20150203', 'DVD20150224', 'DVD20150308', 'DVD20150403', 'DVD20150424', 
+#                 'DVD20150522', 'DVD20150629', 'DVD20150724', 'DVD20150812', 'DVD20150917', 'DVD20151016', 'DVD20151112', 'DVD20151215']
+
+#                'DVD20160107', 'DVD20160121', 'DVD20160211', 'DVD20160225', 'DVD20160325', 'DVD20160518', 'DVD20160615', 'DVD20160712', 
+#                'DVD20160802', 'DVD20160819', 'DVD20160909', 'DVD20161017', 'DVD20161116', 'DVD20161214', 'DVD20170103', 'DVD20170124', 
+#                'DVD20170215', 'DVD20170309', 'DVD20170406', 'DVD20170504', 'DVD20170531', 'DVD20170621', 'DVD20170718', 'DVD20170808', 
+#                'DVD20170830', 'DVD20171010', 'DVD20171113', 'DVD20171208', 'DVD20180102', 'DVD20180123', 'DVD20180219', 'DVD20180307', 
+#                'DVD20180403', 'DVD20180502', 'DVD20180531', 'DVD20180628', 'DVD20180719', 'DVD20180807', 'DVD20180827', 'DVD20180928', 
+#                'DVD20181106', 'DVD20181129', 'DVD20181221', 'DVD20190115', 'DVD20190130', 'DVD20190219', 'DVD20190308', 'DVD20190402', 
+#                'DVD20190426', 'DVD20190526', 'DVD20190618', 'DVD20190711', 'DVD20190802', 'DVD20190820', 'DVD20190910', 'DVD20191014', 
+#                'DVD20191112', 'DVD20191204']
+
 # Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
@@ -52,7 +69,7 @@ for folder in folder_list:
     print(folder_path + " file count: " + str(file_count))
 
     # Wait for the first 5 seconds
-    time.sleep(5)
+    time.sleep(3)
     # Click on Menu-System
     pyautogui.click(26, 36)
     time.sleep(2)
@@ -110,25 +127,26 @@ for folder in folder_list:
     time.sleep(2)
     pyautogui.click(1100, 560)
     #Archive 대기 시간
-    time.sleep(400)
+    time.sleep(300)
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
-    time.sleep(400)
+    time.sleep(300)
+    pyautogui.click(860,1033)
+    time.sleep(2)
+    #Archive 대기 시간
+    time.sleep(300)
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
+    time.sleep(300)
+    pyautogui.click(860,1040)
     time.sleep(2)
     #Archive 대기 시간
-    time.sleep(400)
+    time.sleep(300)
     pyautogui.click(860,1045)
     time.sleep(2)
-    #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
+    #click close
     #click close
     pyautogui.click(1107, 475)
     time.sleep(2)
@@ -247,7 +265,7 @@ for folder in folder_list:
         #OK
         pyautogui.click(1118, 472) 
         time.sleep(2)
-        
+
         #MIT Signal Format
         pyautogui.click(750, 420) 
         time.sleep(2)
@@ -292,7 +310,7 @@ for folder in folder_list:
         time.sleep(5)
         pyautogui.click(1790, 93)
         time.sleep(2)
-        pyautogui.click(358, 358)
+        pyautogui.click(390, 410)
         time.sleep(2)
         
         # Serial 값을 붙여넣기
@@ -301,8 +319,8 @@ for folder in folder_list:
         pyautogui.click(1393, 359)
         time.sleep(2)
         #PDF 저장
-        pyautogui.click(1070, 682)
-        time.sleep(100)  
+        pyautogui.click(1070, 680)
+        time.sleep(80)  
         pyautogui.click(140, 985)
         time.sleep(3)
         
@@ -327,8 +345,8 @@ for folder in folder_list:
             pyautogui.click(1100, 550)
             time.sleep(4)
         
-        # 3번째 파일마다 특정 동작 실행
-        if current_file % 3 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
+        # 4번째 파일마다 특정 동작 실행
+        if current_file % 4 == 0 and current_file != 0:  # 첫 번째 파일(인덱스 0)을 제외하고 10의 배수일 때마다 실행
             pyautogui.rightClick(273, 1050)  # MARS program right click, LEFT 5
             time.sleep(2)
             pyautogui.click(273, 1023)  # close window
