@@ -11,16 +11,16 @@ pyautogui.FAILSAFE = False
 
 # Set the specified directory
 directory = "C:\\boramae"
-folder_list =  ['boramae_201812']
+folder_list =  ['boramae_202409']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
-    file_count = 40
+    file_count = 120
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
-    iteration_count = 162
+    iteration_count = 85   
 
     print(folder_path + " file count: " + str(file_count))
 
@@ -188,7 +188,7 @@ for folder in folder_list:
         time.sleep(2)
         #PDF 저장
         pyautogui.click(1070, 682)
-        time.sleep(100)  
+        time.sleep(150)  
         pyautogui.click(140, 985)
         time.sleep(3)
         
