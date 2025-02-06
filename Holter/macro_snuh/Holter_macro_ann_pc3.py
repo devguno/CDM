@@ -23,12 +23,13 @@ pyautogui.click(273, 1050)
 time.sleep(5)
     
 # Set the specified directory
-directory = r"C:\boramae"
+directory = r"C:\boramae_2010"
 # # Get all subfolder names within the directory as a list
 #folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")
-
-folder_list =  ['boramae_202409','boramae_202410']
+#'boramae_201016', 'boramae_201017',
+folder_list =  [ 'boramae_201018', 'boramae_201019', 'boramae_201020', 
+ 'boramae_201021', 'boramae_201022', 'boramae_201023', 'boramae_201024', 'boramae_201025', 'boramae_201026', 'boramae_201027']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:

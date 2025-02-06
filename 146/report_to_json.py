@@ -184,7 +184,7 @@ def process_pdf_files(file_dir, json_dir):
                             break              
                     
             patient_info = {
-                'PatientName': patient_name,
+                #'PatientName': patient_name,
                 'PID': extract_match(r"(?:Patient Name:|ID:)\s*(\d+)\s*(?:ID:|Age:)", extracted_text, "Unknown"),
                 'HookupDate': formatted_hookup_date,
                 'HookupTime': extract_match(r"(?:Hookup Date:?\n|Hookup Time:?\s*)(\d+:\d+:\d+)", extracted_text, "Unknown"),
@@ -242,8 +242,8 @@ def process_pdf_files(file_dir, json_dir):
     return failed_files, skipped_files
 
 def main():
-    base_dirs = r'F:\boramae\boramae_extract'   
-    json_dir = r'F:\boramae\boramae_json'  
+    base_dirs = r'D:\extract_child_250102'   
+    json_dir = r'D:\extract_child_250102'  
 
     print(f"Configured base_dirs path: {base_dirs}")
     abs_base_dirs = os.path.abspath(base_dirs)
