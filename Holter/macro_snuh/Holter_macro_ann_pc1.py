@@ -26,19 +26,15 @@ time.sleep(5)
 directory = r"D:\boramae_2010"
 
 # # Get all subfolder names within the directory as a list
-folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-print(f"folder list: {folder_list}")
+#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+#print(f"folder list: {folder_list}")
 #'202102', '202103',  '202104','202105', '202205','202206', '202207','202208','202209','202210','202211',
 #'DVD20160107','DVD20160121', 'DVD20160211', 'DVD20160225', 'DVD20160325', 'DVD20160518', 'DVD20160615',
 # 'DVD20160712', 'DVD20160802', 'DVD20160819','DVD20160909', 'DVD20161017', 'DVD20161116', 'DVD20161214', 
-# 'DVD20170103', 'DVD20170124','DVD20170215', 'DVD20170309', 'DVD20170406', 'DVD20170504', 'DVD20170531', 
-# 'DVD20170621', 'DVD20170718', 'DVD20170808', 'DVD20170830', 'DVD20171010', 'DVD20171113', 'DVD20171208',
-#'DVD20180102', 'DVD20180123', 'DVD20180219', 'DVD20180307', 'DVD20180403', 'DVD20180502', 'DVD20180531', 
-#'DVD20180628', 'DVD20180719', 'DVD20180807', 'DVD20180827',
-# folder_list =   ['DVD20180928', 'DVD20181106', 'DVD20181129', 
-#                    'DVD20181221', 'DVD20190115', 'DVD20190130', 'DVD20190219', 'DVD20190308', 'DVD20190402', 'DVD20190426', 
-#                    'DVD20190526', 'DVD20190618', 'DVD20190711', 'DVD20190802', 'DVD20190820', 'DVD20190910', 'DVD20191014', 
-#                    'DVD20191112', 'DVD20191204']
+
+folder_list =   [ 'boramae_201007', 'boramae_201008', 'boramae_201009', 
+                 'boramae_201010', 'boramae_201011', 'boramae_201012', 'boramae_201013', 'boramae_201014', 'boramae_201015'
+                  ]
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:

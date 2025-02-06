@@ -11,16 +11,16 @@ pyautogui.FAILSAFE = False
 
 # Set the specified directory
 directory = "C:\\boramae"
-folder_list =  ['boramae_202409']
+folder_list =  ['boramae_202410']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
     folder_path = os.path.join(directory, folder)
-    file_count = 120
+    file_count = 100
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
-    iteration_count = 85   
+    iteration_count = 20 
 
     print(folder_path + " file count: " + str(file_count))
 
