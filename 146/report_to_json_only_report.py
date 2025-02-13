@@ -81,55 +81,9 @@ def parse_section(section_text, patterns):
             section_data[tag] = matches[tag_index]
     return section_data
 
-def extract_hourly_summary(pdf_path):
-    columns = [
-        "Hour", "Min", "#QRS's", "Min.", 
-        "Ave.", "Max.", "Pauses", "V_Iso", "V_Cplt", "V_Runs", "V_Max_Run", "V_Max_Rate", 
-        "S_Iso", "S_Cplt", "S_Runs", "S_Max_Run", "S_Max_Rate"
-    ]
-    
-    for page_num in range(1, 4):
-        try:
-            _pdf = tabula.read_pdf(pdf_path, pages=page_num)
-            if len(_pdf) > 0:
-                _pdf = _pdf[0].astype(str)
-                if not _pdf.isin(["Hourly Summary"]).any().any():
-                    continue
-            else:
-                continue
-        except IndexError:
-            break
-
-        hourly_summary_df = _pdf.iloc[6:-1]
-
-        new_df = pd.DataFrame()
-        for col in hourly_summary_df.columns:
-            new_df = pd.concat([new_df, hourly_summary_df[col].str.split(" ", expand=True)], axis=1)
-
-        new_df.replace('---', np.nan, inplace=True)
-        new_df.reset_index(drop=True, inplace=True) 
-        new_df.columns = columns
-
-        def convert_to_int(value):
-            if pd.isna(value): return value
-            else: return int(value)
-
-        new_df = new_df.apply(lambda col: col.map(convert_to_int))
-
-        summary = {
-            'HR': pd.concat([new_df.loc[:, "Hour":"Min"], new_df.loc[:, "#QRS's":"Pauses"]], axis=1).to_dict(orient='records'),
-            'VT': pd.concat([new_df.loc[:, "Hour":"Min"], new_df.loc[:, "V_Iso":"V_Max_Rate"]], axis=1).to_dict(orient='records'),
-            'SVT': pd.concat([new_df.loc[:, "Hour":"Min"], new_df.loc[:, "S_Iso":"S_Max_Rate"]], axis=1).to_dict(orient='records'),
-        }
-
-        return summary
-
-    return None
-
-def create_json(holter_report, hourly_summary):
+def create_json(holter_report):
     combined_data = {
         "Holter Report": holter_report,
-        "Hourly Summary": hourly_summary if hourly_summary else "Conversion failed"
     }
     return json.dumps(combined_data, indent=4, ensure_ascii=False) 
 
@@ -228,9 +182,7 @@ def process_pdf_files(file_dir, json_dir):
                 'Supraventriculars': supraventriculars_data
             }
 
-            hourly_summary = extract_hourly_summary(pdf_path)
-
-            json_content = create_json(holter_report, hourly_summary)
+            json_content = create_json(holter_report)
             
             with open(json_path, "w", encoding='utf-8') as json_file:
                 json_file.write(json_content)
