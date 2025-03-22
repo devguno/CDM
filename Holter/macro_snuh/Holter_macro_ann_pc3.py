@@ -23,13 +23,20 @@ pyautogui.click(273, 1050)
 time.sleep(5)
     
 # Set the specified directory
-directory = r"C:\boramae_2010"
+directory = r"D:\ann_nat"
 # # Get all subfolder names within the directory as a list
-#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
-#print(f"folder list: {folder_list}")
-#'boramae_201016', 'boramae_201017',
-folder_list =  [ 'boramae_201018', 'boramae_201019', 'boramae_201020', 
- 'boramae_201021', 'boramae_201022', 'boramae_201023', 'boramae_201024', 'boramae_201025', 'boramae_201026', 'boramae_201027']
+folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+print(f"folder list: {folder_list}")
+#'155', '156', '157', '158', '159', '160', '161', '162', '163', '164', '165', '166', '167', '168', 
+#folder_list =   ['169', '170', '171',
+#  '172', '173', '174', '175', '176', '177', '178', '179', '180', '181', '182', '183', '184', '185', '186', '187', '188', '189', '190', 
+#  '1900', '1901', '1902', '1903', '1904', '1905', '1906', '1907', '1908', '1909', '191', '1910', '1911', '1912', '1913', '1914', '1915', 
+#  '1916', '1917', '1918', '1919', '192', '1920', '1921', '1922', '1923', '1924', '1925', '1926', '1927', '1928', '1929', '193', '1930', 
+#  '1931', '1932', '1933', '1934', '1935', '1936', '1937', '1938', '1939', '194', '1940', '1941', '1942', '1943', '1944', '1945', '1946',
+#  '1947', '1948', '1949', '195', '1950', '1951', '1952', '1953', '1954', '1955', '1956', '1957', '1958', '1959', '196', '1960', '1961',
+#  '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '197', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', 
+#  '1978', '1979', '198', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '199', '1990', '1991', '1992', 
+#  '1993', '1994', '1995', '1996', '1997', '1998', '1999', '200', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '201']  
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -79,7 +86,7 @@ for folder in folder_list:
     time.sleep(2)
     # Click on Data type-Archived files
     pyautogui.click(1120, 520)
-    time.sleep(200)
+    time.sleep(60)
 
     # Patient List 에서 첫번째 클릭
     pyautogui.click(400, 72)
@@ -105,17 +112,17 @@ for folder in folder_list:
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
+    #time.sleep(2)
     #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
+    #time.sleep(2)
     #Archive 대기 시간
-    time.sleep(400)
-    pyautogui.click(860,1045)
-    time.sleep(2)
+    #time.sleep(400)
+    #pyautogui.click(860,1045)
+    #time.sleep(2)
     #Archive 대기 시간
     #time.sleep(400)
     #pyautogui.click(860,1045)
