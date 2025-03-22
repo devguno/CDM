@@ -10,8 +10,8 @@ import math
 pyautogui.FAILSAFE = False
 
 # Set the specified directory
-directory ="Z:\\Holter\\nat_ing\\\Holter_cdrom"
-folder_list =  ['DVD20170215']
+directory = r"D:\ann_dd"
+folder_list =  ['2298']
 
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -20,11 +20,11 @@ for folder in folder_list:
     y_coord = 73  # Initialize the y-axis coordinate
     y_coord2 = 89  # Initialize the y-axis coordinate for the second page
     current_file = 0  # Initialize the current file number
-    iteration_count = 71
+    iteration_count = 46
 
     print(folder_path + " file count: " + str(file_count))
 
-    # Wait for the first 5 seconds
+    # Wait for the first 5 secondsc
     time.sleep(3)
     
     #click patient select 

@@ -24,7 +24,7 @@ pyautogui.FAILSAFE = False
 #####
 # Set the specified directory
 #directory = "Z:\\Holter\\nat_ing\\Holter_cdrom"
-directory = r"C:\boramae_2020"
+directory = r"C:\child_ann"
 
 # # Get all subfolder names within the directory as a list
 folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
@@ -75,7 +75,7 @@ for folder in folder_list:
     pyautogui.click(264, 373)
     time.sleep(2)
     # Update Archive Path name by dragging and pasting
-    pyautogui.moveTo(1440, 400)  # Move to the starting position
+    pyautogui.moveTo(1440, 400)  # Move to the starting positionC:\child_ann\224
     pyautogui.mouseDown()        # Press and hold the mouse button
     pyautogui.moveTo(1000, 400, duration=2)  # Move to the drag position
     pyautogui.mouseUp()          # Release the mouse button
@@ -100,7 +100,7 @@ for folder in folder_list:
     time.sleep(2)
     # Click on Data type-Archived files
     pyautogui.click(1120, 520)
-    time.sleep(200)
+    time.sleep(30)
 
     # Patient List 에서 첫번째 클릭
     pyautogui.click(400, 72)
@@ -134,12 +134,12 @@ for folder in folder_list:
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
-    time.sleep(300)
-    pyautogui.click(860,1040)
-    time.sleep(2)
+    #time.sleep(300)
+    #pyautogui.click(860,1040)
+    #time.sleep(2)
     #Archive 대기 시간
-    time.sleep(300)
-    pyautogui.click(860,1045)
+    #time.sleep(300)
+    #pyautogui.click(860,1045)
     time.sleep(2)
     #click close
     #click close
