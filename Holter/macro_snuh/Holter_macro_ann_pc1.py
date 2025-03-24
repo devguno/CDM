@@ -23,18 +23,14 @@ time.sleep(5)
 
 # Set the specified directory 
 #directory = "Z:\\Holter\\nat_ing\\\Holter_cdrom"
-directory = r"D:\boramae_2010"
+directory = r"D:\ann_dd"
 
 # # Get all subfolder names within the directory as a list
-#folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
+folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
 #print(f"folder list: {folder_list}")
-#'202102', '202103',  '202104','202105', '202205','202206', '202207','202208','202209','202210','202211',
-#'DVD20160107','DVD20160121', 'DVD20160211', 'DVD20160225', 'DVD20160325', 'DVD20160518', 'DVD20160615',
-# 'DVD20160712', 'DVD20160802', 'DVD20160819','DVD20160909', 'DVD20161017', 'DVD20161116', 'DVD20161214', 
+#'2300', '2301', '2302', '2303', '2304', '2305', '2306', '2307', '2308',
 
-folder_list =   [ 'boramae_201007', 'boramae_201008', 'boramae_201009', 
-                 'boramae_201010', 'boramae_201011', 'boramae_201012', 'boramae_201013', 'boramae_201014', 'boramae_201015'
-                  ]
+folder_list =   ['2309', '2310', '2311', '2312', '2313', '2314', '2315', '2316', '2317', '2318', '2319']
     
 # Iterate over all subfolders within the directory
 for folder in folder_list:
@@ -84,7 +80,7 @@ for folder in folder_list:
     time.sleep(2)
     # Click on Data type-Archived files
     pyautogui.click(1120, 520)
-    time.sleep(60)
+    time.sleep(10)
 
     # Patient List 에서 첫번째 클릭
     pyautogui.click(400, 72)
