@@ -194,8 +194,8 @@ def process_pdf_files(file_dir, json_dir):
     return failed_files, skipped_files
 
 def main():
-    base_dirs = r'C:\child_250115'   
-    json_dir = r'C:\child_250115\json'  
+    base_dirs = r'C:\holter_250115'   
+    json_dir = r'C:\holter_250115\json'  
 
     print(f"Configured base_dirs path: {base_dirs}")
     abs_base_dirs = os.path.abspath(base_dirs)
