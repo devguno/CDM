@@ -88,24 +88,24 @@ for folder in folder_list:
         time.sleep(2) 
         #change
         pyautogui.click(1100, 473)
-        time.sleep(2) 
+        time.sleep(10) 
         pyautogui.write(Serial)
         time.sleep(2)
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
         pyautogui.click(1070, 680)
-        time.sleep(2)
+        time.sleep(5)
         #change
         pyautogui.click(1100, 473)
-        time.sleep(2) 
+        time.sleep(10) 
         pyautogui.write(Serial)
         time.sleep(2)
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
         pyautogui.click(1070, 680)
-        time.sleep(2)
+        time.sleep(5)
         #ok
         pyautogui.click(1100, 600)
         time.sleep(2)
@@ -142,14 +142,14 @@ for folder in folder_list:
         time.sleep(2) 
         #change
         pyautogui.click(1100, 473)
-        time.sleep(2) 
+        time.sleep(20) 
         pyautogui.write(Serial)
         time.sleep(2)
         pyautogui.click(1580, 620)
         time.sleep(2) 
         #save
         pyautogui.click(1070, 680)
-        time.sleep(2)
+        time.sleep(5)
         #overwrite
         pyautogui.click(1000, 540)
         time.sleep(2)
@@ -157,7 +157,7 @@ for folder in folder_list:
         time.sleep(2)
         #change
         pyautogui.click(1100, 473)
-        time.sleep(2) 
+        time.sleep(20) 
         pyautogui.write(Serial)
         time.sleep(2)
         pyautogui.click(1580, 620)
@@ -180,16 +180,16 @@ for folder in folder_list:
         pyautogui.click(1790, 93)
         time.sleep(2)
         pyautogui.click(358, 358)
-        time.sleep(2)
+        time.sleep(20)
         
         # Serial 값을 붙여넣기
         pyautogui.write(Serial)
         time.sleep(2)
-        pyautogui.click(1393, 359)
+        pyautogui.click(1693, 359)
         time.sleep(2)
         #PDF 저장
         pyautogui.click(1070, 682)
-        time.sleep(100)  
+        time.sleep(120)  
         pyautogui.click(140, 985)
         time.sleep(3)
         
