@@ -25,6 +25,61 @@ def parse_date(date_string):
     except ValueError:
         return date_string
 
+def extract_patient_info_linewise(extracted_text, formatted_hookup_date):
+    lines = [line.strip() for line in extracted_text.split('\n') if line.strip()]
+    patient_info = {
+        'PID': "Unknown",
+        'HookupDate': formatted_hookup_date,
+        'HookupTime': "Unknown",
+        'Duration': "Unknown",
+        'Age': "Unknown",
+        'Gender': "Unknown"
+    }
+    # 라벨 정의
+    label_mapping = {
+        'PID': ['ID', 'ID:'],
+        'Age': ['Age', 'Age:'],
+        'Gender': ['Gender', 'Gender:'],
+        'HookupDate': ['Hookup Date', 'Hookup Date:'],
+        'HookupTime': ['Hookup Time', 'Hookup Time:'],
+        'Duration': ['Duration', 'Duration:']
+    }
+    # 라벨이 있는 줄 인덱스 기록
+    label_indices = {}
+    for idx, line in enumerate(lines):
+        for field, labels in label_mapping.items():
+            for label in labels:
+                if line == label or line.startswith(label):
+                    label_indices.setdefault(field, []).append(idx)
+    # 각 필드별 값 추출
+    for field, indices in label_indices.items():
+        for idx in indices:
+            line = lines[idx]
+            # 1. 같은 줄에서 콜론 뒤 값
+            if ':' in line:
+                value = line.split(':', 1)[1].strip()
+                if value:
+                    patient_info[field] = value
+                    break
+            # 2. 바로 앞줄 값 (라벨이 아니어야 함)
+            if idx > 0 and not any(lines[idx-1].startswith(lab) for labs in label_mapping.values() for lab in labs):
+                value = lines[idx-1]
+                if value:
+                    patient_info[field] = value
+                    break
+            # 3. 바로 뒷줄 값 (라벨이 아니어야 함)
+            if idx+1 < len(lines) and not any(lines[idx+1].startswith(lab) for labs in label_mapping.values() for lab in labs):
+                value = lines[idx+1]
+                if value:
+                    patient_info[field] = value
+                    break
+    # Age 숫자만 추출
+    if patient_info['Age'] != "Unknown":
+        age_val = re.search(r'\d+', patient_info['Age'])
+        if age_val:
+            patient_info['Age'] = age_val.group()
+    return patient_info
+
 def parse_general_section(text):
     general_section = re.search(r"General\n(.+?)Heart Rates", text, re.DOTALL)
     if general_section:
@@ -87,7 +142,6 @@ def extract_hourly_summary(pdf_path):
         "Ave.", "Max.", "Pauses", "V_Iso", "V_Cplt", "V_Runs", "V_Max_Run", "V_Max_Rate", 
         "S_Iso", "S_Cplt", "S_Runs", "S_Max_Run", "S_Max_Rate"
     ]
-    
     for page_num in range(1, 4):
         try:
             _pdf = tabula.read_pdf(pdf_path, pages=page_num)
@@ -99,31 +153,23 @@ def extract_hourly_summary(pdf_path):
                 continue
         except IndexError:
             break
-
         hourly_summary_df = _pdf.iloc[6:-1]
-
         new_df = pd.DataFrame()
         for col in hourly_summary_df.columns:
             new_df = pd.concat([new_df, hourly_summary_df[col].str.split(" ", expand=True)], axis=1)
-
         new_df.replace('---', np.nan, inplace=True)
         new_df.reset_index(drop=True, inplace=True) 
         new_df.columns = columns
-
         def convert_to_int(value):
             if pd.isna(value): return value
             else: return int(value)
-
         new_df = new_df.apply(lambda col: col.map(convert_to_int))
-
         summary = {
             'HR': pd.concat([new_df.loc[:, "Hour":"Min"], new_df.loc[:, "#QRS's":"Pauses"]], axis=1).to_dict(orient='records'),
             'VT': pd.concat([new_df.loc[:, "Hour":"Min"], new_df.loc[:, "V_Iso":"V_Max_Rate"]], axis=1).to_dict(orient='records'),
             'SVT': pd.concat([new_df.loc[:, "Hour":"Min"], new_df.loc[:, "S_Iso":"S_Max_Rate"]], axis=1).to_dict(orient='records'),
         }
-
         return summary
-
     return None
 
 def create_json(holter_report, hourly_summary):
@@ -135,70 +181,31 @@ def create_json(holter_report, hourly_summary):
 
 def process_pdf_files(file_dir, json_dir):
     pdf_files = []
-    
     for file in os.listdir(file_dir):
         if file.lower().endswith('.pdf'):
             pdf_files.append(os.path.join(file_dir, file))
-    
     failed_files = []
     skipped_files = []
-
     for pdf_path in tqdm(pdf_files, desc="Processing PDF Files"):
         try:
             filename = os.path.basename(pdf_path)
-            
             pdf_doc = fitz.open(pdf_path)
             page = pdf_doc.load_page(0)
             extracted_text = page.get_text()
-            
-            # hookup date 추출 패턴 수정
             hookup_date = extract_match(r"(?:Medications:?\n|Hookup Date:?\s*)(\d+-\w+-\d+)", extracted_text, "Unknown")
             formatted_hookup_date = parse_date(hookup_date)
-            
             base_name = os.path.splitext(filename)[0]
-            hookup_date_for_filename = formatted_hookup_date.replace('-', '')
-            new_filename = f"{base_name}_{hookup_date_for_filename}.json"
+            new_filename = f"{base_name}.json"
             json_path = os.path.join(json_dir, new_filename)
-            
             if os.path.exists(json_path):
                 skipped_files.append(filename)
                 continue
-            
-            # 환자 이름 추출을 위한 여러 패턴 시도
-            name_patterns = [
-                r"HOLTER REPORT.*?(?:Unit \w+\s+)?([^,\n]+?)(?:,\s*Patient Name:|,\s*ID:|,|\s+ID:)",
-                r"Patient Name:\s*([^,\n]+?)(?:,|\s*ID:)",
-                r"Location:.*?(?:Unit \w+)?\s*([^,\n]+?)(?:,\s*Patient Name:|,\s*ID:)",
-            ]
-            
-            patient_name = "Unknown"
-            for pattern in name_patterns:
-                match = re.search(pattern, extracted_text, re.DOTALL)
-                if match:
-                    potential_name = match.group(1).strip()
-                    # 이름 검증 (한글 또는 영문)
-                    if potential_name and potential_name != "Unknown":
-                        # 특수문자나 숫자만 있는 경우는 제외
-                        if not re.match(r'^[\W\d]+$', potential_name):
-                            patient_name = potential_name
-                            break              
-                    
-            patient_info = {
-                #'PatientName': patient_name,
-                'PID': extract_match(r"(?:Patient Name:|ID:)\s*(\d+)\s*(?:ID:|Age:)", extracted_text, "Unknown"),
-                'HookupDate': formatted_hookup_date,
-                'HookupTime': extract_match(r"(?:Hookup Date:?\n|Hookup Time:?\s*)(\d+:\d+:\d+)", extracted_text, "Unknown"),
-                'Duration': extract_match(r"(?:Hookup Time:?\n|Duration:?\s*)(\d+:\d+:\d+)", extracted_text, "Unknown"),
-                'Age': extract_match(r"(?:ID:.*?\n|Age:?\s*)(\d+)\s*(?:yr)?", extracted_text),
-                'Gender': extract_match(r"(?:Age:.*?\n|Gender:?\s*)(Male|Female)", extracted_text),
-            }
-
+            # 환자 정보 추출 (줄 단위)
+            patient_info = extract_patient_info_linewise(extracted_text, formatted_hookup_date)
             general_data = parse_general_section(extracted_text)
             heart_rates_data = parse_heart_rates_section(extracted_text)
-
             ventriculars_section = extract_match(r"Ventriculars \(V, F, E, I\)\n([\s\S]+?)\nSupraventriculars \(S, J, A\)", extracted_text, "")
             supraventriculars_section = extract_match(r"Supraventriculars \(S, J, A\)\n([\s\S]+?)Interpretation", extracted_text, "")
-
             ventriculars_patterns = [
                 (r"(\d+) Isolated", ['Isolated']),
                 (r"(\d+) Couplets", ['Couplets']),
@@ -207,7 +214,6 @@ def process_pdf_files(file_dir, json_dir):
                 (r"(\d+) Beats longest run (\d+) bpm ([\d:]+ \d+-\w+)", ['LongestRunBeats', 'LongestRunBPM', 'LongestRunTimestamp']),
                 (r"(\d+) Beats fastest run (\d+) bpm ([\d:]+ \d+-\w+)", ['FastestRunBeats', 'FastestRunBPM', 'FastestRunTimestamp'])
             ]
-
             supraventriculars_patterns = [
                 (r"(\d+) Isolated", ['Isolated']),
                 (r"(\d+) Couplets", ['Couplets']),
@@ -216,10 +222,8 @@ def process_pdf_files(file_dir, json_dir):
                 (r"(\d+) Beats longest run (\d+) bpm ([\d:]+ \d+-\w+)", ['LongestRunBeats', 'LongestRunBPM', 'LongestRunTimestamp']),
                 (r"(\d+) Beats fastest run (\d+) bpm ([\d:]+ \d+-\w+)", ['FastestRunBeats', 'FastestRunBPM', 'FastestRunTimestamp'])
             ]
-
             ventriculars_data = parse_section(ventriculars_section, ventriculars_patterns)
             supraventriculars_data = parse_section(supraventriculars_section, supraventriculars_patterns)
-
             holter_report = {
                 'PatientInfo': patient_info,
                 'General': general_data,
@@ -227,49 +231,37 @@ def process_pdf_files(file_dir, json_dir):
                 'Ventriculars': ventriculars_data,
                 'Supraventriculars': supraventriculars_data
             }
-
             hourly_summary = extract_hourly_summary(pdf_path)
-
             json_content = create_json(holter_report, hourly_summary)
-            
             with open(json_path, "w", encoding='utf-8') as json_file:
                 json_file.write(json_content)
-
         except Exception as e: 
             print(f"Failed to process {filename}: {e}")
             failed_files.append(filename)
-
     return failed_files, skipped_files
 
 def main():
-    base_dirs = r'C:\child_250115'   
-    json_dir = r'C:\child_250115\json'  
-
+    base_dirs = r'C:\extract'   
+    json_dir = r'C:\extract\json'  
     print(f"Configured base_dirs path: {base_dirs}")
     abs_base_dirs = os.path.abspath(base_dirs)
     print(f"Absolute base_dirs path: {abs_base_dirs}")
-    
     pdf_files = [f for f in os.listdir(base_dirs) if f.lower().endswith('.pdf')]
     print(f"Number of PDF files in directory: {len(pdf_files)}")
-
     if not os.path.exists(json_dir):
         os.makedirs(json_dir)
-
     print("Starting to process PDF files...")
     failed_files_record, skipped_files_record = process_pdf_files(base_dirs, json_dir)
-
     if skipped_files_record:
         print("\nSkipped the following existing files:")
         for skipped_file in skipped_files_record:
             print(skipped_file)
-
     if failed_files_record:
         print("\nFailed to process the following files:")
         for failed_file in failed_files_record:
             print(failed_file)
     else:
         print("\nAll new PDF files processed successfully.")
-
     print("Completed processing all files.")
 
 if __name__ == "__main__":
