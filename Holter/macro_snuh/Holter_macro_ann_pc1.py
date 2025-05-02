@@ -23,7 +23,7 @@ time.sleep(5)
 
 # Set the specified directory 
 #directory = "Z:\\Holter\\nat_ing\\\Holter_cdrom"
-directory = r"E:\pc1_ann_0331"
+directory = r"D:\2025"
 
 # # Get all subfolder names within the directory as a list
 folder_list = [f for f in os.listdir(directory) if os.path.isdir(os.path.join(directory, f))]
@@ -102,19 +102,19 @@ for folder in folder_list:
     time.sleep(2)
     pyautogui.click(1100, 560)
     #Archive 대기 시간
-    time.sleep(400)
+    time.sleep(100)
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
-    time.sleep(400)
+    #time.sleep(400)
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
-    time.sleep(400)
+    #time.sleep(400)
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
-    time.sleep(400)
+    #time.sleep(400)
     pyautogui.click(860,1045)
     time.sleep(2)
     #Archive 대기 시간
@@ -194,7 +194,7 @@ for folder in folder_list:
         time.sleep(2) 
         #change
         pyautogui.click(1100, 473)
-        time.sleep(15) 
+        time.sleep(35) 
         pyautogui.write(Serial)
         time.sleep(2)
         pyautogui.click(1580, 620)
@@ -204,7 +204,7 @@ for folder in folder_list:
         time.sleep(2)
         #change
         pyautogui.click(1100, 473)
-        time.sleep(15) 
+        time.sleep(35) 
         pyautogui.write(Serial)
         time.sleep(2)
         pyautogui.click(1580, 620)
@@ -248,7 +248,7 @@ for folder in folder_list:
         time.sleep(2) 
         #change
         pyautogui.click(1100, 473)
-        time.sleep(25) 
+        time.sleep(35) 
         pyautogui.write(Serial)
         time.sleep(2)
         pyautogui.click(1580, 620)
@@ -263,7 +263,7 @@ for folder in folder_list:
         time.sleep(2)
         #change
         pyautogui.click(1100, 473)
-        time.sleep(25) 
+        time.sleep(35) 
         pyautogui.write(Serial)
         time.sleep(2)
         pyautogui.click(1580, 620)
